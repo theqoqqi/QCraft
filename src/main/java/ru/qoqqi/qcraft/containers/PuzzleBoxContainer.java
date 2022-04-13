@@ -23,15 +23,12 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
 import ru.qoqqi.qcraft.blocks.ModBlocks;
 import ru.qoqqi.qcraft.blocks.PuzzleBoxBlock;
-import ru.qoqqi.qcraft.puzzles.CraftingPuzzle;
-import ru.qoqqi.qcraft.puzzles.PuzzleType;
 import ru.qoqqi.qcraft.tileentities.PuzzleBoxTileEntity;
 
 public class PuzzleBoxContainer extends Container {
@@ -104,7 +101,7 @@ public class PuzzleBoxContainer extends Container {
 			}
 			
 			if (tileEntity.isEmpty()) {
-				List<ItemStack> ingredients = tileEntity.getPuzzle().getIngredients();
+				List<ItemStack> ingredients = tileEntity.makeIngredients();
 				
 				for (ItemStack stack : ingredients) {
 					merge(stack, mainInventorySlots);

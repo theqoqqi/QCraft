@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
@@ -88,6 +89,14 @@ public class PuzzleBoxTileEntity extends TileEntity {
 		return puzzle;
 	}
 	
+	public List<ItemStack> makeIngredients() {
+		return getPuzzle()
+				.getIngredients()
+				.stream()
+				.map(ItemStack::copy)
+				.collect(Collectors.toList());
+	}
+	
 	public void onTriedToSolve(World world, BlockPos pos, PlayerEntity player, List<ItemStack> solutionItems) {
 		MinecraftServer server = world.getServer();
 		
@@ -97,7 +106,7 @@ public class PuzzleBoxTileEntity extends TileEntity {
 		
 		PuzzleBoxBlock block = (PuzzleBoxBlock) getBlockState().getBlock();
 		
-		if (puzzle.isCorrectSolution(solutionItems)) {
+		if (getPuzzle().isCorrectSolution(solutionItems)) {
 			ItemStack itemStack = new ItemStack(block.asItem());
 			
 			world.destroyBlock(pos, false);
