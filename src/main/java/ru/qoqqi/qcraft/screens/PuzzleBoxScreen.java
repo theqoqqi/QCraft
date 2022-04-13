@@ -26,7 +26,7 @@ import ru.qoqqi.qcraft.containers.PuzzleBoxContainer;
 
 public class PuzzleBoxScreen extends ContainerScreen<PuzzleBoxContainer> {
 	
-	private static final int SOLVE_BUTTON_X = 130;
+	private static final int SOLVE_BUTTON_X = 141;
 	
 	private static final int SOLVE_BUTTON_Y = 157;
 	
@@ -86,8 +86,6 @@ public class PuzzleBoxScreen extends ContainerScreen<PuzzleBoxContainer> {
 		}));
 	}
 	
-	
-	
 	@Override
 	public void render(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(matrixStack);
@@ -105,7 +103,15 @@ public class PuzzleBoxScreen extends ContainerScreen<PuzzleBoxContainer> {
 		int y = (this.height - this.ySize) / 2;
 		
 		textureManager.bindTexture(PUZZLE_BOX_TEXTURE);
+		
 		this.blit(matrixStack, x, y, 0, 0, this.xSize, this.ySize);
+		
+		for (int i = 0; i < container.getSolutionSize(); i++) {
+			int borderWidth = 5;
+			int slotX = x - borderWidth + container.solutionInventoryX + i * container.solutionInventorySpacing;
+			int slotY = y - borderWidth + container.solutionInventoryY;
+			this.blit(matrixStack, slotX, slotY, 26, 194, 26, 26);
+		}
 	}
 	
 	@Override

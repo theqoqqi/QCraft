@@ -4,19 +4,22 @@ import ru.qoqqi.qcraft.util.IntRange;
 
 public class PuzzleType {
 	
-	protected final IntRange ingredientRange;
+	public final IntRange ingredientRange;
 	
-	protected final IntRange uniqueIngredientRange;
+	public final IntRange uniqueIngredientRange;
 	
-	protected final IntRange recipeOutputStackRange;
+	public final IntRange recipeOutputStackRange;
 	
-	protected final float splitProbability;
+	public final float splitProbability;
 	
-	public PuzzleType(IntRange ingredientRange, IntRange uniqueIngredientRange, IntRange recipeOutputStackRange, float splitProbability) {
+	public final int solutionSize;
+	
+	public PuzzleType(IntRange ingredientRange, IntRange uniqueIngredientRange, IntRange recipeOutputStackRange, float splitProbability, int solutionSize) {
 		this.ingredientRange = ingredientRange;
 		this.uniqueIngredientRange = uniqueIngredientRange;
 		this.recipeOutputStackRange = recipeOutputStackRange;
 		this.splitProbability = splitProbability;
+		this.solutionSize = solutionSize;
 	}
 	
 	public static Builder builder() {
@@ -32,6 +35,8 @@ public class PuzzleType {
 		protected IntRange recipeOutputStackRange = IntRange.of(1, 64);
 		
 		protected float splitProbability = 0.0f;
+		
+		protected int solutionSize = 3;
 		
 		private Builder() {
 		}
@@ -56,8 +61,13 @@ public class PuzzleType {
 			return this;
 		}
 		
+		public Builder withSolutionSize(int solutionSize) {
+			this.solutionSize = solutionSize;
+			return this;
+		}
+		
 		public PuzzleType build() {
-			return new PuzzleType(ingredientRange, uniqueIngredientRange, recipeOutputStackRange, splitProbability);
+			return new PuzzleType(ingredientRange, uniqueIngredientRange, recipeOutputStackRange, splitProbability, solutionSize);
 		}
 	}
 }

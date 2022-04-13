@@ -45,6 +45,8 @@ public class PuzzleBoxBlock extends Block {
 	
 	private static final ITextComponent CONTAINER_NAME = new TranslationTextComponent("container.crafting");
 	
+	private static PuzzleBoxBlock lastActivatedBlock;
+	
 	private static BlockPos lastActivatedPos;
 	
 	private final LootBox lootBox;
@@ -65,6 +67,7 @@ public class PuzzleBoxBlock extends Block {
 	public ActionResultType onBlockActivated(@Nonnull BlockState state, World world, @Nonnull BlockPos blockPos, @Nonnull PlayerEntity player, @Nonnull Hand handIn, @Nonnull BlockRayTraceResult hit) {
 		if (world.isRemote) {
 			lastActivatedPos = blockPos;
+			lastActivatedBlock = this;
 			return ActionResultType.SUCCESS;
 			
 		} else if (player.openContainer instanceof PuzzleBoxContainer) {
@@ -134,8 +137,12 @@ public class PuzzleBoxBlock extends Block {
 		return explosionPower;
 	}
 	
-	public PuzzleType getPuzzleConfig() {
+	public PuzzleType getPuzzleType() {
 		return puzzleType;
+	}
+	
+	public static PuzzleBoxBlock getLastActivatedBlock() {
+		return lastActivatedBlock;
 	}
 	
 	public static BlockPos getLastActivatedPos() {

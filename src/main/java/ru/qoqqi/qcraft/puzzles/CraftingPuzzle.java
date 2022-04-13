@@ -13,12 +13,9 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagRegistry;
-import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +26,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Random;
 import java.util.Set;
@@ -162,19 +158,19 @@ public class CraftingPuzzle {
 	
 	private static List<ICraftingRecipe> getRandomRecipes(World world, Random random, PuzzleType config) {
 		List<ICraftingRecipe> recipes = getRecipesForConfig(world, config);
-		List<ICraftingRecipe> randomRecipes = getRandomRecipesWeighted(random, recipes);
+		List<ICraftingRecipe> randomRecipes = getRandomRecipesWeighted(random, config, recipes);
 		
 		if (randomRecipes == null) {
-			randomRecipes = getRandomRecipesSafe(random, recipes);
+			randomRecipes = getRandomRecipesSafe(random, config, recipes);
 		}
 		
 		return randomRecipes;
 	}
 	
-	private static List<ICraftingRecipe> getRandomRecipesWeighted(Random random, List<ICraftingRecipe> recipes) {
+	private static List<ICraftingRecipe> getRandomRecipesWeighted(Random random, PuzzleType config, List<ICraftingRecipe> recipes) {
 		List<ICraftingRecipe> randomRecipes = new ArrayList<>();
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < config.solutionSize; i++) {
 			ICraftingRecipe randomRecipe;
 			
 			int limit = 1000;
@@ -193,12 +189,12 @@ public class CraftingPuzzle {
 		return randomRecipes;
 	}
 	
-	private static List<ICraftingRecipe> getRandomRecipesSafe(Random random, List<ICraftingRecipe> recipes) {
+	private static List<ICraftingRecipe> getRandomRecipesSafe(Random random, PuzzleType config, List<ICraftingRecipe> recipes) {
 		List<ICraftingRecipe> recipesCopy = new ArrayList<>(recipes);
 		
 		Collections.shuffle(recipesCopy, random);
 		
-		return recipesCopy.subList(0, 3);
+		return recipesCopy.subList(0, config.solutionSize);
 	}
 	
 	private static float getRecipeWeight(ICraftingRecipe recipe) {

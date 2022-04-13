@@ -81,7 +81,7 @@ public class PuzzleBoxTileEntity extends TileEntity {
 			
 			PuzzleBoxBlock puzzleBoxBlock = (PuzzleBoxBlock) block;
 			Random random = new Random(PuzzleBoxBlock.getSeedFor(world, pos));
-			PuzzleType config = puzzleBoxBlock.getPuzzleConfig();
+			PuzzleType config = puzzleBoxBlock.getPuzzleType();
 			
 			puzzle = CraftingPuzzle.generate(world, random, config);
 		}

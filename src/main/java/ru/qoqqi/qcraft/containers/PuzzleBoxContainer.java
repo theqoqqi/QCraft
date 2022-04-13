@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-import ru.qoqqi.qcraft.blocks.ModBlocks;
 import ru.qoqqi.qcraft.blocks.PuzzleBoxBlock;
 import ru.qoqqi.qcraft.tileentities.PuzzleBoxTileEntity;
 
@@ -45,19 +44,13 @@ public class PuzzleBoxContainer extends Container {
 	
 	private static final int MAIN_INVENTORY_Y = 84;
 	
-	private static final int SOLUTION_INVENTORY_X = 17;
-	
-	private static final int SOLUTION_INVENTORY_Y = 159;
-	
-	private static final int SOLUTION_INVENTORY_SPACING = 36;
-	
 	private final CraftingInventory craftingInventory = new CraftingInventory(this, 3, 3);
 	
 	private final CraftResultInventory craftResultInventory = new CraftResultInventory();
 	
 	private final IInventory mainInventory;
 	
-	private final IInventory solutionInventory = new Inventory(3);
+	private final IInventory solutionInventory;
 	
 	private final IWorldPosCallable worldPosCallable;
 	
@@ -73,20 +66,33 @@ public class PuzzleBoxContainer extends Container {
 	
 	private final PuzzleBoxBlock block;
 	
+	public final int solutionInventoryX;
+	
+	public final int solutionInventoryY;
+	
+	public final int solutionInventorySpacing;
+	
 	private PuzzleBoxTileEntity tileEntity;
 	
 	public PuzzleBoxContainer(int id, PlayerInventory playerInventory) {
-		this(id, playerInventory, IWorldPosCallable.DUMMY, (PuzzleBoxBlock) ModBlocks.PUZZLE_BOX_EASY.get(), null);
+		this(id, playerInventory, IWorldPosCallable.DUMMY, PuzzleBoxBlock.getLastActivatedBlock(), null);
 	}
 	
 	public PuzzleBoxContainer(int id, @Nonnull PlayerInventory playerInventory, IWorldPosCallable worldPosCallable, PuzzleBoxBlock block, IInventory mainInventory) {
 		super(ModContainers.PUZZLE_BOX_CONTAINER.get(), id);
+		int solutionSize = block.getPuzzleType().solutionSize;
+		
 		this.worldPosCallable = worldPosCallable;
 		this.player = playerInventory.player;
 		this.block = block;
 		this.mainInventory = mainInventory == null
 				? new Inventory(PuzzleBoxTileEntity.inventorySize)
 				: mainInventory;
+		this.solutionInventory = new Inventory(solutionSize);
+		
+		solutionInventoryX = getSolutionInventoryX(solutionSize);
+		solutionInventoryY = getSolutionInventoryY(solutionSize);
+		solutionInventorySpacing = getSolutionInventorySpacing(solutionSize);
 		
 		craftResultSlot = addCraftResultSlot(playerInventory);
 		craftingInventorySlots = addCraftingInventorySlots();
@@ -116,6 +122,20 @@ public class PuzzleBoxContainer extends Container {
 			
 			tileEntity.openInventory(player);
 		}));
+	}
+	
+	private int getSolutionInventoryX(int solutionSize) {
+		solutionSize -= 3;
+		return 17 - solutionSize * 2;
+	}
+	
+	private int getSolutionInventoryY(int solutionSize) {
+		return 159;
+	}
+	
+	private int getSolutionInventorySpacing(int solutionSize) {
+		solutionSize -= 3;
+		return 36 - solutionSize * 5;
 	}
 	
 	@Nonnull
@@ -176,10 +196,10 @@ public class PuzzleBoxContainer extends Container {
 	private List<Slot> addSolutionInventorySlots() {
 		List<Slot> slots = new ArrayList<>();
 		
-		for (int i = 0; i < 3; ++i) {
-			int x = SOLUTION_INVENTORY_X + i * SOLUTION_INVENTORY_SPACING;
+		for (int i = 0; i < solutionInventory.getSizeInventory(); ++i) {
+			int x = solutionInventoryX + i * solutionInventorySpacing;
 			
-			Slot slot = new Slot(solutionInventory, i, x, SOLUTION_INVENTORY_Y);
+			Slot slot = new Slot(solutionInventory, i, x, solutionInventoryY);
 			
 			addSlot(slot);
 			slots.add(slot);
@@ -337,5 +357,9 @@ public class PuzzleBoxContainer extends Container {
 		return solutionInventorySlots.stream().allMatch(slot -> {
 			return !slot.getStack().isEmpty();
 		});
+	}
+	
+	public int getSolutionSize() {
+		return solutionInventory.getSizeInventory();
 	}
 }

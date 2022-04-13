@@ -6,12 +6,14 @@ public class PuzzleTypes {
 			.withIngredientRange(2, 6)
 			.withUniqueIngredientRange(2, 3)
 			.withRecipeOutputStackRange(1, 64)
+			.withSolutionSize(3)
 			.build();
 	
 	public static final PuzzleType PUZZLE_NORMAL = PuzzleType.builder()
 			.withIngredientRange(3, 9)
 			.withUniqueIngredientRange(2, 9)
 			.withRecipeOutputStackRange(1, 64)
+			.withSolutionSize(3)
 			.build();
 	
 	public static final PuzzleType PUZZLE_HARD = PuzzleType.builder()
@@ -19,5 +21,6 @@ public class PuzzleTypes {
 			.withUniqueIngredientRange(2, 9)
 			.withRecipeOutputStackRange(1, 64)
 			.withSplitProbability(0.8f)
+			.withSolutionSize(3)
 			.build();
 }
