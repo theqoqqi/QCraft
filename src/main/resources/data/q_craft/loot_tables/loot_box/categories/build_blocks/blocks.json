@@ -1,0 +1,111 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_nether_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cracked_nether_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cracked_polished_blackstone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cracked_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:end_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:infested_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:quartz_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_nether_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_polished_blackstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_quartz_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_red_sandstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chiseled_sandstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_nylium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_andesite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_basalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_diorite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_granite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_nylium"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_sign"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_sign"
+        }
+      ]
+    }
+  ]
+}
+

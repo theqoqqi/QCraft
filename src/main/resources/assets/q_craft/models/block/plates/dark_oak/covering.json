@@ -1,0 +1,6 @@
+{
+  "parent": "q_craft:block/plates/template/covering",
+  "textures": {
+    "pane": "minecraft:block/stripped_dark_oak_log"
+  }
+}

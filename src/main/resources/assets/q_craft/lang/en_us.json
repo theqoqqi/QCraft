@@ -1,0 +1,41 @@
+{
+  "block.q_craft.acacia_plate": "Acacia plate",
+  "block.q_craft.birch_plate": "Birch plate",
+  "block.q_craft.dark_oak_plate": "Dark oak plate",
+  "block.q_craft.jungle_plate": "Jungle plate",
+  "block.q_craft.oak_plate": "Oak plate",
+  "block.q_craft.spruce_plate": "Spruce plate",
+
+  "block.q_craft.pandoras_box": "Pandora's box",
+  "block.q_craft.puzzle_box_easy": "Easy Puzzle box",
+  "block.q_craft.puzzle_box_normal": "Normal Puzzle box",
+  "block.q_craft.puzzle_box_hard": "Hard Puzzle box",
+
+  "item.q_craft.loot_box_small": "Small Gift box",
+  "item.q_craft.loot_box_medium": "Medium Gift box",
+  "item.q_craft.loot_box_large": "Large Gift box",
+  "item.q_craft.attribute_box": "Attribute box",
+  "item.q_craft.noahs_box": "Noah's box",
+
+  "structure.end_portal": "End Portal",
+
+  "screen.puzzleBox.crafting": "Crafting",
+  "screen.puzzleBox.ingredients": "Ingredients",
+  "screen.puzzleBox.solution": "Solution",
+
+  "lootBox.failure": "%1$s failed to open %2$s",
+  "lootBox.itemReceived": "%1$s got %2$d of %3$s from %4$s",
+  "lootBox.gotNothing": "%1$s got nothing from %2$s",
+  "lootBox.entitySummoned": "%1$s opened %2$s and summoned %3$s",
+  "lootBox.exploded": "%1$s opened %2$s and it summoned",
+  "lootBox.spaceJump": "%1$s opened %2$s and went into space",
+  "lootBox.gotExperience": "%1$s opened %2$s and got %3$d of experience",
+  "lootBox.structureSpawn": "%1$s opened %2$s and created %3$s",
+  "lootBox.attribute.increase.factor": "%1$s opened %2$s and increased %3$s by %4$d%%",
+  "lootBox.attribute.increase.constant": "%1$s opened %2$s and increased %3$s by %4$d",
+  "lootBox.attribute.decrease.factor": "%1$s opened %2$s and decreased %3$s by %4$d%%",
+  "lootBox.attribute.decrease.constant": "%1$s opened %2$s and decreased %3$s by %4$d",
+
+  "puzzleBox.exploded": "%1$s made a mistake while solving the puzzle and exploded",
+  "puzzleBox.seed": "Seed: %1$s"
+}

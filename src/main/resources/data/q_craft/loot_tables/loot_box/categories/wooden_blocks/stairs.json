@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_stairs"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,54 @@
+{
+  "type": "q_craft:loot_injection",
+  "injection": "q_craft:inject/loot_boxes",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/ancient_towns/common"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/ancient_towns/rare"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/ancient_towns/smithy"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/enchant_room_1"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/enchant_room_2"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/house_top_1a"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/house_top_1b"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/secret_1"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/castle/tower_top_1"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/player_ruins/pedestal_1/chest"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/village/common/shop_1/chest_1a"
+    },
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "c_craft:chests/village/common/shop_1/chest_1b"
+    }
+  ]
+}

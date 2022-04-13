@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:andesite_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blackstone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobblestone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diorite_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:end_stone_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:granite_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_cobblestone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_stone_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sandstone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_nether_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_sandstone_wall"
+        }
+      ]
+    }
+  ]
+}
+

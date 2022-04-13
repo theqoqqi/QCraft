@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_wart_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart_block"
+        }
+      ]
+    }
+  ]
+}
+
