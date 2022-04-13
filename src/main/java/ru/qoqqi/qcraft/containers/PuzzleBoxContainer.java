@@ -74,8 +74,6 @@ public class PuzzleBoxContainer extends Container {
 	
 	private final List<Slot> solutionInventorySlots;
 	
-	private CraftingPuzzle puzzle;
-	
 	private final PuzzleBoxBlock block;
 	
 	private PuzzleBoxTileEntity tileEntity;
@@ -106,10 +104,7 @@ public class PuzzleBoxContainer extends Container {
 			}
 			
 			if (tileEntity.isEmpty()) {
-				Random random = new Random(PuzzleBoxBlock.getSeedFor(world, blockPos));
-				PuzzleType config = block.getPuzzleConfig();
-				puzzle = CraftingPuzzle.generate(player.world, random, config);
-				List<ItemStack> ingredients = puzzle.getIngredients();
+				List<ItemStack> ingredients = tileEntity.getPuzzle().getIngredients();
 				
 				for (ItemStack stack : ingredients) {
 					merge(stack, mainInventorySlots);
@@ -345,9 +340,5 @@ public class PuzzleBoxContainer extends Container {
 		return solutionInventorySlots.stream().allMatch(slot -> {
 			return !slot.getStack().isEmpty();
 		});
-	}
-	
-	public CraftingPuzzle getPuzzle() {
-		return puzzle;
 	}
 }

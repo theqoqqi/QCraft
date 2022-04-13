@@ -71,10 +71,14 @@ public class PuzzleBoxBlock extends Block {
 			PuzzleBoxContainer puzzleBoxContainer = (PuzzleBoxContainer) player.openContainer;
 			
 			if (puzzleBoxContainer.isSolutionSlotsFilled()) {
-				CraftingPuzzle puzzle = puzzleBoxContainer.getPuzzle();
-				List<ItemStack> solutionItems = puzzleBoxContainer.getSolutionItems();
+				TileEntity tileEntity = world.getTileEntity(blockPos);
 				
-				onTriedToSolve(world, blockPos, player, puzzle, solutionItems);
+				if (tileEntity instanceof PuzzleBoxTileEntity) {
+					PuzzleBoxTileEntity puzzleBoxTileEntity = (PuzzleBoxTileEntity) tileEntity;
+					List<ItemStack> solutionItems = puzzleBoxContainer.getSolutionItems();
+					
+					puzzleBoxTileEntity.onTriedToSolve(world, blockPos, player, solutionItems);
+				}
 			}
 			
 			return ActionResultType.CONSUME;
@@ -108,46 +112,6 @@ public class PuzzleBoxBlock extends Block {
 		}
 	}
 	
-	private void onTriedToSolve(World world, BlockPos pos, PlayerEntity player, CraftingPuzzle puzzle, List<ItemStack> solutionItems) {
-		MinecraftServer server = world.getServer();
-		
-		if (server == null) {
-			return;
-		}
-		
-		if (puzzle.isCorrectSolution(solutionItems)) {
-			ItemStack itemStack = new ItemStack(asItem());
-			
-			world.destroyBlock(pos, false);
-			
-			lootBox.openWithActionResult(player, itemStack, pos);
-			
-			syncInventory((ServerPlayerEntity) player);
-			
-		} else {
-			double x = pos.getX();
-			double y = pos.getY();
-			double z = pos.getZ();
-			
-			world.destroyBlock(pos, false);
-			world.createExplosion(null, x, y, z, explosionPower, Explosion.Mode.BREAK);
-			
-			ITextComponent message = new TranslationTextComponent(
-					"puzzleBox.exploded",
-					player.getDisplayName()
-			);
-			
-			server.getPlayerList().sendMessageToTeamOrAllPlayers(player, message);
-		}
-	}
-	
-	private void syncInventory(ServerPlayerEntity player) {
-		for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
-			ItemStack itemStack2 = player.inventory.mainInventory.get(i);
-			player.connection.sendPacket(new SSetSlotPacket(-2, i, itemStack2));
-		}
-	}
-	
 	@SuppressWarnings("deprecation")
 	public INamedContainerProvider getContainer(@Nonnull BlockState state, @Nonnull World world, @Nonnull BlockPos pos) {
 		return new SimpleNamedContainerProvider((id, inventory, player) -> {
@@ -160,6 +124,14 @@ public class PuzzleBoxBlock extends Block {
 					tileEntity == null ? null : tileEntity.getInventory()
 			);
 		}, CONTAINER_NAME);
+	}
+	
+	public LootBox getLootBox() {
+		return lootBox;
+	}
+	
+	public int getExplosionPower() {
+		return explosionPower;
 	}
 	
 	public PuzzleType getPuzzleConfig() {
