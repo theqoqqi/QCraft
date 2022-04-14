@@ -5,49 +5,8 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "q_craft:loot_box_small",
-          "weight": 5
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:loot_box_medium",
-          "weight": 4
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:loot_box_large",
-          "weight": 3
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:puzzle_box_easy",
-          "weight": 3
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:puzzle_box_normal",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:puzzle_box_hard",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:attribute_box",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:noahs_box",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "q_craft:pandoras_box",
-          "weight": 1
+          "type": "minecraft:loot_table",
+          "name": "q_craft:random_loot_box"
         }
       ],
       "conditions": [

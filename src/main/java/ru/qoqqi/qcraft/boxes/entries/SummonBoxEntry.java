@@ -1,7 +1,9 @@
 package ru.qoqqi.qcraft.boxes.entries;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -20,14 +22,12 @@ import ru.qoqqi.qcraft.util.RandomUtils;
 
 public class SummonBoxEntry implements IBoxEntry {
 	
-	public static final WeightedList<String> CREATURES = RandomUtils.createWeightedList(
+	public static final WeightedList<String> GROUND_CREATURES = RandomUtils.createWeightedList(
 			new RandomUtils.WeightedEntry<>(10, "minecraft:bat"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:bee"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:cat"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:chicken"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:cod"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:cow"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:dolphin"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:donkey"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:fox"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:horse"),
@@ -39,15 +39,20 @@ public class SummonBoxEntry implements IBoxEntry {
 			new RandomUtils.WeightedEntry<>(10, "minecraft:parrot"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:pig"),
 			new RandomUtils.WeightedEntry<>(1, "minecraft:polar_bear"),
-			new RandomUtils.WeightedEntry<>(1, "minecraft:pufferfish"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:rabbit"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:salmon"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:sheep"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:squid"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:strider"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:tropical_fish"),
-			new RandomUtils.WeightedEntry<>(10, "minecraft:turtle"),
 			new RandomUtils.WeightedEntry<>(10, "minecraft:wolf")
+	);
+	
+	public static final WeightedList<String> WATER_CREATURES = RandomUtils.createWeightedList(
+			new RandomUtils.WeightedEntry<>(10, "minecraft:cod"),
+			new RandomUtils.WeightedEntry<>(2, "minecraft:dolphin"),
+			new RandomUtils.WeightedEntry<>(5, "minecraft:pufferfish"),
+			new RandomUtils.WeightedEntry<>(10, "minecraft:salmon"),
+			new RandomUtils.WeightedEntry<>(10, "minecraft:squid"),
+			new RandomUtils.WeightedEntry<>(5, "minecraft:tropical_fish"),
+			new RandomUtils.WeightedEntry<>(2, "minecraft:turtle")
 	);
 	
 	public static final WeightedList<String> MONSTERS = RandomUtils.createWeightedList(
@@ -86,16 +91,19 @@ public class SummonBoxEntry implements IBoxEntry {
 	
 	protected final int amount;
 	
-	public SummonBoxEntry(String entityName) {
-		this(RandomUtils.createWeightedList(entityName));
+	private final int spawnRange;
+	
+	public SummonBoxEntry(String entityName, int spawnRange) {
+		this(RandomUtils.createWeightedList(entityName), spawnRange);
 	}
 	
-	public SummonBoxEntry(WeightedList<String> entityNames) {
-		this(entityNames, 1);
+	public SummonBoxEntry(WeightedList<String> entityNames, int spawnRange) {
+		this(entityNames, spawnRange, 1);
 	}
 	
-	public SummonBoxEntry(WeightedList<String> entityNames, int amount) {
+	public SummonBoxEntry(WeightedList<String> entityNames, int spawnRange, int amount) {
 		this.entityNames = entityNames;
+		this.spawnRange = spawnRange;
 		this.amount = amount;
 	}
 	
@@ -115,14 +123,53 @@ public class SummonBoxEntry implements IBoxEntry {
 	
 	private void summonGroup(ServerWorld world, PlayerEntity player, BlockPos blockPos, ItemStack lootBox, UnpackResult result, EntityType<?> entityType) {
 		for (int i = 0; i < amount; i++) {
-			Entity entity = summonEntity(world, player, blockPos, lootBox, entityType);
+			BlockPos randomBlockPos = getRandomBlockPos(world, blockPos, entityType);
+			Entity entity = summonEntity(world, player, randomBlockPos, lootBox, entityType);
 			
 			result.addChatMessage(getChatMessage(player, lootBox, entity));
 		}
 	}
 	
+	private BlockPos getRandomBlockPos(ServerWorld world, BlockPos blockPos, EntityType<?> entityType) {
+		int tries = 20;
+		
+		do {
+			double x = blockPos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange + 0.5D;
+			double y = blockPos.getY() + world.rand.nextInt(3) - 1;
+			double z = blockPos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * spawnRange + 0.5D;
+			
+			BlockPos randomBlockPos = tryGetRandomBlockPos(world, entityType, x, y, z);
+			
+			if (randomBlockPos != null) {
+				return randomBlockPos;
+			}
+		} while (--tries > 0);
+		
+		return blockPos;
+	}
+	
+	private BlockPos tryGetRandomBlockPos(ServerWorld world, EntityType<?> entityType, double x, double y, double z) {
+		if (!world.hasNoCollisions(entityType.getBoundingBoxWithSizeApplied(x, y, z))) {
+			return null;
+		}
+		
+		BlockPos randomBlockPos = new BlockPos(x, y, z);
+		
+		if (!EntitySpawnPlacementRegistry.canSpawnEntity(entityType, world, SpawnReason.MOB_SUMMONED, randomBlockPos, world.rand)) {
+			return null;
+		}
+		
+		return randomBlockPos;
+	}
+	
 	private Entity summonEntity(ServerWorld world, PlayerEntity player, BlockPos blockPos, ItemStack itemStack, EntityType<?> entityType) {
-		return entityType.spawn(world, itemStack, player, blockPos, SpawnReason.MOB_SUMMONED, true, false);
+		Entity entity = entityType.spawn(world, itemStack, player, blockPos, SpawnReason.MOB_SUMMONED, true, false);
+		
+		if (entity instanceof MobEntity) {
+			((MobEntity) entity).spawnExplosionParticle();
+		}
+		
+		return entity;
 	}
 	
 	protected ITextComponent getChatMessage(PlayerEntity player, ItemStack lootBox, Entity entity) {

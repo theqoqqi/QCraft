@@ -29,6 +29,8 @@ public class ModItems {
 	
 	public static final RegistryObject<LootBoxItem> NOAHS_BOX = registerLootBox("noahs_box", LootBoxes.NOAHS_BOX, Rarity.RARE);
 	
+	public static final RegistryObject<LootBoxItem> POSEIDONS_BOX = registerLootBox("poseidons_box", LootBoxes.POSEIDONS_BOX, Rarity.RARE);
+	
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
 	}

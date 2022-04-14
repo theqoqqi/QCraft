@@ -24,26 +24,33 @@ public class LootBoxes {
 	public static final LootBox LOOT_BOX_SMALL = create(
 			new RandomUtils.WeightedEntry<>(8, new LootTableBoxEntry("loot_box_small")),
 			new RandomUtils.WeightedEntry<>(1, new ExperienceBoxEntry(100, 20)),
-			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(1, new SummonBoxEntry(SummonBoxEntry.CREATURES)))
+			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(1, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8)))
 	);
 	
 	public static final LootBox LOOT_BOX_MEDIUM = create(
 			new RandomUtils.WeightedEntry<>(8, new LootTableBoxEntry("loot_box_medium")),
 			new RandomUtils.WeightedEntry<>(1, new ExperienceBoxEntry(200, 40)),
-			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(2, new SummonBoxEntry(SummonBoxEntry.CREATURES)))
+			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(2, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8)))
 	);
 	
 	public static final LootBox LOOT_BOX_LARGE = create(
 			new RandomUtils.WeightedEntry<>(8, new LootTableBoxEntry("loot_box_large")),
 			new RandomUtils.WeightedEntry<>(1, new ExperienceBoxEntry(300, 60)),
-			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.CREATURES)))
+			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8)))
 	);
 	
 	public static final LootBox NOAHS_BOX = create(
-			new RandomUtils.WeightedEntry<>(4, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.CREATURES, 2))),
-			new RandomUtils.WeightedEntry<>(3, new RepeatBoxEntry(5, new SummonBoxEntry(SummonBoxEntry.CREATURES, 2))),
-			new RandomUtils.WeightedEntry<>(2, new RepeatBoxEntry(7, new SummonBoxEntry(SummonBoxEntry.CREATURES, 2))),
-			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(10, new SummonBoxEntry(SummonBoxEntry.CREATURES, 2)))
+			new RandomUtils.WeightedEntry<>(4, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new RandomUtils.WeightedEntry<>(3, new RepeatBoxEntry(5, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new RandomUtils.WeightedEntry<>(2, new RepeatBoxEntry(7, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(10, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2)))
+	);
+	
+	public static final LootBox POSEIDONS_BOX = create(
+			new RandomUtils.WeightedEntry<>(4, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.WATER_CREATURES, 4))),
+			new RandomUtils.WeightedEntry<>(3, new RepeatBoxEntry(5, new SummonBoxEntry(SummonBoxEntry.WATER_CREATURES, 4))),
+			new RandomUtils.WeightedEntry<>(2, new RepeatBoxEntry(7, new SummonBoxEntry(SummonBoxEntry.WATER_CREATURES, 4))),
+			new RandomUtils.WeightedEntry<>(1, new RepeatBoxEntry(10, new SummonBoxEntry(SummonBoxEntry.WATER_CREATURES, 4)))
 	);
 	
 	public static final LootBox ATTRIBUTE_BOX = create(
@@ -71,10 +78,8 @@ public class LootBoxes {
 			)),
 			new RandomBoxEntry(RandomUtils.createWeightedList(
 					new RandomUtils.WeightedEntry<>(3, new ExplosionBoxEntry(12)),
-					new RandomUtils.WeightedEntry<>(1, new SummonBoxEntry("minecraft:wither")),
-					// Либо с 20 мобов уменьшить на 10-15, либо сделать разброс координат, чтобы на территории вокруг игрока спаунились
-					// Можно еще, как вариант, до ночи время прокрутить (посмотреть, как это во время сна в кровати сделано)
-					new RandomUtils.WeightedEntry<>(6, new RepeatBoxEntry(12, new SummonBoxEntry(SummonBoxEntry.MONSTERS)))
+					new RandomUtils.WeightedEntry<>(1, new SummonBoxEntry("minecraft:wither", 4)),
+					new RandomUtils.WeightedEntry<>(6, new RepeatBoxEntry(12, new SummonBoxEntry(SummonBoxEntry.MONSTERS, 12)))
 			))
 	)));
 	
