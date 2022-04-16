@@ -55,6 +55,17 @@ public class ModBlocks {
 	public static final RegistryObject<Block> PANDORAS_BOX = registerLootBox("pandoras_box", LootBoxes.PANDORAS_BOX);
 	
 	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> LOOT_BOX_GENERATOR_BLOCK = register(
+			"loot_box_generator",
+			() -> new LootBoxGeneratorBlock(
+					AbstractBlock.Properties
+							.create(Material.ROCK, MaterialColor.OBSIDIAN)
+							.hardnessAndResistance(5.0f, 1200f)
+			),
+			ItemGroup.MISC
+	);
+	
+	@SuppressWarnings("unused")
 	private static RegistryObject<Block> registerWoodenPlate(String name) {
 		return register(
 				name,
@@ -108,9 +119,7 @@ public class ModBlocks {
 	}
 	
 	@SuppressWarnings("unused")
-	private static <T extends Block> RegistryObject<T> register(
-			String name, Supplier<T> blockSupplier) {
-		
+	private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier) {
 		return register(name, blockSupplier, block -> null, false);
 	}
 	

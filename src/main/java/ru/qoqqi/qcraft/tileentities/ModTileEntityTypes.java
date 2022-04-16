@@ -27,6 +27,12 @@ public class ModTileEntityTypes {
 			ModBlocks.PUZZLE_BOX_HARD
 	);
 	
+	public static final RegistryObject<TileEntityType<LootBoxGeneratorTileEntity>> LOOT_BOX_GENERATOR = register(
+			"loot_box_generator",
+			LootBoxGeneratorTileEntity::new,
+			ModBlocks.LOOT_BOX_GENERATOR_BLOCK
+	);
+	
 	@SafeVarargs
 	private static <T extends TileEntity> RegistryObject<TileEntityType<T>> register(String name, Supplier<T> supplier, RegistryObject<Block>... validBlocks) {
 		return TILE_ENTITIES.register(name, () -> {

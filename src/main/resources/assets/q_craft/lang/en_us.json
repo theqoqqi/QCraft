@@ -10,6 +10,7 @@
   "block.q_craft.puzzle_box_easy": "Easy Puzzle box",
   "block.q_craft.puzzle_box_normal": "Normal Puzzle box",
   "block.q_craft.puzzle_box_hard": "Hard Puzzle box",
+  "block.q_craft.loot_box_generator": "Gift box generator",
 
   "item.q_craft.loot_box_small": "Small Gift box",
   "item.q_craft.loot_box_medium": "Medium Gift box",
@@ -38,5 +39,12 @@
   "lootBox.attribute.decrease.constant": "%1$s opened %2$s and decreased %3$s by %4$d",
 
   "puzzleBox.exploded": "%1$s made a mistake while solving the puzzle and exploded",
-  "puzzleBox.seed": "Seed: %1$s"
+  "puzzleBox.seed": "Seed: %1$s",
+
+  "lootBoxGenerator.activate.success": "You have activated this generator",
+  "lootBoxGenerator.activate.alreadyActivated": "You have already activated this generator",
+  "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "This generator has already been activated by another player",
+  "lootBoxGenerator.take.progress": "Progress: %1$s%%",
+  "lootBoxGenerator.take.forbidden": "This generator is owned by another player",
+  "lootBoxGenerator.take.success": "%1$s got a %2$s"
 }

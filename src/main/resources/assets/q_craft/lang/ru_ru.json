@@ -10,6 +10,7 @@
   "block.q_craft.puzzle_box_easy": "Простая Головоломка",
   "block.q_craft.puzzle_box_normal": "Обычная Головоломка",
   "block.q_craft.puzzle_box_hard": "Сложная Головоломка",
+  "block.q_craft.loot_box_generator": "Генератор коробок с сюрпризами",
 
   "item.q_craft.loot_box_small": "Маленькая коробка с сюрпризом",
   "item.q_craft.loot_box_medium": "Средняя коробка с сюрпризом",
@@ -38,5 +39,12 @@
   "lootBox.attribute.decrease.constant": "%1$s открыл %2$s и уменьшил %3$s на %4$d",
 
   "puzzleBox.exploded": "%1$s ошибся, решая головоломку и взорвался",
-  "puzzleBox.seed": "Зерно: %1$s"
+  "puzzleBox.seed": "Зерно: %1$s",
+
+  "lootBoxGenerator.activate.success": "Вы активировали генератор",
+  "lootBoxGenerator.activate.alreadyActivated": "Вы уже активировали этот генератор",
+  "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "Этот генератор уже принадлежит другому игроку",
+  "lootBoxGenerator.take.progress": "Прогресс: %1$s%%",
+  "lootBoxGenerator.take.forbidden": "Этот генератор принадлежит другому игроку",
+  "lootBoxGenerator.take.success": "%1$s получил %2$s"
 }
