@@ -46,7 +46,7 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 	
 	private static final int HOUR_IN_TICKS = 60 * 60 * 20;
 	
-	private static final float baseCountdownTicks = 200;//3 * HOUR_IN_TICKS;
+	private static final float baseCountdownTicks = 3 * HOUR_IN_TICKS;
 	
 	private int age;
 	
