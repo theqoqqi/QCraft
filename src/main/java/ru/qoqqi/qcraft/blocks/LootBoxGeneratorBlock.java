@@ -76,11 +76,11 @@ public class LootBoxGeneratorBlock extends Block {
 		}
 		
 		if (tileEntity.getAge() % 10 == 0) {
-			spawnParticle(world, pos, random, 0.6f);
+			spawnParticle(world, pos, random, 0.3f);
 		}
 		
 		if (!tileEntity.getItemStack().isEmpty() || random.nextFloat() <= tileEntity.getProgress()) {
-			spawnParticle(world, pos, random, 0.5f);
+			spawnParticle(world, pos, random, 0.25f);
 		}
 	}
 	
