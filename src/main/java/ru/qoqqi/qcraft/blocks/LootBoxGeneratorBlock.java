@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.TileEntity;
@@ -17,6 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -42,10 +44,23 @@ public class LootBoxGeneratorBlock extends Block {
 		}
 		
 		if (hand != Hand.MAIN_HAND) {
-			return ActionResultType.PASS;
+			return ActionResultType.CONSUME;
 		}
 		
 		return ((LootBoxGeneratorTileEntity) tileEntity).onBlockActivated(player);
+	}
+	
+	@Override
+	public boolean canHarvestBlock(BlockState state, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		
+		if (!(tileEntity instanceof LootBoxGeneratorTileEntity)) {
+			return true;
+		}
+		
+		UUID ownerUuid = ((LootBoxGeneratorTileEntity) tileEntity).getOwnerUuid();
+		
+		return ownerUuid == null || ownerUuid.equals(player.getUniqueID());
 	}
 	
 	@Override
@@ -54,7 +69,7 @@ public class LootBoxGeneratorBlock extends Block {
 		
 		TileEntity tileEntity = world.getTileEntity(pos);
 		
-		if (placer instanceof PlayerEntity && tileEntity instanceof LootBoxGeneratorTileEntity) {
+		if (placer instanceof ServerPlayerEntity && tileEntity instanceof LootBoxGeneratorTileEntity) {
 			((LootBoxGeneratorTileEntity) tileEntity).onBlockPlacedBy((PlayerEntity) placer);
 		}
 	}

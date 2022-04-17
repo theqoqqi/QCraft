@@ -44,7 +44,8 @@
   "lootBoxGenerator.activate.success": "You have activated this generator",
   "lootBoxGenerator.activate.alreadyActivated": "You have already activated this generator",
   "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "This generator has already been activated by another player",
-  "lootBoxGenerator.take.progress": "Progress: %1$s%%",
+  "lootBoxGenerator.take.progress.active": "Progress: %1$s%% (active)",
+  "lootBoxGenerator.take.progress.inactive": "Progress: %1$s%% (inactive)",
   "lootBoxGenerator.take.forbidden": "This generator is owned by another player",
   "lootBoxGenerator.take.success": "%1$s got a %2$s"
 }

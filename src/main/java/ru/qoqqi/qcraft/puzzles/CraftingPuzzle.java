@@ -40,8 +40,8 @@ public class CraftingPuzzle {
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 	
-	@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
 	private static final List<ResourceLocation> BLACKLIST = Arrays.asList(
+			new ResourceLocation("minecraft:map"),
 			new ResourceLocation("minecraft:filled_map")
 	);
 	
@@ -260,7 +260,7 @@ public class CraftingPuzzle {
 			
 			RECIPES_CACHE.put(config, recipes);
 			
-			recipes.forEach(r -> System.out.println(r.getRecipeOutput()));
+			recipes.forEach(r -> LOGGER.info(r.getRecipeOutput()));
 		}
 		
 		return RECIPES_CACHE.get(config);
