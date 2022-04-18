@@ -52,6 +52,21 @@ public class LootBoxGeneratorBlock extends Block {
 	
 	@Override
 	public boolean canHarvestBlock(BlockState state, IBlockReader world, BlockPos pos, PlayerEntity player) {
+		return super.canHarvestBlock(state, world, pos, player)
+				&& canBeBrokenBy(world, pos, player);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public float getPlayerRelativeBlockHardness(@Nonnull BlockState state, @Nonnull PlayerEntity player, @Nonnull IBlockReader world, @Nonnull BlockPos pos) {
+		if (!canBeBrokenBy(world, pos, player)) {
+			return -1f;
+		}
+		
+		return super.getPlayerRelativeBlockHardness(state, player, world, pos);
+	}
+	
+	public boolean canBeBrokenBy(@Nonnull IBlockReader world, BlockPos pos, PlayerEntity player) {
 		TileEntity tileEntity = world.getTileEntity(pos);
 		
 		if (!(tileEntity instanceof LootBoxGeneratorTileEntity)) {
@@ -60,7 +75,7 @@ public class LootBoxGeneratorBlock extends Block {
 		
 		UUID ownerUuid = ((LootBoxGeneratorTileEntity) tileEntity).getOwnerUuid();
 		
-		return ownerUuid == null || ownerUuid.equals(player.getUniqueID());
+		return (ownerUuid == null || ownerUuid.equals(player.getUniqueID()));
 	}
 	
 	@Override
