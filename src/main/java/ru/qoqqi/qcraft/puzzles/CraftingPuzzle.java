@@ -200,13 +200,13 @@ public class CraftingPuzzle {
 	private static float getRecipeWeight(ICraftingRecipe recipe) {
 		List<ITag<?>> usedTags = new ArrayList<>();
 		
-		for (ITag.INamedTag<Item> tag : ItemTags.getAllTags()) {
+		for (ITag.INamedTag<Item> tag : filterTags(ItemTags.getAllTags())) {
 			if (isRecipeUsesItemTag(recipe, tag)) {
 				usedTags.add(tag);
 			}
 		}
 		
-		for (ITag.INamedTag<Block> tag : BlockTags.getAllTags()) {
+		for (ITag.INamedTag<Block> tag : filterTags(BlockTags.getAllTags())) {
 			if (isRecipeUsesBlockTag(recipe, tag)) {
 				usedTags.add(tag);
 			}
@@ -217,6 +217,12 @@ public class CraftingPuzzle {
 				.max();
 		
 		return 1f / highestTagSize.orElse(1);
+	}
+	
+	private static <T, I extends ITag.INamedTag<T>> List<I> filterTags(List<I> tags) {
+		return tags.stream()
+				.filter(tag -> "minecraft".equals(tag.getName().getNamespace()))
+				.collect(Collectors.toList());
 	}
 	
 	private static boolean isRecipeUsesItemTag(ICraftingRecipe recipe, ITag<Item> tag) {
