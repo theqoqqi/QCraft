@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
+import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.blocks.PuzzleBoxBlock;
 import ru.qoqqi.qcraft.puzzles.CraftingPuzzle;
 import ru.qoqqi.qcraft.puzzles.PuzzleType;
@@ -108,6 +109,8 @@ public class PuzzleBoxTileEntity extends TileEntity {
 		
 		if (getPuzzle().isCorrectSolution(solutionItems)) {
 			ItemStack itemStack = new ItemStack(block.asItem());
+			
+			ModCriteriaTriggers.SOLVE_PUZZLE.trigger((ServerPlayerEntity) player, pos);
 			
 			world.destroyBlock(pos, false);
 			

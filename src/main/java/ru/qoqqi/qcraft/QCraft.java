@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
 
+import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.blocks.ModBlocks;
 import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.containers.ModContainers;
@@ -54,6 +55,7 @@ public class QCraft {
 		ModItems.register(eventBus);
 		ModContainers.register(eventBus);
 		ModTileEntityTypes.register(eventBus);
+		ModCriteriaTriggers.register();
 	}
 	
 	static {

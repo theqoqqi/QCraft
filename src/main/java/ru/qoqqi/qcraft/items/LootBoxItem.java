@@ -1,6 +1,7 @@
 package ru.qoqqi.qcraft.items;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -10,6 +11,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
+import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.boxes.LootBox;
 
 public class LootBoxItem extends Item {
@@ -35,6 +37,10 @@ public class LootBoxItem extends Item {
 		
 		if (!player.abilities.isCreativeMode) {
 			itemStack.shrink(1);
+		}
+		
+		if (player instanceof ServerPlayerEntity) {
+			ModCriteriaTriggers.OPEN_LOOT_BOX.trigger((ServerPlayerEntity) player, itemStack);
 		}
 		
 		return ActionResult.resultConsume(itemStack);

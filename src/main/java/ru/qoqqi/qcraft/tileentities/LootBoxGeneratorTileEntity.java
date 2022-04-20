@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
@@ -37,6 +38,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import ru.qoqqi.qcraft.QCraft;
+import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.worlddata.LootBoxGeneratorsWorldData;
 
 public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableTileEntity {
@@ -166,6 +168,7 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 			if (ownerUuid == null) {
 				activateByPlayer((ServerWorld) world, this, uuid);
 				sendMessageToPlayer(player, createText("activate.success"));
+				ModCriteriaTriggers.ACTIVATE_LOOT_BOX_GENERATOR.trigger((ServerPlayerEntity) player);
 				return ActionResultType.CONSUME;
 			} else if (uuid.equals(ownerUuid)) {
 				sendMessageToPlayer(player, createText("activate.alreadyActivated"));
@@ -209,6 +212,7 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 	
 	public void onBlockPlacedBy(@Nonnull PlayerEntity player) {
 		activateByPlayer((ServerWorld) player.world, this, player.getUniqueID());
+		ModCriteriaTriggers.ACTIVATE_LOOT_BOX_GENERATOR.trigger((ServerPlayerEntity) player);
 	}
 	
 	@Override
@@ -284,7 +288,7 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 		return itemStack;
 	}
 	
-	public static void activateByPlayer(ServerWorld world, LootBoxGeneratorTileEntity tileEntity, UUID playerUuid) {
+	private static void activateByPlayer(ServerWorld world, LootBoxGeneratorTileEntity tileEntity, UUID playerUuid) {
 		if (isActiveForPlayer(world, playerUuid, tileEntity)) {
 			return;
 		}

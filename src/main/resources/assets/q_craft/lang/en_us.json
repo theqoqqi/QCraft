@@ -1,4 +1,15 @@
 {
+  "advancements.boxes.root.title": "Boxes",
+  "advancements.boxes.root.description": "Open your first box",
+  "advancements.boxes.all_boxes.title": "Complete collection",
+  "advancements.boxes.all_boxes.description": "Open all existing boxes",
+  "advancements.boxes.loot_box_generator.title": "Gift box generator",
+  "advancements.boxes.loot_box_generator.description": "We want more boxes!",
+  "advancements.boxes.pandoras_box.title": "Pandora's box",
+  "advancements.boxes.pandoras_box.description": "Maybe not worth it?",
+  "advancements.boxes.puzzles.title": "Puzzles!",
+  "advancements.boxes.puzzles.description": "Solve your first puzzle",
+
   "block.q_craft.acacia_plate": "Acacia plate",
   "block.q_craft.birch_plate": "Birch plate",
   "block.q_craft.dark_oak_plate": "Dark oak plate",

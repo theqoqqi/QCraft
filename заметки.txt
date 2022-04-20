@@ -17,6 +17,10 @@
 
 
 
+https://github.com/skylinerw/guides/tree/master/java
+
+
+
 ЧТОБЫ СДЕЛАТЬ JAR, НУЖНО:
 1. Сначала забилдить и запустить майн с модом (runClient)
 2. Прописать в консоли gradlew build

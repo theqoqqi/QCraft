@@ -1,4 +1,15 @@
 {
+  "advancements.boxes.root.title": "Коробки",
+  "advancements.boxes.root.description": "Откройте любую коробку с сюрпризом",
+  "advancements.boxes.all_boxes.title": "Полная коллекция",
+  "advancements.boxes.all_boxes.description": "Откройте все существующие виды коробок",
+  "advancements.boxes.loot_box_generator.title": "Генератор коробок с сюрпризами",
+  "advancements.boxes.loot_box_generator.description": "Мы хотим больше коробок!",
+  "advancements.boxes.pandoras_box.title": "Ящик Пандоры",
+  "advancements.boxes.pandoras_box.description": "Может не стоит?",
+  "advancements.boxes.puzzles.title": "Головоломки!",
+  "advancements.boxes.puzzles.description": "Найдите и разгадайте головоломку",
+
   "block.q_craft.acacia_plate": "Доска из акации",
   "block.q_craft.birch_plate": "Доска из березы",
   "block.q_craft.dark_oak_plate": "Доска из темного дуба",
