@@ -35,12 +35,12 @@ public class LootBoxItem extends Item {
 			return ActionResult.resultFail(itemStack);
 		}
 		
-		if (!player.abilities.isCreativeMode) {
-			itemStack.shrink(1);
-		}
-		
 		if (player instanceof ServerPlayerEntity) {
 			ModCriteriaTriggers.OPEN_LOOT_BOX.trigger((ServerPlayerEntity) player, itemStack);
+		}
+		
+		if (!player.abilities.isCreativeMode) {
+			itemStack.shrink(1);
 		}
 		
 		return ActionResult.resultConsume(itemStack);

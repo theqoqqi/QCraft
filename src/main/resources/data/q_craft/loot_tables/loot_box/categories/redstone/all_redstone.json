@@ -6,14 +6,34 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/non_stackable",
+          "name": "q_craft:loot_box/categories/redstone/consumers",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/redstone/suppliers",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/redstone/minecarts",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/redstone/rails",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/redstone/buttons",
           "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
+                "min": 32.0,
+                "max": 64.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -21,8 +41,8 @@
         },
         {
           "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/fruits",
-          "weight": 10,
+          "name": "q_craft:loot_box/categories/redstone/doors",
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -36,8 +56,8 @@
         },
         {
           "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/meat",
-          "weight": 10,
+          "name": "q_craft:loot_box/categories/redstone/pressure_plates",
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -51,44 +71,20 @@
         },
         {
           "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/meat",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:furnace_smelt"
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 8.0,
-                "max": 16.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/misc",
-          "weight": 10,
+          "name": "q_craft:loot_box/categories/redstone/trapdoors",
+          "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 8.0,
-                "max": 16.0,
+                "min": 4.0,
+                "max": 8.0,
                 "type": "minecraft:uniform"
               }
             }
           ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/golden",
-          "weight": 5
         }
       ]
     }
   ]
 }
-

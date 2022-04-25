@@ -18,6 +18,11 @@
           "type": "minecraft:loot_table",
           "name": "q_craft:loot_box/categories/ores/resource_blocks",
           "weight": 5
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/resource_nuggets",
+          "weight": 5
         }
       ]
     }

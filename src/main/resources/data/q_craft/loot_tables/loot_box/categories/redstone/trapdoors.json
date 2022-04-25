@@ -27,6 +27,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:spruce_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_trapdoor"
         }
       ]
     }

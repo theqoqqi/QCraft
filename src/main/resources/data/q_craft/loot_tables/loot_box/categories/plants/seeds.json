@@ -6,18 +6,19 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:turtle_helmet",
-          "weight": 10
+          "name": "minecraft:beetroot_seeds"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:elytra",
-          "weight": 2
+          "name": "minecraft:melon_seeds"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:saddle",
-          "weight": 10
+          "name": "minecraft:pumpkin_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wheat_seeds"
         }
       ]
     }

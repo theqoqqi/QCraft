@@ -6,46 +6,53 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:acacia_pressure_plate"
+          "name": "minecraft:anvil"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:birch_pressure_plate"
+          "name": "minecraft:chipped_anvil"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:dark_oak_pressure_plate"
+          "name": "minecraft:damaged_anvil"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:jungle_pressure_plate"
+          "name": "minecraft:beacon"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:oak_pressure_plate"
+          "name": "minecraft:bell"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:spruce_pressure_plate"
+          "name": "minecraft:enchanting_table"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:stone_pressure_plate"
+          "name": "minecraft:ender_chest"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:polished_blackstone_pressure_plate"
+          "name": "minecraft:lodestone"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:heavy_weighted_pressure_plate"
+          "name": "minecraft:respawn_anchor"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:light_weighted_pressure_plate"
+          "name": "minecraft:shulker_box"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sponge"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wet_sponge"
         }
       ]
     }
   ]
 }
-

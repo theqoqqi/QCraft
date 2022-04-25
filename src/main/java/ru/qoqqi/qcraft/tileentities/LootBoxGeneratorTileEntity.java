@@ -30,6 +30,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
+
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -96,10 +98,19 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 		countdown--;
 		
 		if (countdown <= 0) {
+			LootBoxGeneratorsWorldData worldData = getWorldData(world);
+			
 			if (startedFrom > 0) {
 				generateItemStack();
+				worldData.removeGenerationDuration(ownerUuid);
 			}
-			startCountdown(world.rand);
+			
+			if (!worldData.hasGenerationDuration(ownerUuid)) {
+				worldData.setGenerationDuration(ownerUuid, nextRandomDuration(world.rand));
+			}
+			
+			int duration = worldData.getGenerationDuration(ownerUuid);
+			startCountdown(duration);
 		}
 	}
 	
@@ -117,9 +128,13 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 		}
 	}
 	
-	private void startCountdown(Random random) {
-		startedFrom = (int) (baseCountdownTicks * nextRandomFloat(random));
-		countdown = startedFrom;
+	private void startCountdown(int startFrom) {
+		startedFrom = startFrom;
+		countdown = startFrom;
+	}
+	
+	private int nextRandomDuration(Random random) {
+		return (int) (baseCountdownTicks * nextRandomFloat(random));
 	}
 	
 	private float nextRandomFloat(Random random) {
@@ -182,7 +197,9 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 		if (itemStack.isEmpty()) {
 			int progress = (int) (getProgress() * 100);
 			if (isActive) {
-				sendMessageToPlayer(player, createText("take.progress.active", progress));
+				long millisecondsLeft = countdown / 20 * 1000L;
+				String timeText = DurationFormatUtils.formatDuration(millisecondsLeft, "HH:mm:ss");
+				sendMessageToPlayer(player, createText("take.progress.active", progress, timeText));
 			} else {
 				sendMessageToPlayer(player, createText("take.progress.inactive", progress));
 			}
@@ -298,13 +315,13 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 	}
 	
 	private static boolean isActiveForPlayer(ServerWorld world, UUID playerUuid, LootBoxGeneratorTileEntity tileEntity) {
-		LootBoxGeneratorsWorldData activeTileEntities = getActiveTileEntities(world);
+		LootBoxGeneratorsWorldData activeTileEntities = getWorldData(world);
 		
-		if (!activeTileEntities.containsKey(playerUuid)) {
+		if (!activeTileEntities.hasActivatedBlock(playerUuid)) {
 			return false;
 		}
 		
-		BlockPos blockPos = activeTileEntities.get(playerUuid);
+		BlockPos blockPos = activeTileEntities.getActivatedBlock(playerUuid);
 		TileEntity abstractTileEntity = world.getTileEntity(blockPos);
 		
 		if (!(abstractTileEntity instanceof LootBoxGeneratorTileEntity)) {
@@ -315,16 +332,16 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 	}
 	
 	private static void removeActiveForPlayer(ServerWorld world, UUID playerUuid) {
-		LootBoxGeneratorsWorldData activeTileEntities = getActiveTileEntities(world);
+		LootBoxGeneratorsWorldData worldData = getWorldData(world);
 		
-		if (!activeTileEntities.containsKey(playerUuid)) {
+		if (!worldData.hasActivatedBlock(playerUuid)) {
 			return;
 		}
 		
-		BlockPos blockPos = activeTileEntities.get(playerUuid);
+		BlockPos blockPos = worldData.getActivatedBlock(playerUuid);
 		TileEntity abstractTileEntity = world.getTileEntity(blockPos);
 		
-		activeTileEntities.remove(playerUuid);
+		worldData.removeActivatedBlock(playerUuid);
 		
 		if (!(abstractTileEntity instanceof LootBoxGeneratorTileEntity)) {
 			return;
@@ -339,9 +356,9 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 	}
 	
 	private static void setActiveForPlayer(ServerWorld world, UUID playerUuid, LootBoxGeneratorTileEntity tileEntity) {
-		LootBoxGeneratorsWorldData activeTileEntities = getActiveTileEntities(world);
+		LootBoxGeneratorsWorldData worldData = getWorldData(world);
 		
-		activeTileEntities.put(playerUuid, tileEntity.getPos());
+		worldData.setActivatedBlock(playerUuid, tileEntity.getPos());
 		
 		tileEntity.isActive = true;
 		tileEntity.ownerUuid = playerUuid;
@@ -349,7 +366,7 @@ public class LootBoxGeneratorTileEntity extends TileEntity implements ITickableT
 		tileEntity.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 1f);
 	}
 	
-	private static LootBoxGeneratorsWorldData getActiveTileEntities(ServerWorld world) {
+	private static LootBoxGeneratorsWorldData getWorldData(ServerWorld world) {
 		return LootBoxGeneratorsWorldData.getInstance(world);
 	}
 	

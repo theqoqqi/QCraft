@@ -5,14 +5,41 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/non_stackable",
-          "weight": 5,
+          "type": "minecraft:item",
+          "name": "minecraft:chest_minecart",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
+                "min": 2.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:furnace_minecart",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:hopper_minecart",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
                 "max": 4.0,
                 "type": "minecraft:uniform"
               }
@@ -20,9 +47,8 @@
           ]
         },
         {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/fruits",
-          "weight": 10,
+          "type": "minecraft:item",
+          "name": "minecraft:minecart",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,57 +61,18 @@
           ]
         },
         {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/meat",
-          "weight": 10,
+          "type": "minecraft:item",
+          "name": "minecraft:tnt_minecart",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 16.0,
-                "max": 32.0,
+                "min": 2.0,
+                "max": 8.0,
                 "type": "minecraft:uniform"
               }
             }
           ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/meat",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:furnace_smelt"
-            },
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 8.0,
-                "max": 16.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/misc",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 8.0,
-                "max": 16.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "q_craft:loot_box/categories/food/golden",
-          "weight": 5
         }
       ]
     }

@@ -21,6 +21,11 @@
         },
         {
           "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/corals/all_corals",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:loot_table",
           "name": "q_craft:loot_box/categories/drops/all_drops",
           "weight": 10
         },
@@ -41,6 +46,16 @@
         },
         {
           "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/plants/all_plants",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/redstone/all_redstone",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
           "name": "q_craft:loot_box/categories/spawn_eggs/all_spawn_eggs",
           "weight": 1
         },
@@ -53,14 +68,6 @@
           "type": "minecraft:loot_table",
           "name": "q_craft:loot_box/categories/wooden_blocks/all_wooden_blocks",
           "weight": 10
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:golden_apple"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:enchanted_golden_apple"
         }
       ]
     }

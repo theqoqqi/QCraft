@@ -6,6 +6,22 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "minecraft:andesite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diorite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:granite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bricks"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:chiseled_nether_bricks"
         },
         {
@@ -51,6 +67,22 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:quartz_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_quartz"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_red_sandstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_sandstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_stone"
         },
         {
           "type": "minecraft:item",

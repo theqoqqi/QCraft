@@ -27,6 +27,14 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:spruce_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_button"
         }
       ]
     }

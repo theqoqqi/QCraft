@@ -6,85 +6,81 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:flint_and_steel"
+          "name": "minecraft:barrel"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:compass"
+          "name": "minecraft:blast_furnace"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:fishing_rod",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "min": 10.0,
-                "max": 50.0,
-                "type": "minecraft:uniform"
-              },
-              "treasure": true
-            }
-          ]
+          "name": "minecraft:brewing_stand"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:warped_fungus_on_a_stick"
+          "name": "minecraft:campfire"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:carrot_on_a_stick"
+          "name": "minecraft:cartography_table"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:clock"
+          "name": "minecraft:cauldron"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:shears"
+          "name": "minecraft:chest"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:lead"
+          "name": "minecraft:composter"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:name_tag"
+          "name": "minecraft:crafting_table"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bucket"
+          "name": "minecraft:fletching_table"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:cod_bucket"
+          "name": "minecraft:furnace"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:lava_bucket"
+          "name": "minecraft:grindstone"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:milk_bucket"
+          "name": "minecraft:jukebox"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pufferfish_bucket"
+          "name": "minecraft:lectern"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:salmon_bucket"
+          "name": "minecraft:loom"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:tropical_fish_bucket"
+          "name": "minecraft:note_block"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:water_bucket"
+          "name": "minecraft:smoker"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smithing_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stonecutter"
         }
       ]
     }
   ]
 }
-

@@ -17,7 +17,9 @@ public class LootBoxGeneratorsWorldData extends WorldSavedData {
 	
 	public static final String NAME = "LootBoxGenerators";
 	
-	private final Map<UUID, BlockPos> map = new HashMap<>();
+	private final Map<UUID, BlockPos> activatedBlocks = new HashMap<>();
+	
+	private final Map<UUID, Integer> generationDurations = new HashMap<>();
 	
 	public LootBoxGeneratorsWorldData(String name) {
 		super(name);
@@ -25,25 +27,51 @@ public class LootBoxGeneratorsWorldData extends WorldSavedData {
 	
 	@Override
 	public void read(@Nonnull CompoundNBT nbt) {
+		readOwnersMap(nbt);
+		readDurationsMap(nbt);
+	}
+	
+	private void readOwnersMap(@Nonnull CompoundNBT nbt) {
 		ListNBT list = nbt.getList("OwnersMap", Constants.NBT.TAG_COMPOUND);
 		
-		map.clear();
+		activatedBlocks.clear();
 		
 		for (int i = 0; i < list.size(); i++) {
 			CompoundNBT entry = list.getCompound(i);
 			UUID ownerUuid = entry.getUniqueId("OwnerUuid");
 			BlockPos blockPos = BlockPos.fromLong(entry.getLong("BlockPos"));
 			
-			map.put(ownerUuid, blockPos);
+			activatedBlocks.put(ownerUuid, blockPos);
+		}
+	}
+	
+	private void readDurationsMap(@Nonnull CompoundNBT nbt) {
+		ListNBT list = nbt.getList("DurationsMap", Constants.NBT.TAG_COMPOUND);
+		
+		generationDurations.clear();
+		
+		for (int i = 0; i < list.size(); i++) {
+			CompoundNBT entry = list.getCompound(i);
+			UUID ownerUuid = entry.getUniqueId("PlayerUuid");
+			Integer duration = entry.getInt("Duration");
+			
+			generationDurations.put(ownerUuid, duration);
 		}
 	}
 	
 	@Nonnull
 	@Override
 	public CompoundNBT write(@Nonnull CompoundNBT nbt) {
+		writeOwnersMap(nbt);
+		writeDurationsMap(nbt);
+		
+		return nbt;
+	}
+	
+	private void writeOwnersMap(@Nonnull CompoundNBT nbt) {
 		ListNBT list = new ListNBT();
 		
-		map.forEach((ownerUuid, blockPos) -> {
+		activatedBlocks.forEach((ownerUuid, blockPos) -> {
 			CompoundNBT entry = new CompoundNBT();
 			
 			entry.putUniqueId("OwnerUuid", ownerUuid);
@@ -53,25 +81,56 @@ public class LootBoxGeneratorsWorldData extends WorldSavedData {
 		});
 		
 		nbt.put("OwnersMap", list);
+	}
+	
+	private void writeDurationsMap(@Nonnull CompoundNBT nbt) {
+		ListNBT list = new ListNBT();
 		
-		return nbt;
+		generationDurations.forEach((ownerUuid, duration) -> {
+			CompoundNBT entry = new CompoundNBT();
+			
+			entry.putUniqueId("PlayerUuid", ownerUuid);
+			entry.putInt("Duration", duration);
+			
+			list.add(entry);
+		});
+		
+		nbt.put("DurationsMap", list);
 	}
 	
-	public boolean containsKey(UUID playerUuid) {
-		return map.containsKey(playerUuid);
+	public boolean hasActivatedBlock(UUID playerUuid) {
+		return activatedBlocks.containsKey(playerUuid);
 	}
 	
-	public BlockPos get(UUID playerUuid) {
-		return map.get(playerUuid);
+	public BlockPos getActivatedBlock(UUID playerUuid) {
+		return activatedBlocks.get(playerUuid);
 	}
 	
-	public void remove(UUID playerUuid) {
-		map.remove(playerUuid);
+	public void removeActivatedBlock(UUID playerUuid) {
+		activatedBlocks.remove(playerUuid);
 		markDirty();
 	}
 	
-	public void put(UUID playerUuid, BlockPos pos) {
-		map.put(playerUuid, pos);
+	public void setActivatedBlock(UUID playerUuid, BlockPos pos) {
+		activatedBlocks.put(playerUuid, pos);
+		markDirty();
+	}
+	
+	public boolean hasGenerationDuration(UUID playerUuid) {
+		return generationDurations.containsKey(playerUuid);
+	}
+	
+	public Integer getGenerationDuration(UUID playerUuid) {
+		return generationDurations.get(playerUuid);
+	}
+	
+	public void removeGenerationDuration(UUID playerUuid) {
+		generationDurations.remove(playerUuid);
+		markDirty();
+	}
+	
+	public void setGenerationDuration(UUID playerUuid, Integer duration) {
+		generationDurations.put(playerUuid, duration);
 		markDirty();
 	}
 	

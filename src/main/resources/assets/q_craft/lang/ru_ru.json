@@ -55,7 +55,7 @@
   "lootBoxGenerator.activate.success": "Вы активировали генератор",
   "lootBoxGenerator.activate.alreadyActivated": "Вы уже активировали этот генератор",
   "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "Этот генератор уже принадлежит другому игроку",
-  "lootBoxGenerator.take.progress.active": "Прогресс: %1$s%% (активен)",
+  "lootBoxGenerator.take.progress.active": "Прогресс: %1$s%% (активен, осталось %2$s)",
   "lootBoxGenerator.take.progress.inactive": "Прогресс: %1$s%% (неактивен)",
   "lootBoxGenerator.take.forbidden": "Этот генератор принадлежит другому игроку",
   "lootBoxGenerator.take.success": "%1$s получил %2$s"
