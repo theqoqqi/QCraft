@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_trapdoor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_trapdoor"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,86 +1,99 @@
 package ru.qoqqi.qcraft;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import org.slf4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.stream.Collectors;
+
+import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
+import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
+import ru.qoqqi.qcraft.blockentities.renderers.LootBoxGeneratorBlockEntityRenderer;
+import ru.qoqqi.qcraft.blocks.ModBlocks;
+import ru.qoqqi.qcraft.config.Config;
+import ru.qoqqi.qcraft.containers.ModMenus;
+import ru.qoqqi.qcraft.items.ModItems;
+import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
+import ru.qoqqi.qcraft.screens.PuzzleBoxScreen;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(QCraft.MODID)
-public class QCraft
-{
-    // Define mod id in a common place for everything to reference
-    public static final String MODID = "q_craft";
-    // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "q_craft" namespace
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "q_craft" namespace
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-
-    // Creates a new Block with the id "q_craft:example_block", combining the namespace and path
-    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
-    // Creates a new BlockItem with the id "q_craft:example_block", combining the namespace and path
-    public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
-
-    public QCraft()
-    {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
-
-        // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
-
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class ClientModEvents
-    {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-        }
-    }
+@Mod("q_craft")
+public class QCraft {
+	
+	public static final String MOD_ID = "q_craft";
+	
+	private static final Logger LOGGER = LogManager.getLogger();
+	
+	public QCraft() {
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		
+		eventBus.addListener(this::setup);
+		eventBus.addListener(this::loadComplete);
+		eventBus.addListener(this::enqueueIMC);
+		eventBus.addListener(this::processIMC);
+		eventBus.addListener(this::doClientStuff);
+		
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+		
+		MinecraftForge.EVENT_BUS.register(this);
+		
+		ModBlocks.register(eventBus);
+		ModItems.register(eventBus);
+		ModMenus.register(eventBus);
+		ModBlockEntityTypes.register(eventBus);
+		GlobalLootModifiers.register(eventBus);
+		ModCriteriaTriggers.register();
+	}
+	
+	private void setup(final FMLCommonSetupEvent event) {
+		LOGGER.info("HELLO FROM PREINIT");
+	}
+	
+	private void doClientStuff(final FMLClientSetupEvent event) {
+		MenuScreens.register(ModMenus.PUZZLE_BOX_MENU.get(), PuzzleBoxScreen::new);
+		BlockEntityRenderers.register(ModBlockEntityTypes.LOOT_BOX_GENERATOR.get(), LootBoxGeneratorBlockEntityRenderer::new);
+		
+		LOGGER.info("Got game settings {}", Minecraft.getInstance().options);
+	}
+	
+	private void loadComplete(final FMLLoadCompleteEvent event) {
+	
+	}
+	
+	private void enqueueIMC(final InterModEnqueueEvent event) {
+		
+		InterModComms.sendTo("q_craft", "helloworld", () -> {
+			LOGGER.info("Hello level from the MDK");
+			return "Hello world";
+		});
+	}
+	
+	private void processIMC(final InterModProcessEvent event) {
+		
+		LOGGER.info("Got IMC {}", event.getIMCStream().
+				map(m -> m.getMessageSupplier().get()).
+				collect(Collectors.toList()));
+	}
+	
+	@SubscribeEvent
+	public void onServerStarting(ServerStartingEvent event) {
+		LOGGER.info("HELLO from server starting");
+	}
 }

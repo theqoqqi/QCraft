@@ -1,0 +1,131 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:andesite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blackstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_prismarine_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diorite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:end_stone_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:granite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_cobblestone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_stone_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_andesite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_blackstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_diorite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_granite_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:purpur_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:quartz_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sandstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_quartz_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_red_sandstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smooth_sandstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_nether_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:red_sandstone_stairs"
+        }
+      ]
+    }
+  ]
+}
+

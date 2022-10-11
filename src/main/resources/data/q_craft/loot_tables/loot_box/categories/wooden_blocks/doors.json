@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_door"
+        }
+      ]
+    }
+  ]
+}
+

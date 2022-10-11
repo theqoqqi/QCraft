@@ -1,0 +1,62 @@
+{
+  "advancements.boxes.root.title": "Коробки",
+  "advancements.boxes.root.description": "Откройте любую коробку с сюрпризом",
+  "advancements.boxes.all_boxes.title": "Полная коллекция",
+  "advancements.boxes.all_boxes.description": "Откройте все существующие виды коробок",
+  "advancements.boxes.loot_box_generator.title": "Генератор коробок с сюрпризами",
+  "advancements.boxes.loot_box_generator.description": "Мы хотим больше коробок!",
+  "advancements.boxes.pandoras_box.title": "Ящик Пандоры",
+  "advancements.boxes.pandoras_box.description": "Может не стоит?",
+  "advancements.boxes.puzzles.title": "Головоломки!",
+  "advancements.boxes.puzzles.description": "Найдите и разгадайте головоломку",
+
+  "block.q_craft.acacia_plate": "Доска из акации",
+  "block.q_craft.birch_plate": "Доска из березы",
+  "block.q_craft.dark_oak_plate": "Доска из темного дуба",
+  "block.q_craft.jungle_plate": "Доска из тропического дерева",
+  "block.q_craft.oak_plate": "Доска из дуба",
+  "block.q_craft.spruce_plate": "Доска из ели",
+
+  "block.q_craft.pandoras_box": "Ящик Пандоры",
+  "block.q_craft.puzzle_box_easy": "Простая Головоломка",
+  "block.q_craft.puzzle_box_normal": "Обычная Головоломка",
+  "block.q_craft.puzzle_box_hard": "Сложная Головоломка",
+  "block.q_craft.loot_box_generator": "Генератор коробок с сюрпризами",
+
+  "item.q_craft.loot_box_small": "Маленькая коробка с сюрпризом",
+  "item.q_craft.loot_box_medium": "Средняя коробка с сюрпризом",
+  "item.q_craft.loot_box_large": "Большая коробка с сюрпризом",
+  "item.q_craft.attribute_box": "Коробка с атрибутом",
+  "item.q_craft.noahs_box": "Коробка Ноя",
+  "item.q_craft.poseidons_box": "Коробка Посейдона",
+
+  "structure.end_portal": "Портал в край",
+
+  "screen.puzzleBox.crafting": "Создание",
+  "screen.puzzleBox.ingredients": "Ингредиенты",
+  "screen.puzzleBox.solution": "Решение",
+
+  "lootBox.failure": "%1$s не смог открыть %2$s",
+  "lootBox.itemReceived": "%1$s получил %2$d %3$s из %4$s",
+  "lootBox.gotNothing": "%1$s открыл %2$s и ничего не нашел",
+  "lootBox.entitySummoned": "%1$s открыл %2$s и призвал %3$s",
+  "lootBox.exploded": "%1$s открыл %2$s и он взорвался",
+  "lootBox.spaceJump": "%1$s открыл %2$s и отправлся в космос",
+  "lootBox.gotExperience": "%1$s открыл %2$s и получил %3$d опыта",
+  "lootBox.structureSpawn": "%1$s открыл %2$s и создал %3$s",
+  "lootBox.attribute.increase.factor": "%1$s открыл %2$s и увеличил %3$s на %4$d%%",
+  "lootBox.attribute.increase.constant": "%1$s открыл %2$s и увеличил %3$s на %4$d",
+  "lootBox.attribute.decrease.factor": "%1$s открыл %2$s и уменьшил %3$s на %4$d%%",
+  "lootBox.attribute.decrease.constant": "%1$s открыл %2$s и уменьшил %3$s на %4$d",
+
+  "puzzleBox.exploded": "%1$s ошибся, решая головоломку и взорвался",
+  "puzzleBox.seed": "Зерно: %1$s",
+
+  "lootBoxGenerator.activate.success": "Вы активировали генератор",
+  "lootBoxGenerator.activate.alreadyActivated": "Вы уже активировали этот генератор",
+  "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "Этот генератор уже принадлежит другому игроку",
+  "lootBoxGenerator.take.progress.active": "Прогресс: %1$s%% (активен, осталось %2$s)",
+  "lootBoxGenerator.take.progress.inactive": "Прогресс: %1$s%% (неактивен)",
+  "lootBoxGenerator.take.forbidden": "Этот генератор принадлежит другому игроку",
+  "lootBoxGenerator.take.success": "%1$s получил %2$s"
+}
