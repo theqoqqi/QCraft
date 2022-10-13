@@ -1,32 +1,31 @@
 package ru.qoqqi.qcraft.blockentities;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.client.Minecraft;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
 
@@ -43,7 +42,9 @@ import javax.annotation.Nullable;
 
 import ru.qoqqi.qcraft.QCraft;
 import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
+import ru.qoqqi.qcraft.blocks.LootBoxGeneratorBlock;
 import ru.qoqqi.qcraft.leveldata.LootBoxGeneratorsLevelData;
+import ru.qoqqi.qcraft.particles.ModParticleTypes;
 
 public class LootBoxGeneratorBlockEntity extends BlockEntity {
 	
@@ -129,6 +130,26 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity {
 		
 		if (age % 80 == 0) {
 			playSound(SoundEvents.BEACON_AMBIENT, 1f);
+		}
+		
+		if (hasItem()) {
+			spawnCircularParticle(0.25f, 0.02f, 0.0275f, 0f);
+			spawnCircularParticle(0.25f, 0.02f, 0.0275f, 0.5f);
+			spawnCircularParticle(0.4f, 0.0025f, -0.01f, 0f);
+		}
+	}
+	
+	private void spawnCircularParticle(float radius, float ySpeed, float rotationSpeed, float rotationOffset) {
+		Vec3 tableCenter = LootBoxGeneratorBlock.TABLE_CENTER;
+		BlockPos pos = getBlockPos();
+		float angle = (float) (Math.PI * 2 * (age / (1 / rotationSpeed) + rotationOffset));
+		
+		double x = pos.getX() + tableCenter.x + Mth.sin(angle) * radius;
+		double y = pos.getY() + tableCenter.y;
+		double z = pos.getZ() + tableCenter.z + Mth.cos(angle) * radius;
+		
+		if (level != null) {
+			level.addParticle(ModParticleTypes.LOOT_BOX_GENERATOR.get(), x, y, z, 0, ySpeed, 0);
 		}
 	}
 	
@@ -307,6 +328,10 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity {
 	@Nonnull
 	public ItemStack getItemStack() {
 		return itemStack;
+	}
+	
+	public boolean hasItem() {
+		return !itemStack.isEmpty();
 	}
 	
 	private static void activateByPlayer(ServerLevel level, LootBoxGeneratorBlockEntity blockEntity, UUID playerUuid) {

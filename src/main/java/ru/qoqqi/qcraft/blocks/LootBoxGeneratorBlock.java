@@ -1,6 +1,9 @@
 package ru.qoqqi.qcraft.blocks;
 
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.BlockGetter;
@@ -19,9 +22,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
@@ -31,10 +37,13 @@ import javax.annotation.Nullable;
 
 import ru.qoqqi.qcraft.blockentities.LootBoxGeneratorBlockEntity;
 import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
+import ru.qoqqi.qcraft.particles.ModParticleTypes;
 
 public class LootBoxGeneratorBlock extends BaseEntityBlock {
 	
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+	
+	public static final Vec3 TABLE_CENTER = new Vec3(0.5, 0.75, 0.5);
 	
 	public LootBoxGeneratorBlock(Properties properties) {
 		super(properties);
@@ -97,8 +106,8 @@ public class LootBoxGeneratorBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	public void animateTick(@Nonnull BlockState stateIn, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
-		super.animateTick(stateIn, level, pos, random);
+	public void animateTick(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
+		super.animateTick(state, level, pos, random);
 		
 		BlockEntity abstractBlockEntity = level.getBlockEntity(pos);
 		
@@ -114,15 +123,17 @@ public class LootBoxGeneratorBlock extends BaseEntityBlock {
 			spawnParticle(level, pos, random, 0.3f);
 		}
 		
-		if (!blockEntity.getItemStack().isEmpty() || random.nextFloat() <= blockEntity.getProgress()) {
-			spawnParticle(level, pos, random, 0.25f);
+		if (blockEntity.getAge() % 2 == 0) {
+			if (blockEntity.hasItem() || random.nextFloat() <= blockEntity.getProgress()) {
+				spawnParticle(level, pos, random, 0.25f);
+			}
 		}
 	}
 	
 	private void spawnParticle(@Nonnull Level level, @Nonnull BlockPos pos, @Nonnull RandomSource random, float spread) {
-		double x = pos.getX() + 0.5 + (random.nextDouble() - random.nextDouble()) * spread;
-		double y = pos.getY() + 0.75;
-		double z = pos.getZ() + 0.5 + (random.nextDouble() - random.nextDouble()) * spread;
+		double x = pos.getX() + TABLE_CENTER.x + (random.nextDouble() - random.nextDouble()) * spread;
+		double y = pos.getY() + TABLE_CENTER.y;
+		double z = pos.getZ() + TABLE_CENTER.z + (random.nextDouble() - random.nextDouble()) * spread;
 		double ySpeed = random.nextFloat() * 0.04;
 		
 		level.addParticle(ParticleTypes.REVERSE_PORTAL, x, y, z, 0, ySpeed, 0);
