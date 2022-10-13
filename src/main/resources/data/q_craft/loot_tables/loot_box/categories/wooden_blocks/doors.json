@@ -30,6 +30,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mangrove_door"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:warped_door"
         },
         {

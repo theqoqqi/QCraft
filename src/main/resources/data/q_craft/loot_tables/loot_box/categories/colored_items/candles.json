@@ -6,65 +6,74 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_5"
+          "name": "minecraft:candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_11"
+          "name": "minecraft:black_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_13"
+          "name": "minecraft:blue_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_blocks"
+          "name": "minecraft:brown_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_cat"
+          "name": "minecraft:cyan_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_chirp"
+          "name": "minecraft:gray_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_far"
+          "name": "minecraft:green_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_mall"
+          "name": "minecraft:light_blue_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_mellohi"
+          "name": "minecraft:light_gray_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_otherside"
+          "name": "minecraft:lime_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_pigstep"
+          "name": "minecraft:magenta_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_stal"
+          "name": "minecraft:orange_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_strad"
+          "name": "minecraft:pink_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_wait"
+          "name": "minecraft:purple_candle"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:music_disc_ward"
+          "name": "minecraft:red_candle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:white_candle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:yellow_candle"
         }
       ]
     }
   ]
 }
+

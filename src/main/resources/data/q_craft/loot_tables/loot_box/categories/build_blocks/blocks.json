@@ -14,6 +14,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:chiseled_deepslate"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:chiseled_nether_bricks"
         },
         {
@@ -38,6 +42,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cobbled_deepslate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cracked_deepslate_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cracked_deepslate_tiles"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:cracked_nether_bricks"
         },
         {
@@ -54,11 +70,35 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cut_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_tiles"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:diorite"
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:end_stone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:exposed_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:exposed_cut_copper"
         },
         {
           "type": "minecraft:item",
@@ -74,7 +114,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mud_bricks"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:nether_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oxidized_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oxidized_cut_copper"
         },
         {
           "type": "minecraft:item",
@@ -91,6 +147,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:polished_blackstone_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_deepslate"
         },
         {
           "type": "minecraft:item",
@@ -135,6 +195,46 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:warped_nylium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_copper_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_cut_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_exposed_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_exposed_cut_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_oxidized_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_oxidized_cut_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_weathered_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_weathered_cut_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:weathered_copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:weathered_cut_copper"
         }
       ]
     }

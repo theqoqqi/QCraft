@@ -30,6 +30,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:stripped_mangrove_log"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:stripped_warped_stem"
         },
         {

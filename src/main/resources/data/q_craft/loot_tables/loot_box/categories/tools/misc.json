@@ -53,35 +53,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:cod_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:lava_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:milk_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:pufferfish_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:salmon_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:tropical_fish_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:water_bucket"
+          "name": "minecraft:spyglass"
         }
       ]
     }

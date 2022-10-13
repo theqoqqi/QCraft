@@ -6,39 +6,43 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:acacia_trapdoor"
+          "name": "minecraft:bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:birch_trapdoor"
+          "name": "minecraft:axolotl_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:dark_oak_trapdoor"
+          "name": "minecraft:cod_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:jungle_trapdoor"
+          "name": "minecraft:lava_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:oak_trapdoor"
+          "name": "minecraft:milk_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:spruce_trapdoor"
+          "name": "minecraft:pufferfish_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:mangrove_trapdoor"
+          "name": "minecraft:salmon_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:warped_trapdoor"
+          "name": "minecraft:tadpole_bucket"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:crimson_trapdoor"
+          "name": "minecraft:tropical_fish_bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:water_bucket"
         }
       ]
     }

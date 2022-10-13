@@ -30,6 +30,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:stripped_mangrove_wood"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:stripped_warped_hyphae"
         },
         {

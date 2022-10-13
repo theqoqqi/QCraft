@@ -36,6 +36,21 @@
         },
         {
           "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/colored_items/candles",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 32.0,
+                "max": 64.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:loot_table",
           "name": "q_craft:loot_box/categories/colored_items/carpets",
           "weight": 10,
           "functions": [

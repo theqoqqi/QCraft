@@ -20,6 +20,20 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:copper_ore",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 32.0,
+                "max": 64.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:diamond_ore",
           "functions": [
             {

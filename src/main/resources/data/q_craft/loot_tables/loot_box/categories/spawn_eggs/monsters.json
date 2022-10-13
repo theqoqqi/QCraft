@@ -114,6 +114,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:warden_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:witch_spawn_egg"
         },
         {

@@ -6,6 +6,14 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "minecraft:allay_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:axolotl_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:bat_spawn_egg"
         },
         {
@@ -39,6 +47,18 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:fox_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:frog_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glow_squid_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:goat_spawn_egg"
         },
         {
           "type": "minecraft:item",
@@ -99,6 +119,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:strider_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tadpole_spawn_egg"
         },
         {
           "type": "minecraft:item",

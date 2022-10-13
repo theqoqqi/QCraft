@@ -30,11 +30,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mangrove_leaves"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:warped_wart_block"
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:nether_wart_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:azalea_leaves"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flowering_azalea_leaves"
         }
       ]
     }

@@ -18,6 +18,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cobbled_deepslate_stairs"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:cobblestone_stairs"
         },
         {
@@ -26,7 +30,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cut_copper_stairs"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:dark_prismarine_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_tile_stairs"
         },
         {
           "type": "minecraft:item",
@@ -35,6 +51,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:end_stone_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:exposed_cut_copper_stairs"
         },
         {
           "type": "minecraft:item",
@@ -50,7 +70,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mud_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:nether_brick_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oxidized_cut_copper_stairs"
         },
         {
           "type": "minecraft:item",
@@ -63,6 +91,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:polished_blackstone_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_deepslate_stairs"
         },
         {
           "type": "minecraft:item",
@@ -115,6 +147,26 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:warped_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_cut_copper_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_exposed_cut_copper_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_oxidized_cut_copper_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_weathered_cut_copper_stairs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:weathered_cut_copper_stairs"
         },
         {
           "type": "minecraft:item",

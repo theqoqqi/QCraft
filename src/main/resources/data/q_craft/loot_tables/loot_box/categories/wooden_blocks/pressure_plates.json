@@ -30,6 +30,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mangrove_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:warped_pressure_plate"
         },
         {

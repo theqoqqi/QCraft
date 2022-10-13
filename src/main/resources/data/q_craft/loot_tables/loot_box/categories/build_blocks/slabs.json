@@ -18,11 +18,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cobbled_deepslate_slab"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:cobblestone_slab"
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:crimson_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cut_copper_slab"
         },
         {
           "type": "minecraft:item",
@@ -38,11 +46,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:deepslate_brick_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_tile_slab"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:diorite_slab"
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:end_stone_brick_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:exposed_cut_copper_slab"
         },
         {
           "type": "minecraft:item",
@@ -58,7 +78,15 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mud_brick_slab"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:nether_brick_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oxidized_cut_copper_slab"
         },
         {
           "type": "minecraft:item",
@@ -75,6 +103,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:polished_blackstone_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_deepslate_slab"
         },
         {
           "type": "minecraft:item",
@@ -131,6 +163,26 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:warped_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_cut_copper_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_exposed_cut_copper_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_oxidized_cut_copper_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:waxed_weathered_cut_copper_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:weathered_cut_copper_slab"
         },
         {
           "type": "minecraft:item",

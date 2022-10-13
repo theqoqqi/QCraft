@@ -18,7 +18,19 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:cobbled_deepslate_wall"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:cobblestone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:deepslate_tile_wall"
         },
         {
           "type": "minecraft:item",
@@ -42,6 +54,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:mud_brick_wall"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:nether_brick_wall"
         },
         {
@@ -51,6 +67,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:polished_blackstone_wall"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:polished_deepslate_wall"
         },
         {
           "type": "minecraft:item",

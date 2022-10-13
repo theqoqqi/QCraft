@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:amethyst_block",
+          "name": "minecraft:deepslate_coal_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 4.0,
-                "max": 8.0,
+                "min": 32.0,
+                "max": 64.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -20,13 +20,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal_block",
+          "name": "minecraft:deepslate_copper_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 4.0,
-                "max": 8.0,
+                "min": 32.0,
+                "max": 64.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -34,35 +34,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_block",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4.0,
-                "max": 8.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:diamond_block",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:emerald_block",
+          "name": "minecraft:deepslate_diamond_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -76,13 +48,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_block",
+          "name": "minecraft:deepslate_emerald_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 2.0,
+                "min": 16.0,
+                "max": 32.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -90,13 +62,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_block",
+          "name": "minecraft:deepslate_gold_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
+                "min": 8.0,
+                "max": 16.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -104,13 +76,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:lapis_block",
+          "name": "minecraft:deepslate_iron_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
+                "min": 16.0,
+                "max": 32.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -118,13 +90,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:redstone_block",
+          "name": "minecraft:deepslate_lapis_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 4.0,
-                "max": 8.0,
+                "min": 8.0,
+                "max": 16.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -132,13 +104,13 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:netherite_block",
+          "name": "minecraft:deepslate_redstone_ore",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 1.0,
+                "min": 16.0,
+                "max": 32.0,
                 "type": "minecraft:uniform"
               }
             }

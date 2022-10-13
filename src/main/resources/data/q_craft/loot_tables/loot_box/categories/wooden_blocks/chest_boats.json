@@ -6,39 +6,31 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:acacia_fence"
+          "name": "minecraft:acacia_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:birch_fence"
+          "name": "minecraft:birch_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:dark_oak_fence"
+          "name": "minecraft:dark_oak_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:jungle_fence"
+          "name": "minecraft:jungle_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:oak_fence"
+          "name": "minecraft:oak_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:spruce_fence"
+          "name": "minecraft:spruce_chest_boat"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:mangrove_fence"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:warped_fence"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:crimson_fence"
+          "name": "minecraft:mangrove_chest_boat"
         }
       ]
     }

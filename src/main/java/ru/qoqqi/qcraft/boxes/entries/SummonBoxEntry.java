@@ -21,13 +21,18 @@ import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
 public class SummonBoxEntry implements IBoxEntry {
 	
 	public static final WeightedList<String> GROUND_CREATURES = WeightedList.create(
+			new WeightedList.WeightedEntry<>(10, "minecraft:allay"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:axolotl"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:bat"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:bee"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:cat"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:chicken"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:cow"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:donkey"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:glow_squid"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:goat"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:fox"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:frog"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:horse"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:llama"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:mooshroom"),
@@ -40,6 +45,7 @@ public class SummonBoxEntry implements IBoxEntry {
 			new WeightedList.WeightedEntry<>(10, "minecraft:rabbit"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:sheep"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:strider"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:tadpole"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:wolf")
 	);
 	
@@ -78,6 +84,7 @@ public class SummonBoxEntry implements IBoxEntry {
 			new WeightedList.WeightedEntry<>(10, "minecraft:stray"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:vex"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:vindicator"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:warden"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:witch"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:wither_skeleton"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:zoglin"),

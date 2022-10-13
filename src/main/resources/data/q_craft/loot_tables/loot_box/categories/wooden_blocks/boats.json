@@ -27,6 +27,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:spruce_boat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mangrove_boat"
         }
       ]
     }
