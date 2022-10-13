@@ -31,6 +31,7 @@ import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.containers.ModMenus;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
+import ru.qoqqi.qcraft.particles.ModParticleTypes;
 import ru.qoqqi.qcraft.screens.PuzzleBoxScreen;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -55,11 +56,13 @@ public class QCraft {
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		ModBlocks.register(eventBus);
-		ModItems.register(eventBus);
-		ModMenus.register(eventBus);
 		ModBlockEntityTypes.register(eventBus);
-		GlobalLootModifiers.register(eventBus);
+		ModItems.register(eventBus);
+		ModParticleTypes.register(eventBus);
+		ModMenus.register(eventBus);
 		ModCriteriaTriggers.register();
+		
+		GlobalLootModifiers.register(eventBus);
 	}
 	
 	private void setup(final FMLCommonSetupEvent event) {
