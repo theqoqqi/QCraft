@@ -52,7 +52,7 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity {
 	
 	private static final ResourceLocation resourceLocation = new ResourceLocation(QCraft.MOD_ID, "random_loot_box");
 	
-	private static final int HOUR_IN_TICKS = 60 * 60 * 20;
+	private static final int HOUR_IN_TICKS = 60;// * 60 * 20;
 	
 	private static final float baseCountdownTicks = 3 * HOUR_IN_TICKS;
 	
