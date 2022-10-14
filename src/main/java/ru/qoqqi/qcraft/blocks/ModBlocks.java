@@ -31,23 +31,26 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS
 			= DeferredRegister.create(ForgeRegistries.BLOCKS, QCraft.MOD_ID);
 	
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> OAK_PLATE = registerWoodenPlate("oak_plate");
-//
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> BIRCH_PLATE = registerWoodenPlate("birch_plate");
-//
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> ACACIA_PLATE = registerWoodenPlate("acacia_plate");
-//
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> JUNGLE_PLATE = registerWoodenPlate("jungle_plate");
-//
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> SPRUCE_PLATE = registerWoodenPlate("spruce_plate");
-//
-//	@SuppressWarnings("unused")
-//	public static final RegistryObject<Block> DARK_OAK_PLATE = registerWoodenPlate("dark_oak_plate");
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> OAK_PLATE = registerWoodenPlate("oak_plate");
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> BIRCH_PLATE = registerWoodenPlate("birch_plate");
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> ACACIA_PLATE = registerWoodenPlate("acacia_plate");
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> JUNGLE_PLATE = registerWoodenPlate("jungle_plate");
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> SPRUCE_PLATE = registerWoodenPlate("spruce_plate");
+
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> DARK_OAK_PLATE = registerWoodenPlate("dark_oak_plate");
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> MANGROVE_PLATE = registerWoodenPlate("mangrove_plate");
 	
 	public static final RegistryObject<Block> PUZZLE_BOX_EASY = registerPuzzleLootBox("puzzle_box_easy", 2, LootBoxes.PUZZLE_BOX_EASY, PuzzleTypes.PUZZLE_EASY);
 
