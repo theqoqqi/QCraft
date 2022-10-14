@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.blocks.PuzzleBoxBlock;
+import ru.qoqqi.qcraft.items.PuzzleBoxBlockItem;
 import ru.qoqqi.qcraft.puzzles.CraftingPuzzle;
 import ru.qoqqi.qcraft.puzzles.PuzzleType;
 
@@ -73,6 +74,10 @@ public class PuzzleBoxBlockEntity extends BlockEntity {
 		
 		if (level == null) {
 			return null;
+		}
+		
+		if (seed == 0) {
+			seed = PuzzleBoxBlockItem.newSeed(level);
 		}
 		
 		BlockPos pos = getBlockPos();

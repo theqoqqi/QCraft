@@ -92,7 +92,7 @@ public class PuzzleBoxBlock extends BaseEntityBlock {
 		PuzzleBoxBlockEntity blockEntity = (PuzzleBoxBlockEntity) level.getBlockEntity(pos);
 		PuzzleBoxBlockItem blockItem = ((PuzzleBoxBlockItem) asItem());
 		long seed = level.isClientSide
-				? blockItem.getSeed(stack, level)
+				? blockItem.getSeed(stack)
 				: blockItem.getOrCreateSeed(stack, level);
 		
 		if (blockEntity != null) {

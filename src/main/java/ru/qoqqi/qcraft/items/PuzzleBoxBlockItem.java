@@ -2,6 +2,7 @@ package ru.qoqqi.qcraft.items;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,43 +21,55 @@ public class PuzzleBoxBlockItem extends BlockItem {
 	}
 	
 	public long getOrCreateSeed(@Nonnull ItemStack stack, @Nullable Level level) {
-		if (!hasSeed(stack, level)) {
+		if (!hasSeed(stack)) {
 			return newSeed(level);
 		}
 		
-		return getSeed(stack, level);
+		return doGetSeed(stack);
 	}
 	
-	public long getSeed(@Nonnull ItemStack stack, @Nullable Level level) {
-		if (!hasSeed(stack, level)) {
+	public long getSeed(@Nonnull ItemStack stack) {
+		if (!hasSeed(stack)) {
 			return 0;
 		}
 		
+		return doGetSeed(stack);
+	}
+	
+	private long doGetSeed(@Nonnull ItemStack stack) {
 		CompoundTag blockEntityTag = stack.getOrCreateTagElement("BlockEntityTag");
 		
 		return blockEntityTag.getLong("seed");
 	}
 	
-	public void setSeed(@Nonnull ItemStack stack, long seed) {
-		CompoundTag blockEntityTag = stack.getOrCreateTagElement("BlockEntityTag");
+	private boolean hasSeed(@Nonnull ItemStack stack) {
+		return stack.hasTag() && doGetSeed(stack) != 0;
+	}
+	
+	public static long newSeed(@Nullable Level level) {
+		if (level == null) {
+			return 0;
+		}
 		
-		blockEntityTag.putLong("seed", seed);
+		return generateSeed(level.random);
 	}
 	
-	private boolean hasSeed(@Nonnull ItemStack stack, @Nullable Level level) {
-		return level != null && stack.hasTag();
-	}
-	
-	public long newSeed(@Nullable Level level) {
-		return level == null ? 0 : level.random.nextLong();
+	private static long generateSeed(RandomSource random) {
+		long seed;
+		
+		do {
+			seed = random.nextLong();
+		} while (seed == 0);
+		
+		return seed;
 	}
 	
 	@Override
 	public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
 		super.appendHoverText(stack, level, tooltip, flag);
 		
-		if (hasSeed(stack, level) && flag.isAdvanced()) {
-			tooltip.add(Component.translatable("puzzleBox.seed", getSeed(stack, level)));
+		if (hasSeed(stack) && flag.isAdvanced()) {
+			tooltip.add(Component.translatable("puzzleBox.seed", getSeed(stack)));
 		}
 	}
 }
