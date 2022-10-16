@@ -125,8 +125,12 @@ public class PlateBlock extends CrossCollisionBlock {
 		boolean solidSide = blockState.isFaceSturdy(blockReader, blockPos, direction);
 		
 		return !isExceptionForConnection(blockState) && solidSide
-				|| (block instanceof CrossCollisionBlock && !blockState.getValue(IS_COVERING))
+				|| (block instanceof CrossCollisionBlock && !isCovering(blockState))
 				|| isWall(block);
+	}
+	
+	private boolean isCovering(BlockState blockState) {
+		return blockState.getBlock() instanceof PlateBlock && blockState.getValue(IS_COVERING);
 	}
 	
 	private static boolean isWall(Block block) {
