@@ -3,6 +3,7 @@ package ru.qoqqi.qcraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,14 +26,16 @@ import java.util.stream.Collectors;
 
 import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
-import ru.qoqqi.qcraft.blockentities.renderers.LootBoxGeneratorBlockEntityRenderer;
+import ru.qoqqi.qcraft.blockentities.renderers.ItemPedestalBlockEntityRenderer;
 import ru.qoqqi.qcraft.blocks.ModBlocks;
 import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.containers.ModMenus;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
+import ru.qoqqi.qcraft.network.ModPacketHandler;
 import ru.qoqqi.qcraft.particles.ModParticleTypes;
 import ru.qoqqi.qcraft.screens.PuzzleBoxScreen;
+import ru.qoqqi.qcraft.structures.ModStructureTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("q_craft")
@@ -41,6 +44,8 @@ public class QCraft {
 	public static final String MOD_ID = "q_craft";
 	
 	private static final Logger LOGGER = LogManager.getLogger();
+	
+	private static MinecraftServer lastStartedServer;
 	
 	public QCraft() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -59,6 +64,7 @@ public class QCraft {
 		ModBlockEntityTypes.register(eventBus);
 		ModItems.register(eventBus);
 		ModParticleTypes.register(eventBus);
+		ModStructureTypes.register(eventBus);
 		ModMenus.register(eventBus);
 		ModCriteriaTriggers.register();
 		
@@ -66,12 +72,13 @@ public class QCraft {
 	}
 	
 	private void setup(final FMLCommonSetupEvent event) {
-		LOGGER.info("HELLO FROM PREINIT");
+		ModPacketHandler.init();
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		MenuScreens.register(ModMenus.PUZZLE_BOX_MENU.get(), PuzzleBoxScreen::new);
-		BlockEntityRenderers.register(ModBlockEntityTypes.LOOT_BOX_GENERATOR.get(), LootBoxGeneratorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityTypes.LOOT_BOX_GENERATOR.get(), ItemPedestalBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityTypes.JOURNEY_REWARD.get(), ItemPedestalBlockEntityRenderer::new);
 		
 		LOGGER.info("Got game settings {}", Minecraft.getInstance().options);
 	}
@@ -98,5 +105,12 @@ public class QCraft {
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("HELLO from server starting");
+		lastStartedServer = event.getServer();
+	}
+	
+	@SuppressWarnings("DeprecatedIsStillUsed")
+	@Deprecated
+	public static MinecraftServer getLastStartedServer() {
+		return lastStartedServer;
 	}
 }

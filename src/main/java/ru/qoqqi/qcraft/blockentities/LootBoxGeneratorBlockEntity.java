@@ -46,7 +46,7 @@ import ru.qoqqi.qcraft.blocks.LootBoxGeneratorBlock;
 import ru.qoqqi.qcraft.leveldata.LootBoxGeneratorsLevelData;
 import ru.qoqqi.qcraft.particles.ModParticleTypes;
 
-public class LootBoxGeneratorBlockEntity extends BlockEntity {
+public class LootBoxGeneratorBlockEntity extends BlockEntity implements ItemPedestal {
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 	
@@ -325,11 +325,13 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity {
 		level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 2);
 	}
 	
+	@Override
 	@Nonnull
 	public ItemStack getItemStack() {
 		return itemStack;
 	}
 	
+	@Override
 	public boolean hasItem() {
 		return !itemStack.isEmpty();
 	}
@@ -427,8 +429,19 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity {
 		return 1 - (float) countdown / startedFrom;
 	}
 	
+	@Override
 	public int getAge() {
 		return age;
+	}
+	
+	@Override
+	public float getHoverStart() {
+		return hoverStart;
+	}
+	
+	@Override
+	public Level getLevel2() {
+		return getLevel();
 	}
 	
 	public boolean isActive() {

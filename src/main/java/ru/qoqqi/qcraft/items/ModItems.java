@@ -1,5 +1,9 @@
 package ru.qoqqi.qcraft.items;
 
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.item.CompassItemPropertyFunction;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -31,12 +35,17 @@ public class ModItems {
 	
 	public static final RegistryObject<LootBoxItem> POSEIDONS_BOX = registerLootBox("poseidons_box", LootBoxes.POSEIDONS_BOX, Rarity.RARE);
 	
+	public static final RegistryObject<JourneyCompassItem> JOURNEY_COMPASS = registerJourneyCompass("journey_compass");
+	
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
 	}
 	
-	static {
-		System.out.println("ModItems static {}");
+	@SuppressWarnings("SameParameterValue")
+	private static RegistryObject<JourneyCompassItem> registerJourneyCompass(String name) {
+		return ITEMS.register(name, () -> {
+			return new JourneyCompassItem(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).rarity(Rarity.RARE));
+		});
 	}
 	
 	private static RegistryObject<Item> register(String name, CreativeModeTab itemGroup) {
@@ -54,5 +63,19 @@ public class ModItems {
 		return ITEMS.register(name, () -> {
 			return new BlockItem(block, (new Item.Properties()).tab(itemGroup));
 		});
+	}
+	
+	public static void addItemModelProperties() {
+		ItemProperties.register(
+				JOURNEY_COMPASS.get(),
+				new ResourceLocation("angle"),
+				new CompassItemPropertyFunction((clientLevel, itemStack, entity) -> {
+					if (!(entity instanceof LocalPlayer player)) {
+						return null;
+					}
+					
+					return JourneyCompassItem.getNextPlacePosition(player);
+				})
+		);
 	}
 }

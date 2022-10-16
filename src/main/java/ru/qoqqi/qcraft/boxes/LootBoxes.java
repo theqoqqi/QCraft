@@ -9,6 +9,7 @@ import ru.qoqqi.qcraft.QCraft;
 import ru.qoqqi.qcraft.boxes.entries.AttributeBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.ExperienceBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.ExplosionBoxEntry;
+import ru.qoqqi.qcraft.boxes.entries.ItemStackBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.LootTableBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.StructureBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.SummonBoxEntry;
@@ -17,6 +18,7 @@ import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.util.RandomBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.util.RepeatBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.util.RetryForSuccessBoxEntry;
+import ru.qoqqi.qcraft.journey.JourneyStages;
 import ru.qoqqi.qcraft.util.WeightedList;
 
 public class LootBoxes {
@@ -81,6 +83,36 @@ public class LootBoxes {
 					new WeightedList.WeightedEntry<>(1, new SummonBoxEntry("minecraft:wither", 4)),
 					new WeightedList.WeightedEntry<>(6, new RepeatBoxEntry(12, new SummonBoxEntry(SummonBoxEntry.MONSTERS, 12)))
 			))
+	)));
+	
+	public static final LootBox TRAVELERS_HOME = create(new CompositeBoxEntry(Arrays.asList(
+			new LootTableBoxEntry("journey/travelers_home"),
+			new ItemStackBoxEntry(JourneyStages.TRAVELERS_HOME::createNotes),
+			new ExperienceBoxEntry(100, 10)
+	)));
+	
+	public static final LootBox FORTUNE_ISLAND = create(new CompositeBoxEntry(Arrays.asList(
+			new LootTableBoxEntry("journey/fortune_island"),
+			new ItemStackBoxEntry(JourneyStages.FORTUNE_ISLAND::createNotes),
+			new ExperienceBoxEntry(200, 20)
+	)));
+	
+	public static final LootBox JUNGLE_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
+			new LootTableBoxEntry("journey/jungle_temple"),
+			new ItemStackBoxEntry(JourneyStages.JUNGLE_TEMPLE::createNotes),
+			new ExperienceBoxEntry(300, 30)
+	)));
+	
+	public static final LootBox MANGROVE_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
+			new LootTableBoxEntry("journey/mangrove_temple"),
+			new ItemStackBoxEntry(JourneyStages.MANGROVE_TEMPLE::createNotes),
+			new ExperienceBoxEntry(400, 40)
+	)));
+	
+	public static final LootBox PANDORAS_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
+			new LootTableBoxEntry("journey/pandoras_temple"),
+			new ItemStackBoxEntry(JourneyStages.PANDORAS_TEMPLE::createNotes),
+			new ExperienceBoxEntry(500, 50)
 	)));
 	
 	@SafeVarargs

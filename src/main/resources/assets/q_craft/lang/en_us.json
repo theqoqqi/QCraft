@@ -18,6 +18,12 @@
   "block.q_craft.oak_plate": "Oak plate",
   "block.q_craft.spruce_plate": "Spruce plate",
 
+  "block.q_craft.travelers_home_journey_reward": "Journey Reward: Traveler's Home",
+  "block.q_craft.fortune_island_journey_reward": "Journey Reward: Fortune Island",
+  "block.q_craft.mangrove_temple_journey_reward": "Journey Reward: Mangrove Temple",
+  "block.q_craft.jungle_temple_journey_reward": "Journey Reward: Jungle Temple",
+  "block.q_craft.pandoras_temple_journey_reward": "Journey Reward: Pandoras Temple",
+
   "block.q_craft.pandoras_box": "Pandora's box",
   "block.q_craft.puzzle_box_easy": "Easy Puzzle box",
   "block.q_craft.puzzle_box_normal": "Normal Puzzle box",
@@ -30,6 +36,7 @@
   "item.q_craft.attribute_box": "Attribute box",
   "item.q_craft.noahs_box": "Noah's box",
   "item.q_craft.poseidons_box": "Poseidon's box",
+  "item.q_craft.journey_compass": "Journey Compass",
 
   "structure.end_portal": "End Portal",
 
@@ -59,5 +66,27 @@
   "lootBoxGenerator.take.progress.active": "Progress: %1$s%% (active, %2$s left)",
   "lootBoxGenerator.take.progress.inactive": "Progress: %1$s%% (inactive)",
   "lootBoxGenerator.take.forbidden": "This generator is owned by another player",
-  "lootBoxGenerator.take.success": "%1$s got a %2$s"
+  "lootBoxGenerator.take.success": "%1$s got a %2$s",
+
+  "journey.book.common.author": "AUTHOR",
+
+  "journey.book.travelers_home.title": "TRAVELERS HOME",
+  "journey.book.travelers_home.pages.1": "PAGE 1",
+  "journey.book.travelers_home.pages.2": "PAGE 2",
+
+  "journey.book.fortune_island.title": "TRAVELERS HOME",
+  "journey.book.fortune_island.pages.1": "PAGE 1",
+  "journey.book.fortune_island.pages.2": "PAGE 2",
+
+  "journey.book.jungle_temple.title": "TRAVELERS HOME",
+  "journey.book.jungle_temple.pages.1": "PAGE 1",
+  "journey.book.jungle_temple.pages.2": "PAGE 2",
+
+  "journey.book.mangrove_temple.title": "TRAVELERS HOME",
+  "journey.book.mangrove_temple.pages.1": "PAGE 1",
+  "journey.book.mangrove_temple.pages.2": "PAGE 2",
+
+  "journey.book.pandoras_temple.title": "TRAVELERS HOME",
+  "journey.book.pandoras_temple.pages.1": "PAGE 1",
+  "journey.book.pandoras_temple.pages.2": "PAGE 2"
 }

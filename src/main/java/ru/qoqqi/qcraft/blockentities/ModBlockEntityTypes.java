@@ -32,6 +32,16 @@ public class ModBlockEntityTypes {
 			ModBlocks.LOOT_BOX_GENERATOR_BLOCK
 	);
 	
+	public static final RegistryObject<BlockEntityType<JourneyRewardBlockEntity>> JOURNEY_REWARD = register(
+			"journey_reward",
+			JourneyRewardBlockEntity::new,
+			ModBlocks.TRAVELERS_HOME_JOURNEY_REWARD_BLOCK,
+			ModBlocks.FORTUNE_ISLAND_JOURNEY_REWARD_BLOCK,
+			ModBlocks.JUNGLE_TEMPLE_JOURNEY_REWARD_BLOCK,
+			ModBlocks.MANGROVE_TEMPLE_JOURNEY_REWARD_BLOCK,
+			ModBlocks.PANDORAS_TEMPLE_JOURNEY_REWARD_BLOCK
+	);
+	
 	@SafeVarargs
 	private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, RegistryObject<Block>... validBlocks) {
 		return BLOCK_ENTITY_TYPES.register(name, () -> {

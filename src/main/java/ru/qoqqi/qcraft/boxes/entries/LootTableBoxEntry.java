@@ -1,10 +1,6 @@
 package ru.qoqqi.qcraft.boxes.entries;
 
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -26,6 +22,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import ru.qoqqi.qcraft.boxes.ItemUtils;
 import ru.qoqqi.qcraft.QCraft;
 import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
 import ru.qoqqi.qcraft.util.IntRange;
@@ -53,7 +50,7 @@ public class LootTableBoxEntry implements IBoxEntry {
 		UnpackResult result = UnpackResult.resultSuccess(lootBox, player);
 		fillChatMessages(result, generatedLoot);
 		
-		generatedLoot.forEach(lootItemStack -> giveOrDropItem(player, lootItemStack));
+		generatedLoot.forEach(lootItemStack -> ItemUtils.giveOrDropItem(player, lootItemStack));
 		
 		return result;
 	}
@@ -74,31 +71,6 @@ public class LootTableBoxEntry implements IBoxEntry {
 		}
 		
 		return itemStackList;
-	}
-	
-	protected void giveOrDropItem(Player player, ItemStack itemStack) {
-		boolean fullyAdded = player.getInventory().add(itemStack);
-		
-		if (fullyAdded && itemStack.isEmpty()) {
-			itemStack.setCount(1);
-			
-			ItemEntity itemEntity = player.drop(itemStack, false);
-			
-			if (itemEntity != null) {
-				itemEntity.makeFakeItem();
-			}
-			
-			playPickupSound(player);
-			player.containerMenu.broadcastChanges();
-			
-		} else {
-			ItemEntity itemEntity = player.drop(itemStack, false);
-			
-			if (itemEntity != null) {
-				itemEntity.setNoPickUpDelay();
-				itemEntity.setOwner(player.getUUID());
-			}
-		}
 	}
 	
 	protected void fillChatMessages(UnpackResult result, List<ItemStack> lootContent) {
@@ -128,19 +100,6 @@ public class LootTableBoxEntry implements IBoxEntry {
 				result.getPlayer().getDisplayName(),
 				result.getLootBox().getDisplayName()
 		);
-	}
-	
-	protected void playPickupSound(Player player) {
-		double posX = player.getX();
-		double posY = player.getY();
-		double posZ = player.getZ();
-		SoundEvent sound = SoundEvents.ITEM_PICKUP;
-		SoundSource category = SoundSource.PLAYERS;
-		float volume = 0.2F;
-		RandomSource random = player.getRandom();
-		float pitch = ((random.nextFloat() - random.nextFloat()) * 0.8F + 1.0F) * 2.0F;
-		
-		player.level.playSound(null, posX, posY, posZ, sound, category, volume, pitch);
 	}
 	
 	protected LootContext.Builder getLootContextBuilder(Level level, Player player) {

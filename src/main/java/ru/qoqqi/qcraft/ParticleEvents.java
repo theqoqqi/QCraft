@@ -10,7 +10,7 @@ import ru.qoqqi.qcraft.particles.ModParticleTypes;
 public class ParticleEvents {
 	
 	@SubscribeEvent
-	public static void fixPuzzleBoxDrops(final RegisterParticleProvidersEvent event) {
+	public static void registerParticleProviders(final RegisterParticleProvidersEvent event) {
 		ModParticleTypes.registerProviders(event);
 	}
 }

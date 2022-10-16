@@ -18,6 +18,12 @@
   "block.q_craft.oak_plate": "Доска из дуба",
   "block.q_craft.spruce_plate": "Доска из ели",
 
+  "block.q_craft.travelers_home_journey_reward": "Сокровищница: Дом путешественника",
+  "block.q_craft.fortune_island_journey_reward": "Сокровищница: Остров фортуны",
+  "block.q_craft.mangrove_temple_journey_reward": "Сокровищница: Мангровый храм",
+  "block.q_craft.jungle_temple_journey_reward": "Сокровищница: Храм джунглей",
+  "block.q_craft.pandoras_temple_journey_reward": "Сокровищница: Гробница пандоры",
+
   "block.q_craft.pandoras_box": "Ящик Пандоры",
   "block.q_craft.puzzle_box_easy": "Простая Головоломка",
   "block.q_craft.puzzle_box_normal": "Обычная Головоломка",
@@ -30,6 +36,7 @@
   "item.q_craft.attribute_box": "Коробка с атрибутом",
   "item.q_craft.noahs_box": "Коробка Ноя",
   "item.q_craft.poseidons_box": "Коробка Посейдона",
+  "item.q_craft.journey_compass": "Компас путешественника",
 
   "structure.end_portal": "Портал в край",
 
@@ -59,5 +66,27 @@
   "lootBoxGenerator.take.progress.active": "Прогресс: %1$s%% (активен, осталось %2$s)",
   "lootBoxGenerator.take.progress.inactive": "Прогресс: %1$s%% (неактивен)",
   "lootBoxGenerator.take.forbidden": "Этот генератор принадлежит другому игроку",
-  "lootBoxGenerator.take.success": "%1$s получил %2$s"
+  "lootBoxGenerator.take.success": "%1$s получил %2$s",
+
+  "journey.book.common.author": "АВТОР",
+
+  "journey.book.travelers_home.title": "ДОМ ПУТЕШЕСТВЕННИКА",
+  "journey.book.travelers_home.pages.1": "Я долгое время жил скучной бла-бла-бла жизнью, собирал ресурсы и строил всякую хню.",
+  "journey.book.travelers_home.pages.2": "§4СТРАНИЦА §52",
+
+  "journey.book.fortune_island.title": "TRAVELERS HOME",
+  "journey.book.fortune_island.pages.1": "PAGE 1",
+  "journey.book.fortune_island.pages.2": "PAGE 2",
+
+  "journey.book.jungle_temple.title": "TRAVELERS HOME",
+  "journey.book.jungle_temple.pages.1": "PAGE 1",
+  "journey.book.jungle_temple.pages.2": "PAGE 2",
+
+  "journey.book.mangrove_temple.title": "TRAVELERS HOME",
+  "journey.book.mangrove_temple.pages.1": "PAGE 1",
+  "journey.book.mangrove_temple.pages.2": "PAGE 2",
+
+  "journey.book.pandoras_temple.title": "TRAVELERS HOME",
+  "journey.book.pandoras_temple.pages.1": "PAGE 1",
+  "journey.book.pandoras_temple.pages.2": "PAGE 2"
 }

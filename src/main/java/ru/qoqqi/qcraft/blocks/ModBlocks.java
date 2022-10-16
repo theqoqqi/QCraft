@@ -23,6 +23,8 @@ import ru.qoqqi.qcraft.boxes.LootBox;
 import ru.qoqqi.qcraft.boxes.LootBoxes;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.items.PuzzleBoxBlockItem;
+import ru.qoqqi.qcraft.journey.JourneyStage;
+import ru.qoqqi.qcraft.journey.JourneyStages;
 import ru.qoqqi.qcraft.puzzles.PuzzleType;
 import ru.qoqqi.qcraft.puzzles.PuzzleTypes;
 
@@ -71,6 +73,26 @@ public class ModBlocks {
 			),
 			CreativeModeTab.TAB_MISC
 	);
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> TRAVELERS_HOME_JOURNEY_REWARD_BLOCK =
+			registerJourneyReward("travelers_home_journey_reward", JourneyStages.TRAVELERS_HOME, LootBoxes.TRAVELERS_HOME, Material.WOOD, MaterialColor.WOOD);
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> FORTUNE_ISLAND_JOURNEY_REWARD_BLOCK =
+			registerJourneyReward("fortune_island_journey_reward", JourneyStages.FORTUNE_ISLAND, LootBoxes.FORTUNE_ISLAND, Material.STONE, MaterialColor.STONE);
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> JUNGLE_TEMPLE_JOURNEY_REWARD_BLOCK =
+			registerJourneyReward("jungle_temple_journey_reward", JourneyStages.JUNGLE_TEMPLE, LootBoxes.JUNGLE_TEMPLE, Material.WOOD, MaterialColor.WOOD);
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> MANGROVE_TEMPLE_JOURNEY_REWARD_BLOCK =
+			registerJourneyReward("mangrove_temple_journey_reward", JourneyStages.MANGROVE_TEMPLE, LootBoxes.MANGROVE_TEMPLE, Material.WOOD, MaterialColor.WOOD);
+	
+	@SuppressWarnings("unused")
+	public static final RegistryObject<Block> PANDORAS_TEMPLE_JOURNEY_REWARD_BLOCK =
+			registerJourneyReward("pandoras_temple_journey_reward", JourneyStages.PANDORAS_TEMPLE, LootBoxes.PANDORAS_TEMPLE, Material.STONE, MaterialColor.STONE);
 
 	@SuppressWarnings("unused")
 	private static RegistryObject<Block> registerWoodenPlate(String name) {
@@ -102,6 +124,15 @@ public class ModBlocks {
 						.tab(CreativeModeTab.TAB_MISC)
 						.rarity(Rarity.EPIC)
 		);
+	}
+	
+	@SuppressWarnings("SameParameterValue")
+	private static RegistryObject<Block> registerJourneyReward(String name, JourneyStage stage, LootBox lootBox, Material material, MaterialColor materialColor) {
+		BlockBehaviour.Properties properties = BlockBehaviour.Properties
+				.of(material, materialColor)
+				.strength(25.0f, 1200f);
+		
+		return register(name, () -> new JourneyRewardBlock(properties, stage, lootBox), CreativeModeTab.TAB_MISC);
 	}
 	
 	private static RegistryObject<Block> registerPuzzleLootBox(String name, int explosionPower, LootBox lootBox, PuzzleType config) {

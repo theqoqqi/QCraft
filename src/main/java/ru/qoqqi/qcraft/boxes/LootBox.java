@@ -35,7 +35,7 @@ public class LootBox {
 	}
 	
 	@Nonnull
-	public IBoxEntry.UnpackResult open(Player player, ItemStack itemStack, BlockPos blockPos) {
+	public IBoxEntry.UnpackResult openSilently(Player player, ItemStack itemStack, BlockPos blockPos) {
 		return open(player, itemStack, blockPos, false);
 	}
 	

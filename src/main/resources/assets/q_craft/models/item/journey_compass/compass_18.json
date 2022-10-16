@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "q_craft:item/journey_compass/compass_18"
+  }
+}
