@@ -1,6 +1,7 @@
 package ru.qoqqi.qcraft.blocks;
 
 import net.minecraft.core.Direction;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -126,16 +127,17 @@ public class PlateBlock extends CrossCollisionBlock {
 		
 		return !isExceptionForConnection(blockState) && solidSide
 				|| (block instanceof CrossCollisionBlock && !isCovering(blockState))
-				|| isWall(block);
+				|| isInTag(block, BlockTags.WALLS)
+				|| isInTag(block, BlockTags.FENCE_GATES);
 	}
 	
 	private boolean isCovering(BlockState blockState) {
 		return blockState.getBlock() instanceof PlateBlock && blockState.getValue(IS_COVERING);
 	}
 	
-	private static boolean isWall(Block block) {
+	private static boolean isInTag(Block block, TagKey<Block> tagKey) {
 		ITagManager<Block> tags = ForgeRegistries.BLOCKS.tags();
 		
-		return tags != null && tags.getTag(BlockTags.WALLS).contains(block);
+		return tags != null && tags.getTag(tagKey).contains(block);
 	}
 }
