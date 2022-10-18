@@ -46,8 +46,6 @@ public class CustomJigsawPlacement {
 	static final Logger LOGGER = LogUtils.getLogger();
 	
 	public static Optional<Structure.GenerationStub> addPieces(Structure.GenerationContext pContext, Holder<StructureTemplatePool> p_227240_, Optional<ResourceLocation> p_227241_, int p_227242_, BlockPos p_227243_, boolean p_227244_, Optional<Heightmap.Types> p_227245_, int p_227246_) {
-		LOGGER.info("ADD PIECES: {}", p_227240_.get().getName());
-		
 		RegistryAccess registryaccess = pContext.registryAccess();
 		ChunkGenerator chunkgenerator = pContext.chunkGenerator();
 		StructureTemplateManager structuretemplatemanager = pContext.structureTemplateManager();
@@ -169,8 +167,6 @@ public class CustomJigsawPlacement {
 			BoundingBox boundingbox = pPiece.getBoundingBox();
 			int i = boundingbox.minY();
 			
-			LOGGER.info("tryPlacingChildren");
-			
 			label139:
 			for(StructureTemplate.StructureBlockInfo structuretemplate$structureblockinfo : structurepoolelement.getShuffledJigsawBlocks(this.structureTemplateManager, blockpos, rotation, this.random)) {
 				Direction direction = JigsawBlock.getFrontFacing(structuretemplate$structureblockinfo.state);
@@ -182,15 +178,12 @@ public class CustomJigsawPlacement {
 				Optional<StructureTemplatePool> optional = this.pools.getOptional(resourcelocation);
 				if (optional.isPresent() && (optional.get().size() != 0 || Objects.equals(resourcelocation, Pools.EMPTY.location()))) {
 					
-					LOGGER.info("tryPlacingChildren 1");
-					
 					ResourceLocation resourcelocation1 = optional.get().getFallback();
 					Optional<StructureTemplatePool> optional1 = this.pools.getOptional(resourcelocation1);
 					if (optional1.isPresent() && (optional1.get().size() != 0 || Objects.equals(resourcelocation1, Pools.EMPTY.location()))) {
 						boolean flag1 = boundingbox.isInside(blockpos2);
 						MutableObject<VoxelShape> mutableobject1;
 						
-						LOGGER.info("tryPlacingChildren 2");
 						if (flag1) {
 							mutableobject1 = mutableobject;
 							if (mutableobject.getValue() == null) {
@@ -209,12 +202,8 @@ public class CustomJigsawPlacement {
 						
 						for(StructurePoolElement structurepoolelement1 : list) {
 							if (structurepoolelement1 == EmptyPoolElement.INSTANCE) {
-								
-								LOGGER.info("tryPlacingChildren EMPTY");
 								break;
 							}
-							
-							LOGGER.info("tryPlacingChildren 3");
 							
 							for(Rotation rotation1 : Rotation.getShuffled(this.random)) {
 								List<StructureTemplate.StructureBlockInfo> list1 = structurepoolelement1.getShuffledJigsawBlocks(this.structureTemplateManager, BlockPos.ZERO, rotation1, this.random);
@@ -222,11 +211,8 @@ public class CustomJigsawPlacement {
 								int l;
 								if (p_227268_ && boundingbox1.getYSpan() <= 16) {
 									
-									LOGGER.info("tryPlacingChildren 4");
 									l = list1.stream().mapToInt((p_210332_) -> {
 										if (!boundingbox1.isInside(p_210332_.pos.relative(JigsawBlock.getFrontFacing(p_210332_.state)))) {
-											
-											LOGGER.info("tryPlacingChildren return 0");
 											return 0;
 										} else {
 											ResourceLocation resourcelocation2 = new ResourceLocation(p_210332_.nbt.getString("pool"));
@@ -241,7 +227,6 @@ public class CustomJigsawPlacement {
 												return p_210340_.getMaxSize(this.structureTemplateManager);
 											}).orElse(0);
 											
-											LOGGER.info("tryPlacingChildren return max");
 											return Math.max(j3, k3);
 										}
 									}).max().orElse(0);
@@ -252,7 +237,6 @@ public class CustomJigsawPlacement {
 								for(StructureTemplate.StructureBlockInfo structuretemplate$structureblockinfo1 : list1) {
 									if (JigsawBlock.canAttach(structuretemplate$structureblockinfo, structuretemplate$structureblockinfo1)) {
 										
-										LOGGER.info("tryPlacingChildren canAttach");
 										BlockPos blockpos3 = structuretemplate$structureblockinfo1.pos;
 										BlockPos blockpos4 = blockpos2.subtract(blockpos3);
 										BoundingBox boundingbox2 = structurepoolelement1.getBoundingBox(this.structureTemplateManager, blockpos4, rotation1);
@@ -283,7 +267,6 @@ public class CustomJigsawPlacement {
 										boolean isVertical = isJigsawVertical(structuretemplate$structureblockinfo);
 										if (isVertical || !Shapes.joinIsNotEmpty(mutableobject1.getValue(), Shapes.create(AABB.of(boundingbox3).deflate(0.25D)), BooleanOp.ONLY_SECOND)) {
 											
-											LOGGER.info("tryPlacingChildren join");
 											mutableobject1.setValue(Shapes.joinUnoptimized(mutableobject1.getValue(), Shapes.create(AABB.of(boundingbox3)), BooleanOp.ONLY_FIRST));
 											int i3 = pPiece.getGroundLevelDelta();
 											int k2;

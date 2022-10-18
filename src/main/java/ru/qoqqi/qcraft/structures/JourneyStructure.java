@@ -3,13 +3,10 @@ package ru.qoqqi.qcraft.structures;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
@@ -35,8 +32,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import ru.qoqqi.qcraft.QCraft;
-import ru.qoqqi.qcraft.journey.JourneyStageState;
 import ru.qoqqi.qcraft.journey.JourneyStage;
+import ru.qoqqi.qcraft.journey.JourneyStageState;
 import ru.qoqqi.qcraft.journey.JourneyStages;
 import ru.qoqqi.qcraft.leveldata.JourneyLevelData;
 import ru.qoqqi.qcraft.network.JourneyPlacePositionPacket;
