@@ -86,32 +86,32 @@ public class LootBoxes {
 	)));
 	
 	public static final LootBox TRAVELERS_HOME = create(new CompositeBoxEntry(Arrays.asList(
-			new LootTableBoxEntry("journey/travelers_home"),
 			new ItemStackBoxEntry(JourneyStages.TRAVELERS_HOME::createNotes),
+			new LootTableBoxEntry("journey/travelers_home/reward"),
 			new ExperienceBoxEntry(100, 10)
 	)));
 	
 	public static final LootBox FORTUNE_ISLAND = create(new CompositeBoxEntry(Arrays.asList(
-			new LootTableBoxEntry("journey/fortune_island"),
 			new ItemStackBoxEntry(JourneyStages.FORTUNE_ISLAND::createNotes),
+			new LootTableBoxEntry("journey/fortune_island/reward"),
 			new ExperienceBoxEntry(200, 20)
 	)));
 	
 	public static final LootBox JUNGLE_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
-			new LootTableBoxEntry("journey/jungle_temple"),
 			new ItemStackBoxEntry(JourneyStages.JUNGLE_TEMPLE::createNotes),
+			new LootTableBoxEntry("journey/jungle_temple/reward"),
 			new ExperienceBoxEntry(300, 30)
 	)));
 	
 	public static final LootBox MANGROVE_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
-			new LootTableBoxEntry("journey/mangrove_temple"),
 			new ItemStackBoxEntry(JourneyStages.MANGROVE_TEMPLE::createNotes),
+			new LootTableBoxEntry("journey/mangrove_temple/reward"),
 			new ExperienceBoxEntry(400, 40)
 	)));
 	
 	public static final LootBox PANDORAS_TEMPLE = create(new CompositeBoxEntry(Arrays.asList(
-			new LootTableBoxEntry("journey/pandoras_temple"),
 			new ItemStackBoxEntry(JourneyStages.PANDORAS_TEMPLE::createNotes),
+			new LootTableBoxEntry("journey/pandoras_temple/reward"),
 			new ExperienceBoxEntry(500, 50)
 	)));
 	
