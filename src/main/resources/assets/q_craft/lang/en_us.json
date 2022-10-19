@@ -68,25 +68,28 @@
   "lootBoxGenerator.take.forbidden": "This generator is owned by another player",
   "lootBoxGenerator.take.success": "%1$s got a %2$s",
 
-  "journey.book.common.author": "AUTHOR",
+  "journey.book.common.author": "Traveler",
 
   "journey.book.travelers_home.title": "TRAVELERS HOME",
   "journey.book.travelers_home.pages.1": "PAGE 1",
   "journey.book.travelers_home.pages.2": "PAGE 2",
 
-  "journey.book.fortune_island.title": "TRAVELERS HOME",
+  "journey.book.fortune_island.title": "FORTUNE ISLAND",
   "journey.book.fortune_island.pages.1": "PAGE 1",
   "journey.book.fortune_island.pages.2": "PAGE 2",
+  "journey.book.fortune_island.pages.3": "PAGE 3",
 
-  "journey.book.jungle_temple.title": "TRAVELERS HOME",
+  "journey.book.jungle_temple.title": "JUNGLE TEMPLE",
   "journey.book.jungle_temple.pages.1": "PAGE 1",
   "journey.book.jungle_temple.pages.2": "PAGE 2",
+  "journey.book.jungle_temple.pages.3": "PAGE 3",
+  "journey.book.jungle_temple.pages.4": "PAGE 4",
 
-  "journey.book.mangrove_temple.title": "TRAVELERS HOME",
+  "journey.book.mangrove_temple.title": "MANGROVE TEMPLE",
   "journey.book.mangrove_temple.pages.1": "PAGE 1",
   "journey.book.mangrove_temple.pages.2": "PAGE 2",
 
-  "journey.book.pandoras_temple.title": "TRAVELERS HOME",
+  "journey.book.pandoras_temple.title": "PANDORAS TEMPLE",
   "journey.book.pandoras_temple.pages.1": "PAGE 1",
   "journey.book.pandoras_temple.pages.2": "PAGE 2"
 }
