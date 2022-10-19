@@ -2,7 +2,10 @@
   "type": "q_craft:journey_place",
   "stage": "mangrove_temple",
   "jigsaw_options": {
-    "biomes": "minecraft:mangrove_swamp",
+    "biomes": [
+      "minecraft:swamp",
+      "minecraft:mangrove_swamp"
+    ],
     "spawn_overrides": {},
     "step": "surface_structures",
     "terrain_adaptation": "beard_thin",
