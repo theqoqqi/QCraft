@@ -139,11 +139,9 @@ public class JourneyStructure extends Structure {
 		
 		BlockPos position = getStructureCenter(boundingBox, piecesContainer);
 		JourneyStageState stageState = new JourneyStageState(position);
-		
-		levelData.setGenerated(stage, stageState);
-		
 		MinecraftServer server = level.getServer();
 		
+		levelData.setGenerated(stage, stageState);
 		sendPlacePositionToPlayers(server, position);
 		
 		LOGGER.info("GENERATED: {} {}", stage.name, position);
