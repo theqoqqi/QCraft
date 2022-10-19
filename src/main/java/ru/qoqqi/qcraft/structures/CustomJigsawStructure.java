@@ -31,7 +31,7 @@ public class CustomJigsawStructure extends Structure {
 					settingsCodec(builder),
 					StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter((s) -> s.startPool),
 					ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter((s) -> s.startJigsawName),
-					Codec.intRange(0, 7).fieldOf("size").forGetter((s) -> s.maxDepth),
+					Codec.intRange(0, 10).fieldOf("size").forGetter((s) -> s.maxDepth),
 					HeightProvider.CODEC.fieldOf("start_height").forGetter((s) -> s.startHeight),
 					Codec.BOOL.fieldOf("use_expansion_hack").forGetter((s) -> s.useExpansionHack),
 					Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter((s) -> s.projectStartToHeightmap),
