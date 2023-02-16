@@ -32,6 +32,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import ru.qoqqi.qcraft.QCraft;
+import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.journey.JourneyStage;
 import ru.qoqqi.qcraft.journey.JourneyStageState;
 import ru.qoqqi.qcraft.journey.JourneyStages;
@@ -63,6 +64,10 @@ public class JourneyStructure extends Structure {
 	
 	@NotNull
 	public Optional<GenerationStub> findGenerationPoint(@NotNull GenerationContext context) {
+		if (!Config.COMMON.journeyEnabled.get()) {
+			return Optional.empty();
+		}
+		
 		JourneyLevelData levelData = JourneyLevelData.getLoadingInstance();
 		
 		if (!levelData.shouldGenerate(stage)) {

@@ -6,16 +6,16 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class Config {
 	
-//	private static final boolean defaultEntityModificationsEnabled = true;
+	private static final boolean defaultJourneyEnabled = true;
 	
-//	public final ConfigValue<Boolean> entityModificationsEnabled;
+	public final ForgeConfigSpec.ConfigValue<Boolean> journeyEnabled;
 	
 	public Config(ForgeConfigSpec.Builder builder) {
 		builder.push("main");
 		
-//		this.entityModificationsEnabled = builder
-//				.comment("Enables or disables entity modifications like damage, speed etc")
-//				.define("entityModificationsEnabled", defaultEntityModificationsEnabled);
+		this.journeyEnabled = builder
+				.comment("Enables or disables journeys")
+				.define("journeyEnabled", defaultJourneyEnabled);
 		
 		builder.pop();
 	}
