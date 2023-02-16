@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import ru.qoqqi.qcraft.QCraft;
+import ru.qoqqi.qcraft.config.Config;
 
 public class ModStructureTypes {
 	public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
