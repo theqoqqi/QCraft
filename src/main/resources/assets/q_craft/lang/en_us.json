@@ -38,6 +38,10 @@
   "item.q_craft.poseidons_box": "Poseidon's box",
   "item.q_craft.journey_compass": "Journey Compass",
 
+  "item.q_craft.stone_crab_spawn_egg": "Stonecrab Spawn Egg",
+
+  "entity.q_craft.stone_crab": "Stonecrab",
+
   "structure.end_portal": "End Portal",
 
   "screen.puzzleBox.crafting": "Crafting",

@@ -3,8 +3,10 @@ package ru.qoqqi.qcraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -16,7 +18,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +31,9 @@ import ru.qoqqi.qcraft.blockentities.renderers.ItemPedestalBlockEntityRenderer;
 import ru.qoqqi.qcraft.blocks.ModBlocks;
 import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.containers.ModMenus;
+import ru.qoqqi.qcraft.entities.ModEntityTypes;
+import ru.qoqqi.qcraft.entities.ModSpawnPlacements;
+import ru.qoqqi.qcraft.entities.renderers.StoneCrabRenderer;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
 import ru.qoqqi.qcraft.network.ModPacketHandler;
@@ -63,6 +67,7 @@ public class QCraft {
 		ModBlocks.register(eventBus);
 		ModBlockEntityTypes.register(eventBus);
 		ModItems.register(eventBus);
+		ModEntityTypes.register(eventBus);
 		ModParticleTypes.register(eventBus);
 		ModStructureTypes.register(eventBus);
 		ModMenus.register(eventBus);
@@ -73,12 +78,15 @@ public class QCraft {
 	
 	private void setup(final FMLCommonSetupEvent event) {
 		ModPacketHandler.init();
+		
+		event.enqueueWork(ModSpawnPlacements::register);
 	}
 	
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		MenuScreens.register(ModMenus.PUZZLE_BOX_MENU.get(), PuzzleBoxScreen::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.LOOT_BOX_GENERATOR.get(), ItemPedestalBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.JOURNEY_REWARD.get(), ItemPedestalBlockEntityRenderer::new);
+		EntityRenderers.register(ModEntityTypes.STONE_CRAB.get(), StoneCrabRenderer::new);
 		
 		LOGGER.info("Got game settings {}", Minecraft.getInstance().options);
 	}

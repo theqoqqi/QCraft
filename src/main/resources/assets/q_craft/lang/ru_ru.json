@@ -38,6 +38,10 @@
   "item.q_craft.poseidons_box": "Коробка Посейдона",
   "item.q_craft.journey_compass": "Компас путешественника",
 
+  "item.q_craft.stone_crab_spawn_egg": "Яйцо призыва Камнекраба",
+
+  "entity.q_craft.stone_crab": "Камнекраб",
+
   "structure.end_portal": "Портал в край",
 
   "screen.puzzleBox.crafting": "Создание",
