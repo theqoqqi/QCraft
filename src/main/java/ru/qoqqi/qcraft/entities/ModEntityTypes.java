@@ -31,7 +31,7 @@ public class ModEntityTypes {
 	public static final RegistryObject<EntityType<StoneCrab>> STONE_CRAB = register(
 			"stone_crab",
 			StoneCrab::new,
-			MobCategory.AMBIENT,
+			MobCategory.CREATURE,
 			0.9f, 0.4f, 10,
 			new SpawnEggOptions(0x747474, 0x303b34)
 	);

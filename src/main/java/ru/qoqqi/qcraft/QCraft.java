@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
 import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
+import ru.qoqqi.qcraft.biomes.modifiers.ModBiomeModifierTypes;
 import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
 import ru.qoqqi.qcraft.blockentities.renderers.ItemPedestalBlockEntityRenderer;
 import ru.qoqqi.qcraft.blocks.ModBlocks;
@@ -70,6 +71,7 @@ public class QCraft {
 		ModEntityTypes.register(eventBus);
 		ModParticleTypes.register(eventBus);
 		ModStructureTypes.register(eventBus);
+		ModBiomeModifierTypes.register(eventBus);
 		ModMenus.register(eventBus);
 		ModCriteriaTriggers.register();
 		

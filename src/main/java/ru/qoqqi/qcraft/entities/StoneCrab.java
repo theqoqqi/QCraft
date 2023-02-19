@@ -70,11 +70,11 @@ public class StoneCrab extends Animal {
 	) {
 		var spawnY = blockPos.getY();
 		
-		if (spawnY >= levelAccessor.getLevel().getSeaLevel()) {
-			return checkOvergroundSpawnRules(entityType, levelAccessor, spawnType, blockPos, random);
+		if (spawnType != MobSpawnType.CHUNK_GENERATION) {
+			return spawnY < levelAccessor.getLevel().getSeaLevel();
 		}
 		
-		return true;
+		return checkOvergroundSpawnRules(entityType, levelAccessor, spawnType, blockPos, random);
 	}
 	
 	private static <T extends Animal> boolean checkOvergroundSpawnRules(
