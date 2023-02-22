@@ -12,5 +12,12 @@ public class ModSpawnPlacements {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				StoneCrab::checkStoneCrabSpawnRules
 		);
+		
+		SpawnPlacements.register(
+				ModEntityTypes.FIELD_MOUSE.get(),
+				SpawnPlacements.Type.ON_GROUND,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				FieldMouse::checkFieldMouseSpawnRules
+		);
 	}
 }

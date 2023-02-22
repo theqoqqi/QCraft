@@ -34,6 +34,7 @@ import ru.qoqqi.qcraft.config.Config;
 import ru.qoqqi.qcraft.containers.ModMenus;
 import ru.qoqqi.qcraft.entities.ModEntityTypes;
 import ru.qoqqi.qcraft.entities.ModSpawnPlacements;
+import ru.qoqqi.qcraft.entities.renderers.FieldMouseRenderer;
 import ru.qoqqi.qcraft.entities.renderers.StoneCrabRenderer;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
@@ -89,6 +90,7 @@ public class QCraft {
 		BlockEntityRenderers.register(ModBlockEntityTypes.LOOT_BOX_GENERATOR.get(), ItemPedestalBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.JOURNEY_REWARD.get(), ItemPedestalBlockEntityRenderer::new);
 		EntityRenderers.register(ModEntityTypes.STONE_CRAB.get(), StoneCrabRenderer::new);
+		EntityRenderers.register(ModEntityTypes.FIELD_MOUSE.get(), FieldMouseRenderer::new);
 		
 		LOGGER.info("Got game settings {}", Minecraft.getInstance().options);
 	}

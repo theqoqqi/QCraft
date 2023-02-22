@@ -36,6 +36,14 @@ public class ModEntityTypes {
 			new SpawnEggOptions(0x747474, 0x303b34)
 	);
 	
+	public static final RegistryObject<EntityType<FieldMouse>> FIELD_MOUSE = register(
+			"field_mouse",
+			FieldMouse::new,
+			MobCategory.CREATURE,
+			0.5f, 0.4f, 8,
+			new SpawnEggOptions(0x797363, 0x4e473b)
+	);
+	
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}
@@ -78,6 +86,7 @@ public class ModEntityTypes {
 	@SubscribeEvent
 	public static void addEntityAttributes(EntityAttributeCreationEvent event) {
 		event.put(STONE_CRAB.get(), StoneCrab.createAttributes().build());
+		event.put(FIELD_MOUSE.get(), FieldMouse.createAttributes().build());
 	}
 	
 	private static class SpawnEggOptions {

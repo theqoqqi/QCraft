@@ -39,8 +39,10 @@
   "item.q_craft.journey_compass": "Компас путешественника",
 
   "item.q_craft.stone_crab_spawn_egg": "Яйцо призыва Камнекраба",
+  "item.q_craft.field_mouse_spawn_egg": "Яйцо призыва Мыши",
 
   "entity.q_craft.stone_crab": "Камнекраб",
+  "entity.q_craft.field_mouse": "Мышь",
 
   "structure.end_portal": "Портал в край",
 

@@ -14,9 +14,12 @@ public class Layers {
 	
 	public static ModelLayerLocation STONE_CRAB_LAYER = create("stone_crab");
 	
+	public static ModelLayerLocation FIELD_MOUSE_LAYER = create("field_mouse");
+	
 	@SubscribeEvent
 	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(STONE_CRAB_LAYER, StoneCrabModel::createBodyLayer);
+		event.registerLayerDefinition(FIELD_MOUSE_LAYER, FieldMouseModel::createBodyLayer);
 	}
 	
 	@SuppressWarnings("SameParameterValue")
