@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "q_craft:journey/fortune_island",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 16,
+    "separation": 0,
+    "salt": 1470989048
+  }
+}

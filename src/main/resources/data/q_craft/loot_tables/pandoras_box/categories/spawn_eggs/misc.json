@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trader_llama_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:villager_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wandering_trader_spawn_egg"
+        }
+      ]
+    }
+  ]
+}
+

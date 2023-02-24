@@ -1,0 +1,52 @@
+
+
+
+Disc Fragment
+Echo Shard
+Frogspawn
+Goat Horn
+Mangrove Roots
+Muddy Mangrove Roots
+Ochre Froglight
+Packed Mud
+Pearlescent Froglight
+Recovery Compass
+Reinforced Deepslate
+Sculk
+Sculk Catalyst
+Sculk Shrieker
+Sculk Vein
+Verdant Froglight
+
+Big Dripleaf
+Bundle
+Calcite
+Dripstone Block
+Glow Berries
+Glow Ink Sac
+Glow Item Frame
+Glow Lichen
+Hanging Roots
+Infested Deepslate
+Light
+Lightning Rod
+Moss Block
+Moss Carpet
+Pointed Dripstone
+Powder Snow Bucket
+Rooted Dirt
+Sculk Sensor
+Small Dripleaf
+Smooth Basalt
+Spore Blossom
+Tinted Glass
+Tuff
+
+
+
+
+Small Amethyst Bud
+Medium Amethyst Bud
+Large Amethyst Bud
+Amethyst Cluster
+Budding Amethyst

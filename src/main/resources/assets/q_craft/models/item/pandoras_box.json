@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "q_craft:item/pandoras_box"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/deepslate_ore_blocks",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/ore_blocks",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/raw_resources",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/raw_resource_blocks",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/resources",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/resource_blocks",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:loot_box/categories/ores/resource_nuggets",
+          "weight": 10
+        }
+      ]
+    }
+  ]
+}

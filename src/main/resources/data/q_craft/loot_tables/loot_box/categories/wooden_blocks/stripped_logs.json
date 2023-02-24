@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_acacia_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_birch_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_dark_oak_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_jungle_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_oak_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_spruce_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_mangrove_log"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_warped_stem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_crimson_stem"
+        }
+      ]
+    }
+  ]
+}
+

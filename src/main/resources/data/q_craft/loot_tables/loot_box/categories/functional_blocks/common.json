@@ -1,0 +1,86 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:barrel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blast_furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brewing_stand"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:campfire"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cartography_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cauldron"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chest"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:composter"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crafting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fletching_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:furnace"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:grindstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jukebox"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lectern"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:loom"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:note_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smoker"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:smithing_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stonecutter"
+        }
+      ]
+    }
+  ]
+}
