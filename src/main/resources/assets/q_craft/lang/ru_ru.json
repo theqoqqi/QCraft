@@ -1,0 +1,102 @@
+{
+  "advancements.boxes.root.title": "Коробки",
+  "advancements.boxes.root.description": "Откройте любую коробку с сюрпризом",
+  "advancements.boxes.all_boxes.title": "Полная коллекция",
+  "advancements.boxes.all_boxes.description": "Откройте все существующие виды коробок",
+  "advancements.boxes.loot_box_generator.title": "Генератор коробок с сюрпризами",
+  "advancements.boxes.loot_box_generator.description": "Мы хотим больше коробок!",
+  "advancements.boxes.pandoras_box.title": "Ящик Пандоры",
+  "advancements.boxes.pandoras_box.description": "Может не стоит?",
+  "advancements.boxes.puzzles.title": "Головоломки!",
+  "advancements.boxes.puzzles.description": "Найдите и разгадайте головоломку",
+
+  "block.q_craft.acacia_plate": "Доска из акации",
+  "block.q_craft.birch_plate": "Доска из березы",
+  "block.q_craft.dark_oak_plate": "Доска из темного дуба",
+  "block.q_craft.jungle_plate": "Доска из тропического дерева",
+  "block.q_craft.mangrove_plate": "Доска из мангровового дерева",
+  "block.q_craft.oak_plate": "Доска из дуба",
+  "block.q_craft.spruce_plate": "Доска из ели",
+
+  "block.q_craft.travelers_home_journey_reward": "Сокровищница: Дом путешественника",
+  "block.q_craft.fortune_island_journey_reward": "Сокровищница: Остров фортуны",
+  "block.q_craft.mangrove_temple_journey_reward": "Сокровищница: Мангровый храм",
+  "block.q_craft.jungle_temple_journey_reward": "Сокровищница: Храм джунглей",
+  "block.q_craft.pandoras_temple_journey_reward": "Сокровищница: Гробница пандоры",
+
+  "block.q_craft.pandoras_box": "Ящик Пандоры",
+  "block.q_craft.puzzle_box_easy": "Простая Головоломка",
+  "block.q_craft.puzzle_box_normal": "Обычная Головоломка",
+  "block.q_craft.puzzle_box_hard": "Сложная Головоломка",
+  "block.q_craft.loot_box_generator": "Генератор коробок с сюрпризами",
+
+  "item.q_craft.loot_box_small": "Маленькая коробка с сюрпризом",
+  "item.q_craft.loot_box_medium": "Средняя коробка с сюрпризом",
+  "item.q_craft.loot_box_large": "Большая коробка с сюрпризом",
+  "item.q_craft.attribute_box": "Коробка с атрибутом",
+  "item.q_craft.noahs_box": "Коробка Ноя",
+  "item.q_craft.poseidons_box": "Коробка Посейдона",
+  "item.q_craft.journey_compass": "Компас путешественника",
+
+  "item.q_craft.stone_crab_spawn_egg": "Яйцо призыва Камнекраба",
+  "item.q_craft.field_mouse_spawn_egg": "Яйцо призыва Мыши",
+
+  "entity.q_craft.stone_crab": "Камнекраб",
+  "entity.q_craft.field_mouse": "Мышь",
+
+  "structure.end_portal": "Портал в край",
+
+  "screen.puzzleBox.crafting": "Создание",
+  "screen.puzzleBox.ingredients": "Ингредиенты",
+  "screen.puzzleBox.solution": "Решение",
+
+  "lootBox.failure": "%1$s не смог открыть %2$s",
+  "lootBox.itemReceived": "%1$s получил %2$d %3$s из %4$s",
+  "lootBox.gotNothing": "%1$s открыл %2$s и ничего не нашел",
+  "lootBox.entitySummoned": "%1$s открыл %2$s и призвал %3$s",
+  "lootBox.exploded": "%1$s открыл %2$s и он взорвался",
+  "lootBox.spaceJump": "%1$s открыл %2$s и отправлся в космос",
+  "lootBox.gotExperience": "%1$s открыл %2$s и получил %3$d опыта",
+  "lootBox.structureSpawn": "%1$s открыл %2$s и создал %3$s",
+  "lootBox.attribute.increase.factor": "%1$s открыл %2$s и увеличил %3$s на %4$d%%",
+  "lootBox.attribute.increase.constant": "%1$s открыл %2$s и увеличил %3$s на %4$d",
+  "lootBox.attribute.decrease.factor": "%1$s открыл %2$s и уменьшил %3$s на %4$d%%",
+  "lootBox.attribute.decrease.constant": "%1$s открыл %2$s и уменьшил %3$s на %4$d",
+
+  "puzzleBox.exploded": "%1$s ошибся, решая головоломку и взорвался",
+  "puzzleBox.seed": "Зерно: %1$s",
+
+  "lootBoxGenerator.activate.success": "Вы активировали генератор",
+  "lootBoxGenerator.activate.alreadyActivated": "Вы уже активировали этот генератор",
+  "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "Этот генератор уже принадлежит другому игроку",
+  "lootBoxGenerator.take.progress.active": "Прогресс: %1$s%% (активен, осталось %2$s)",
+  "lootBoxGenerator.take.progress.inactive": "Прогресс: %1$s%% (неактивен)",
+  "lootBoxGenerator.take.forbidden": "Этот генератор принадлежит другому игроку",
+  "lootBoxGenerator.take.success": "%1$s получил %2$s",
+
+  "journey.book.common.author": "Путешественник",
+
+  "journey.book.travelers_home.title": "ДОМ ПУТЕШЕСТВЕННИКА",
+  "journey.book.travelers_home.pages.1": "Долгое время я жил скучной жизнью, собирал ресурсы в подземельях, выращивал пшеницу, разводил животных, и строил, много-много строил. Всю свою жизнь, я не покидал свой дом, чтобы полюбоваться красотами природы.",
+  "journey.book.travelers_home.pages.2": "Однажды, собирая уголь, я наткнулся на сокровищницу, в которой я нашел странный компас. Но, похоже, этот компас был сломан: его стрелка крутилась как сумасшедшая. Увидев его, в моей голове что-то щелкнуло: я твердо решил начать путешествовать. Захватив с собой компас, побольше еды и еще несколько показавшихся нужными вещей, я отправился в путь.",
+
+  "journey.book.fortune_island.title": "ОСТРОВ ФОРТУНЫ",
+  "journey.book.fortune_island.pages.1": "В пути мне встретились несколько лошадей, одну из которых мне удалось приручить, хоть и не с первой попытки. Я пока не придумал ей имя, но, думаю, что в скором времени я смогу решить эту проблему.",
+  "journey.book.fortune_island.pages.2": "Я открыл рюкзак, чтобы достать еды и заметил, что стрелка компаса замерла. Я достал его, повертел в руках и стрелка всегда поворачивалась в одном и том же направлении. Перекусив, я отправился туда, куда указывал мне компас.",
+  "journey.book.fortune_island.pages.3": "В итоге компас привел меня к берегу и продолжал вести меня куда-то в океан. Я скрафтил себе лодку, привязал лошадь к дереву на берегу и сел в лодку. Проплыв несколько сотен метров, я попал на этот остров. И боги, что я здесь нашел! Я нашел несколько необычных коробок, а из них мне достались редкие блоки и зачаровнный меч! Теперь для меня этот остров - это Остров Фортуны.",
+
+  "journey.book.jungle_temple.title": "ХРАМ ДЖУНГЛЕЙ",
+  "journey.book.jungle_temple.pages.1": "Некоторое время стрелка компаса снова сходила с ума, но теперь я периодически поглядывал на него. В этот раз я путешествовал достаточно долго, я уже чуть было не решил, что компас больше не укажет мне путь. Однако, стрелка компаса замерла вновь. Я продолжил свой путь.",
+  "journey.book.jungle_temple.pages.2": "В этот раз компас привел меня к джунглям. Соваться в джунгли было страшно: я боялся не найти обратной дороги. Я решил разбить небольшой лагерь, чтобы я смог вернуться сюда с помощью обычного компаса. Теперь я готов отправиться вглубь джунглей.",
+  "journey.book.jungle_temple.pages.3": "Я долго плутал в этих джунглях, а когда приблизился достаточно близко и стрелка компаса вновь взбесилась, мне оставалось только надеяться, что продолжу свой путь правильно. Как же я был счастлив, когда нашел в этих зарослях храм!",
+  "journey.book.jungle_temple.pages.4": "Однако, храм оказался непростым: меня ждала головоломка с тремя нажимными плитами. Сначала я расстроился, что я здесь лишь один, но я быстро догадался поставить на одну плиту лошадь, на другую плиту свой рюкзак, а на третью я встал сам. Затем я попал в лабиринт, в котором пришлось немало поплутать и, в конце концов, я нашел еще несколько необычных коробок.",
+
+  "journey.book.mangrove_temple.title": "МАНГРОВЫЙ ХРАМ",
+  "journey.book.mangrove_temple.pages.1": "Следуя уже усвоенному уроку, я проплутал еще несколько километров, пока компас вновь не повел меня к цели. В этот раз он вывел меня к болотам.",
+  "journey.book.mangrove_temple.pages.2": "Компас привел меня к большой статуе в виде жабы. Или лягушки, я не очень в них разбираюсь. Я обошел статую, но, не найдя ничего интересного, я услышал, как из нее доносятся какие-то звуки. Я взял топор и аккуратно прорубил себе проход. Но внутри оказались зомби и их спаунер! С трудом, я забрал награду и тут же сбежал.",
+
+  "journey.book.pandoras_temple.title": "ХРАМ ПАНДОРЫ",
+  "journey.book.pandoras_temple.pages.1": "Компас привел меня к огромной загадочной пирамиде, внутри которой меня поджидало множество монстров. Я, по привычке, сломал блок по центру и не ошибся. Под ним был глубокий спуск, в конце которого виднелась вода. Не раздумывая, я прыгнул туда.",
+  "journey.book.pandoras_temple.pages.2": "Вынырнув из воды, я сразу же нашел какой-то ящик. Я открыл и... Прогремел мощнейший взрыв, а меня отправило прямиком в самый верх пирамиды. Я чудом остался жив. Я очень перепугался и в этот момент в моей голове вновь что-то щелкнуло. Я решил, что с приключениями пора заканчивать. Из того же ящика, похоже, взрывом, мне принесло зачарованную кирку.",
+  "journey.book.pandoras_temple.pages.3": "Я возвращаюсь в шахты."
+}

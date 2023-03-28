@@ -1,0 +1,11 @@
+{
+  "type": "q_craft:add_spawns",
+  "mob_category": "ambient",
+  "biomes": "#minecraft:is_overworld",
+  "spawners": {
+    "type": "q_craft:stone_crab",
+    "weight": 20,
+    "minCount": 4,
+    "maxCount": 4
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "advancements.boxes.root.title": "Boxes",
+  "advancements.boxes.root.description": "Open your first box",
+  "advancements.boxes.all_boxes.title": "Complete collection",
+  "advancements.boxes.all_boxes.description": "Open all existing boxes",
+  "advancements.boxes.loot_box_generator.title": "Gift box generator",
+  "advancements.boxes.loot_box_generator.description": "We want more boxes!",
+  "advancements.boxes.pandoras_box.title": "Pandora's box",
+  "advancements.boxes.pandoras_box.description": "Maybe not worth it?",
+  "advancements.boxes.puzzles.title": "Puzzles!",
+  "advancements.boxes.puzzles.description": "Solve your first puzzle",
+
+  "block.q_craft.acacia_plate": "Acacia plate",
+  "block.q_craft.birch_plate": "Birch plate",
+  "block.q_craft.dark_oak_plate": "Dark oak plate",
+  "block.q_craft.jungle_plate": "Jungle plate",
+  "block.q_craft.mangrove_plate": "Mangrove plate",
+  "block.q_craft.oak_plate": "Oak plate",
+  "block.q_craft.spruce_plate": "Spruce plate",
+
+  "block.q_craft.travelers_home_journey_reward": "Journey Reward: Traveler's Home",
+  "block.q_craft.fortune_island_journey_reward": "Journey Reward: Fortune Island",
+  "block.q_craft.mangrove_temple_journey_reward": "Journey Reward: Mangrove Temple",
+  "block.q_craft.jungle_temple_journey_reward": "Journey Reward: Jungle Temple",
+  "block.q_craft.pandoras_temple_journey_reward": "Journey Reward: Pandoras Temple",
+
+  "block.q_craft.pandoras_box": "Pandora's box",
+  "block.q_craft.puzzle_box_easy": "Easy Puzzle box",
+  "block.q_craft.puzzle_box_normal": "Normal Puzzle box",
+  "block.q_craft.puzzle_box_hard": "Hard Puzzle box",
+  "block.q_craft.loot_box_generator": "Gift box generator",
+
+  "item.q_craft.loot_box_small": "Small Gift box",
+  "item.q_craft.loot_box_medium": "Medium Gift box",
+  "item.q_craft.loot_box_large": "Large Gift box",
+  "item.q_craft.attribute_box": "Attribute box",
+  "item.q_craft.noahs_box": "Noah's box",
+  "item.q_craft.poseidons_box": "Poseidon's box",
+  "item.q_craft.journey_compass": "Journey Compass",
+
+  "item.q_craft.stone_crab_spawn_egg": "Stonecrab Spawn Egg",
+  "item.q_craft.field_mouse_spawn_egg": "Mouse Spawn Egg",
+
+  "entity.q_craft.stone_crab": "Stonecrab",
+  "entity.q_craft.field_mouse": "Mouse",
+
+  "structure.end_portal": "End Portal",
+
+  "screen.puzzleBox.crafting": "Crafting",
+  "screen.puzzleBox.ingredients": "Ingredients",
+  "screen.puzzleBox.solution": "Solution",
+
+  "lootBox.failure": "%1$s failed to open %2$s",
+  "lootBox.itemReceived": "%1$s got %2$d of %3$s from %4$s",
+  "lootBox.gotNothing": "%1$s got nothing from %2$s",
+  "lootBox.entitySummoned": "%1$s opened %2$s and summoned %3$s",
+  "lootBox.exploded": "%1$s opened %2$s and it summoned",
+  "lootBox.spaceJump": "%1$s opened %2$s and went into space",
+  "lootBox.gotExperience": "%1$s opened %2$s and got %3$d of experience",
+  "lootBox.structureSpawn": "%1$s opened %2$s and created %3$s",
+  "lootBox.attribute.increase.factor": "%1$s opened %2$s and increased %3$s by %4$d%%",
+  "lootBox.attribute.increase.constant": "%1$s opened %2$s and increased %3$s by %4$d",
+  "lootBox.attribute.decrease.factor": "%1$s opened %2$s and decreased %3$s by %4$d%%",
+  "lootBox.attribute.decrease.constant": "%1$s opened %2$s and decreased %3$s by %4$d",
+
+  "puzzleBox.exploded": "%1$s made a mistake while solving the puzzle and exploded",
+  "puzzleBox.seed": "Seed: %1$s",
+
+  "lootBoxGenerator.activate.success": "You have activated this generator",
+  "lootBoxGenerator.activate.alreadyActivated": "You have already activated this generator",
+  "lootBoxGenerator.activate.alreadyActivatedByOtherPlayer": "This generator has already been activated by another player",
+  "lootBoxGenerator.take.progress.active": "Progress: %1$s%% (active, %2$s left)",
+  "lootBoxGenerator.take.progress.inactive": "Progress: %1$s%% (inactive)",
+  "lootBoxGenerator.take.forbidden": "This generator is owned by another player",
+  "lootBoxGenerator.take.success": "%1$s got a %2$s",
+
+  "journey.book.common.author": "Traveler",
+
+  "journey.book.travelers_home.title": "TRAVELERS HOME",
+  "journey.book.travelers_home.pages.1": "PAGE 1",
+  "journey.book.travelers_home.pages.2": "PAGE 2",
+
+  "journey.book.fortune_island.title": "FORTUNE ISLAND",
+  "journey.book.fortune_island.pages.1": "PAGE 1",
+  "journey.book.fortune_island.pages.2": "PAGE 2",
+  "journey.book.fortune_island.pages.3": "PAGE 3",
+
+  "journey.book.jungle_temple.title": "JUNGLE TEMPLE",
+  "journey.book.jungle_temple.pages.1": "PAGE 1",
+  "journey.book.jungle_temple.pages.2": "PAGE 2",
+  "journey.book.jungle_temple.pages.3": "PAGE 3",
+  "journey.book.jungle_temple.pages.4": "PAGE 4",
+
+  "journey.book.mangrove_temple.title": "MANGROVE TEMPLE",
+  "journey.book.mangrove_temple.pages.1": "PAGE 1",
+  "journey.book.mangrove_temple.pages.2": "PAGE 2",
+
+  "journey.book.pandoras_temple.title": "PANDORAS TEMPLE",
+  "journey.book.pandoras_temple.pages.1": "PAGE 1",
+  "journey.book.pandoras_temple.pages.2": "PAGE 2",
+  "journey.book.pandoras_temple.pages.3": "PAGE 3"
+}

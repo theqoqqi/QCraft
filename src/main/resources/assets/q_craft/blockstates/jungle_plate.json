@@ -1,0 +1,96 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "covering": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/post"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/side"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/side_alt"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/noside"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/noside_alt"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/noside",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "covering": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/jungle/covering"
+      }
+    }
+  ]
+}
