@@ -36,6 +36,8 @@ import net.minecraftforge.common.Tags;
 
 import org.jetbrains.annotations.NotNull;
 
+import ru.qoqqi.qcraft.ModTags;
+
 public class StoneCrab extends Animal {
 	
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.IRON_NUGGET);
@@ -115,10 +117,10 @@ public class StoneCrab extends Animal {
 	
 	@Override
 	public boolean hurt(@NotNull DamageSource source, float amount) {
-		if (!source.isMagic() && !source.isExplosion()) {
+		if (!source.is(ModTags.DamageTypes.AVOIDS_THORNS)) {
 			if (source.getDirectEntity() instanceof LivingEntity attacker) {
 				if (random.nextFloat() < 0.2f) {
-					attacker.hurt(DamageSource.thorns(this), 1f);
+					attacker.hurt(damageSources().thorns(this), 1f);
 				}
 			}
 		}

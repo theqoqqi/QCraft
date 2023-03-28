@@ -164,10 +164,6 @@ public class MouseSpawner implements CustomSpawner {
 		
 		mouse.moveTo(blockPos, 0.0F, 0.0F);
 		
-		if (ForgeHooks.canEntitySpawn(mouse, serverLevel, blockPos.getX(), blockPos.getY(), blockPos.getZ(), null, MobSpawnType.NATURAL) == -1) {
-			return 0;
-		}
-		
 		var difficulty = serverLevel.getCurrentDifficultyAt(blockPos);
 		
 		mouse.finalizeSpawn(serverLevel, difficulty, MobSpawnType.NATURAL, null, null);

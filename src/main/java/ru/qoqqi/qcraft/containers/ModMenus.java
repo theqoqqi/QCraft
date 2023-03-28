@@ -1,5 +1,6 @@
 package ru.qoqqi.qcraft.containers;
 
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +23,6 @@ public class ModMenus {
 	
 	@SuppressWarnings("SameParameterValue")
 	private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> register(String name, MenuType.MenuSupplier<T> factory) {
-		return MENU_TYPES.register(name, () -> new MenuType<>(factory));
+		return MENU_TYPES.register(name, () -> new MenuType<>(factory, FeatureFlags.DEFAULT_FLAGS));
 	}
 }

@@ -94,7 +94,7 @@ public class CraftingPuzzle {
 						ingredients.add(getRandomIngredient(ingredient, random));
 					});
 			
-			solution.add(getSolution(recipe));
+			solution.add(getSolution(level, recipe));
 		});
 		
 		List<ItemStack> preparedIngredients = ingredients.stream()
@@ -151,7 +151,7 @@ public class CraftingPuzzle {
 		return recipeManager.getAllRecipesFor(RecipeType.CRAFTING)
 				.stream()
 				.filter(recipe -> {
-					ItemStack output = recipe.getResultItem();
+					ItemStack output = recipe.getResultItem(level.registryAccess());
 					return output.sameItem(item) && output.getCount() <= item.getCount();
 				})
 				.collect(Collectors.toList());
@@ -159,7 +159,7 @@ public class CraftingPuzzle {
 	
 	private static List<CraftingRecipe> getRandomRecipes(Level level, Random random, PuzzleType config) {
 		List<CraftingRecipe> recipes = getRecipesForConfig(level, config);
-		List<CraftingRecipe> randomRecipes = getRandomRecipesWeighted(random, config, recipes);
+		List<CraftingRecipe> randomRecipes = getRandomRecipesWeighted(level, random, config, recipes);
 		
 		if (randomRecipes == null) {
 			randomRecipes = getRandomRecipesSafe(random, config, recipes);
@@ -168,7 +168,7 @@ public class CraftingPuzzle {
 		return randomRecipes;
 	}
 	
-	private static List<CraftingRecipe> getRandomRecipesWeighted(Random random, PuzzleType config, List<CraftingRecipe> recipes) {
+	private static List<CraftingRecipe> getRandomRecipesWeighted(Level level, Random random, PuzzleType config, List<CraftingRecipe> recipes) {
 		List<CraftingRecipe> randomRecipes = new ArrayList<>();
 		
 		for (int i = 0; i < config.solutionSize; i++) {
@@ -182,7 +182,7 @@ public class CraftingPuzzle {
 					return null;
 				}
 				
-			} while (randomRecipes.contains(randomRecipe) || random.nextFloat() > getRecipeWeight(randomRecipe));
+			} while (randomRecipes.contains(randomRecipe) || random.nextFloat() > getRecipeWeight(level, randomRecipe));
 			
 			randomRecipes.add(randomRecipe);
 		}
@@ -198,7 +198,7 @@ public class CraftingPuzzle {
 		return recipesCopy.subList(0, config.solutionSize);
 	}
 	
-	private static float getRecipeWeight(CraftingRecipe recipe) {
+	private static float getRecipeWeight(Level level, CraftingRecipe recipe) {
 		List<ITag<?>> usedTags = new ArrayList<>();
 		
 		ITagManager<Item> itemTags = ForgeRegistries.ITEMS.tags();
@@ -206,7 +206,7 @@ public class CraftingPuzzle {
 		if (itemTags != null) {
 			for (TagKey<Item> tagKey : filterTags(itemTags.getTagNames())) {
 				ITag<Item> tag = itemTags.getTag(tagKey);
-				if (isRecipeUsesItemTag(recipe, tag)) {
+				if (isRecipeUsesItemTag(level, recipe, tag)) {
 					usedTags.add(tag);
 				}
 			}
@@ -217,7 +217,7 @@ public class CraftingPuzzle {
 		if (blockTags != null) {
 			for (TagKey<Block> tagKey : filterTags(blockTags.getTagNames())) {
 				ITag<Block> tag = blockTags.getTag(tagKey);
-				if (isRecipeUsesBlockTag(recipe, tag)) {
+				if (isRecipeUsesBlockTag(level, recipe, tag)) {
 					usedTags.add(tag);
 				}
 			}
@@ -236,14 +236,14 @@ public class CraftingPuzzle {
 				.collect(Collectors.toList());
 	}
 	
-	private static boolean isRecipeUsesItemTag(CraftingRecipe recipe, ITag<Item> tag) {
+	private static boolean isRecipeUsesItemTag(Level level, CraftingRecipe recipe, ITag<Item> tag) {
 		Predicate<ItemStack> predicate = itemStack -> tag.contains(itemStack.getItem());
 		
-		return isRecipeResultMatches(recipe, predicate)
+		return isRecipeResultMatches(level, recipe, predicate)
 				|| anyRecipeIngredientMatches(recipe, predicate);
 	}
 	
-	private static boolean isRecipeUsesBlockTag(CraftingRecipe recipe, ITag<Block> tag) {
+	private static boolean isRecipeUsesBlockTag(Level level, CraftingRecipe recipe, ITag<Block> tag) {
 		Predicate<ItemStack> predicate = itemStack -> {
 			Item item = itemStack.getItem();
 			
@@ -251,12 +251,12 @@ public class CraftingPuzzle {
 					&& tag.contains(((BlockItem) item).getBlock());
 		};
 		
-		return isRecipeResultMatches(recipe, predicate)
+		return isRecipeResultMatches(level, recipe, predicate)
 				|| anyRecipeIngredientMatches(recipe, predicate);
 	}
 	
-	private static boolean isRecipeResultMatches(CraftingRecipe recipe, Predicate<ItemStack> predicate) {
-		return predicate.test(recipe.getResultItem());
+	private static boolean isRecipeResultMatches(Level level, CraftingRecipe recipe, Predicate<ItemStack> predicate) {
+		return predicate.test(recipe.getResultItem(level.registryAccess()));
 	}
 	
 	private static boolean anyRecipeIngredientMatches(CraftingRecipe recipe, Predicate<ItemStack> predicate) {
@@ -272,19 +272,19 @@ public class CraftingPuzzle {
 			
 			List<CraftingRecipe> recipes = recipeManager.getAllRecipesFor(RecipeType.CRAFTING)
 					.stream()
-					.filter(recipe -> isValidRecipe(recipe, config))
+					.filter(recipe -> isValidRecipe(level, recipe, config))
 					.collect(Collectors.toList());
 			
 			RECIPES_CACHE.put(config, recipes);
 			
-			recipes.forEach(r -> LOGGER.info(r.getResultItem()));
+			recipes.forEach(r -> LOGGER.info(r.getResultItem(level.registryAccess())));
 		}
 		
 		return RECIPES_CACHE.get(config);
 	}
 	
-	private static boolean isValidRecipe(CraftingRecipe recipe, PuzzleType config) {
-		return isRecipeOutputValid(recipe, config)
+	private static boolean isValidRecipe(Level level, CraftingRecipe recipe, PuzzleType config) {
+		return isRecipeOutputValid(level, recipe, config)
 				&& isRecipeIngredientsValid(recipe, config);
 	}
 	
@@ -306,8 +306,8 @@ public class CraftingPuzzle {
 		return config.uniqueIngredientRange.test(uniqueIngredients);
 	}
 	
-	private static boolean isRecipeOutputValid(CraftingRecipe recipe, PuzzleType config) {
-		ItemStack recipeOutput = recipe.getResultItem();
+	private static boolean isRecipeOutputValid(Level level, CraftingRecipe recipe, PuzzleType config) {
+		ItemStack recipeOutput = recipe.getResultItem(level.registryAccess());
 		
 		return config.recipeOutputStackRange.test(recipeOutput.getCount())
 				&& "minecraft".equals(recipe.getId().getNamespace())
@@ -329,8 +329,8 @@ public class CraftingPuzzle {
 		return itemStack.copy();
 	}
 	
-	private static ItemStack getSolution(CraftingRecipe recipe) {
-		return recipe.getResultItem().copy();
+	private static ItemStack getSolution(Level level, CraftingRecipe recipe) {
+		return recipe.getResultItem(level.registryAccess()).copy();
 	}
 	
 }

@@ -158,7 +158,7 @@ public class SummonBoxEntry implements IBoxEntry {
 			return null;
 		}
 		
-		BlockPos randomBlockPos = new BlockPos(x, y, z);
+		BlockPos randomBlockPos = BlockPos.containing(x, y, z);
 		
 		if (!SpawnPlacements.checkSpawnRules(entityType, level, MobSpawnType.MOB_SUMMONED, randomBlockPos, level.random)) {
 			return null;

@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -50,9 +50,10 @@ public class ItemPedestalBlockEntityRenderer implements BlockEntityRenderer<Bloc
 			return;
 		}
 		
+		Level level = blockEntity.getLevel();
 		float y = getItemStackY(itemPedestal, partialTicks);
 		float rotation = getItemStackRotation(itemPedestal, partialTicks);
-		TransformType transformType = TransformType.GROUND;
+		ItemDisplayContext transformType = ItemDisplayContext.GROUND;
 		
 		poseStack.pushPose();
 		
@@ -60,7 +61,7 @@ public class ItemPedestalBlockEntityRenderer implements BlockEntityRenderer<Bloc
 		poseStack.mulPose(Axis.YP.rotation(rotation));
 		poseStack.scale(1.25f, 1.25f, 1.25f);
 		
-		itemRenderer.renderStatic(itemStack, transformType, combinedLight, combinedOverlay, poseStack, buffer, 0);
+		itemRenderer.renderStatic(itemStack, transformType, combinedLight, combinedOverlay, poseStack, buffer, level, 0);
 		
 		poseStack.popPose();
 	}
@@ -73,7 +74,7 @@ public class ItemPedestalBlockEntityRenderer implements BlockEntityRenderer<Bloc
 		BakedModel model = this.itemRenderer.getModel(itemStack, level, null, 0);
 		
 		//noinspection deprecation
-		y += model.getTransforms().getTransform(TransformType.GROUND).scale.y();
+		y += model.getTransforms().getTransform(ItemDisplayContext.GROUND).scale.y();
 		
 		return itemStack.getItem() instanceof BlockItem ? y : y + 0.125f;
 	}

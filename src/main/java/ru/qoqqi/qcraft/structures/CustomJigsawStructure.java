@@ -63,7 +63,7 @@ public class CustomJigsawStructure extends Structure {
 			}
 			
 			int i = b0;
-			return p_227638_.maxDistanceFromCenter + i > 128 ? DataResult.error("Structure size including terrain adaptation must not exceed 128") : DataResult.success(p_227638_);
+			return p_227638_.maxDistanceFromCenter + i > 128 ? DataResult.error(() -> "Structure size including terrain adaptation must not exceed 128") : DataResult.success(p_227638_);
 		};
 	}
 	

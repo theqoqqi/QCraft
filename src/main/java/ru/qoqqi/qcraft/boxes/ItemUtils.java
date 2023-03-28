@@ -30,7 +30,7 @@ public class ItemUtils {
 			
 			if (itemEntity != null) {
 				itemEntity.setNoPickUpDelay();
-				itemEntity.setOwner(player.getUUID());
+				itemEntity.setTarget(player.getUUID());
 			}
 		}
 	}
