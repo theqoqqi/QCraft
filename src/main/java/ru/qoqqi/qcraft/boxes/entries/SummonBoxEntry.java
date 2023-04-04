@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 
 import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
+import ru.qoqqi.qcraft.util.IntRange;
 import ru.qoqqi.qcraft.util.WeightedList;
 
 public class SummonBoxEntry implements IBoxEntry {
@@ -29,10 +30,9 @@ public class SummonBoxEntry implements IBoxEntry {
 			new WeightedList.WeightedEntry<>(10, "minecraft:chicken"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:cow"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:donkey"),
-			new WeightedList.WeightedEntry<>(10, "minecraft:glow_squid"),
-			new WeightedList.WeightedEntry<>(10, "minecraft:goat"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:fox"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:frog"),
+			new WeightedList.WeightedEntry<>(10, "minecraft:goat"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:horse"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:llama"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:mooshroom"),
@@ -52,6 +52,7 @@ public class SummonBoxEntry implements IBoxEntry {
 	public static final WeightedList<String> WATER_CREATURES = WeightedList.create(
 			new WeightedList.WeightedEntry<>(10, "minecraft:cod"),
 			new WeightedList.WeightedEntry<>(2, "minecraft:dolphin"),
+			new WeightedList.WeightedEntry<>(5, "minecraft:glow_squid"),
 			new WeightedList.WeightedEntry<>(5, "minecraft:pufferfish"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:salmon"),
 			new WeightedList.WeightedEntry<>(10, "minecraft:squid"),
@@ -94,7 +95,7 @@ public class SummonBoxEntry implements IBoxEntry {
 	
 	protected final WeightedList<String> entityNames;
 	
-	protected final int amount;
+	protected final IntRange amountRange;
 	
 	private final int spawnRange;
 	
@@ -107,9 +108,13 @@ public class SummonBoxEntry implements IBoxEntry {
 	}
 	
 	public SummonBoxEntry(WeightedList<String> entityNames, int spawnRange, int amount) {
+		this(entityNames, spawnRange, IntRange.of(amount, amount));
+	}
+	
+	public SummonBoxEntry(WeightedList<String> entityNames, int spawnRange, IntRange amountRange) {
 		this.entityNames = entityNames;
 		this.spawnRange = spawnRange;
-		this.amount = amount;
+		this.amountRange = amountRange;
 	}
 	
 	@Nonnull
@@ -127,6 +132,8 @@ public class SummonBoxEntry implements IBoxEntry {
 	}
 	
 	private void summonGroup(ServerLevel level, Player player, BlockPos blockPos, ItemStack lootBox, UnpackResult result, EntityType<?> entityType) {
+		var amount = amountRange.getRandomValue(level.random);
+		
 		for (int i = 0; i < amount; i++) {
 			BlockPos randomBlockPos = getRandomBlockPos(level, blockPos, entityType);
 			Entity entity = summonEntity(level, player, randomBlockPos, lootBox, entityType);

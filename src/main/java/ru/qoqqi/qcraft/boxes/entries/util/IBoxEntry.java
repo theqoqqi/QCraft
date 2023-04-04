@@ -14,6 +14,9 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 public interface IBoxEntry {
+	
+	IBoxEntry EMPTY = (level, player, server, blockPos, lootBox)
+			-> UnpackResult.resultSuccess(lootBox, player);
 
 	@Nonnull
 	UnpackResult unpack(Level level, Player player, MinecraftServer server, BlockPos blockPos, ItemStack lootBox);
