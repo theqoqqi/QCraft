@@ -40,15 +40,20 @@
 
   "item.q_craft.stone_crab_spawn_egg": "Stonecrab Spawn Egg",
   "item.q_craft.field_mouse_spawn_egg": "Mouse Spawn Egg",
+  "item.q_craft.jelly_blob_spawn_egg": "Jelly Blob Spawn Egg",
 
   "entity.q_craft.stone_crab": "Stonecrab",
   "entity.q_craft.field_mouse": "Mouse",
+  "entity.q_craft.jelly_blob": "Jelly Blob",
 
   "structure.end_portal": "End Portal",
 
   "screen.puzzleBox.crafting": "Crafting",
   "screen.puzzleBox.ingredients": "Ingredients",
   "screen.puzzleBox.solution": "Solution",
+
+  "subtitles.entities.jelly_blob.inflate": "Jelly Blob inflates",
+  "subtitles.entities.jelly_blob.blow_up": "Jelly Blob blown up",
 
   "lootBox.failure": "%1$s failed to open %2$s",
   "lootBox.itemReceived": "%1$s got %2$d of %3$s from %4$s",

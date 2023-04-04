@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#q_craft:has_jelly_blobs/in_cherry_grove",
+  "spawners": {
+    "type": "q_craft:jelly_blob",
+    "weight": 2,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

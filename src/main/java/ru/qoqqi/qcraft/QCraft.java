@@ -31,12 +31,14 @@ import ru.qoqqi.qcraft.containers.ModMenus;
 import ru.qoqqi.qcraft.entities.ModEntityTypes;
 import ru.qoqqi.qcraft.entities.ModSpawnPlacements;
 import ru.qoqqi.qcraft.entities.renderers.FieldMouseRenderer;
+import ru.qoqqi.qcraft.entities.renderers.JellyBlobRenderer;
 import ru.qoqqi.qcraft.entities.renderers.StoneCrabRenderer;
 import ru.qoqqi.qcraft.items.ModItems;
 import ru.qoqqi.qcraft.loot.GlobalLootModifiers;
 import ru.qoqqi.qcraft.network.ModPacketHandler;
 import ru.qoqqi.qcraft.particles.ModParticleTypes;
 import ru.qoqqi.qcraft.screens.PuzzleBoxScreen;
+import ru.qoqqi.qcraft.sounds.ModSoundEvents;
 import ru.qoqqi.qcraft.structures.ModStructureTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -68,6 +70,7 @@ public class QCraft {
 		ModParticleTypes.register(eventBus);
 		ModStructureTypes.register(eventBus);
 		ModBiomeModifierTypes.register(eventBus);
+		ModSoundEvents.register(eventBus);
 		ModMenus.register(eventBus);
 		ModCriteriaTriggers.register();
 		
@@ -88,16 +91,14 @@ public class QCraft {
 		BlockEntityRenderers.register(ModBlockEntityTypes.JOURNEY_REWARD.get(), ItemPedestalBlockEntityRenderer::new);
 		EntityRenderers.register(ModEntityTypes.STONE_CRAB.get(), StoneCrabRenderer::new);
 		EntityRenderers.register(ModEntityTypes.FIELD_MOUSE.get(), FieldMouseRenderer::new);
+		EntityRenderers.register(ModEntityTypes.JELLY_BLOB.get(), JellyBlobRenderer::new);
 	}
 	
 	private void loadComplete(final FMLLoadCompleteEvent event) {
 		LOGGER.info("QCraft - loadComplete");
-	
 	}
 	
 	private void initCreativeTabs(final CreativeModeTabEvent.BuildContents event) {
-		LOGGER.info("QCraft - initCreativeTabs");
-		
 		if (event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			event.accept(ModBlocks.PUZZLE_BOX_EASY);
 			event.accept(ModBlocks.PUZZLE_BOX_NORMAL);

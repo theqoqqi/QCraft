@@ -19,6 +19,7 @@ import ru.qoqqi.qcraft.boxes.entries.util.RandomBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.util.RepeatBoxEntry;
 import ru.qoqqi.qcraft.boxes.entries.util.RetryForSuccessBoxEntry;
 import ru.qoqqi.qcraft.journey.JourneyStages;
+import ru.qoqqi.qcraft.util.IntRange;
 import ru.qoqqi.qcraft.util.WeightedList;
 
 public class LootBoxes {
@@ -114,6 +115,235 @@ public class LootBoxes {
 			new LootTableBoxEntry("journey/pandoras_temple/reward"),
 			new ExperienceBoxEntry(500, 50)
 	)));
+	
+	public static final LootBox PLAINS_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:chicken",
+					"minecraft:cow",
+					"minecraft:pig",
+					"minecraft:sheep",
+					"q_craft:field_mouse",
+					"q_craft:stone_crab"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox FOREST_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:chicken",
+					"minecraft:cow",
+					"minecraft:pig",
+					"minecraft:sheep"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox DESERT_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:husk",
+					"minecraft:rabbit"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox BEACH_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:turtle",
+					"q_craft:stone_crab"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox SNOWY_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:polar_bear"
+			), 2, 1))
+	);
+	
+	public static final LootBox SWAMP_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:frog"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:slime"
+			), 2, 1))
+	);
+	
+	public static final LootBox JUNGLE_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:ocelot",
+					"minecraft:panda",
+					"minecraft:parrot"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox SAVANNA_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:cow",
+					"minecraft:horse",
+					"minecraft:llama",
+					"minecraft:pig",
+					"minecraft:sheep",
+					"q_craft:field_mouse",
+					"q_craft:stone_crab"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox BADLANDS_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:husk"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox HONEY_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:bee"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox MUSHROOM_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:mooshroom"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox RIVER_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:cod",
+					"minecraft:salmon",
+					"minecraft:pufferfish",
+					"minecraft:turtle",
+					"minecraft:squid",
+					"minecraft:drowned"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox OCEAN_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:cod",
+					"minecraft:dolphin",
+					"minecraft:glow_squid",
+					"minecraft:pufferfish",
+					"minecraft:salmon",
+					"minecraft:squid",
+					"minecraft:tropical_fish",
+					"minecraft:drowned",
+					"minecraft:guardian"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:elder_guardian"
+			), 2, 1))
+	);
+	
+	public static final LootBox UNDERGROUND_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:spider",
+					"minecraft:zombie"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:creeper",
+					"minecraft:slime",
+					"minecraft:skeleton"
+			), 2, 1))
+	);
+	
+	public static final LootBox DEEP_UNDERGROUND_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(7, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:silverfish",
+					"minecraft:skeleton",
+					"minecraft:spider",
+					"minecraft:zombie"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:cave_spider",
+					"minecraft:creeper",
+					"minecraft:slime",
+					"minecraft:witch"
+			), 2, 1))
+	);
+	
+	public static final LootBox DRIPSTONE_CAVES_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:spider",
+					"minecraft:zombie"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:creeper",
+					"minecraft:slime",
+					"minecraft:skeleton"
+			), 2, 1))
+	);
+	
+	public static final LootBox LUSH_CAVES_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:axolotl",
+					"minecraft:spider",
+					"minecraft:zombie"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:creeper",
+					"minecraft:slime",
+					"minecraft:skeleton"
+			), 2, 1))
+	);
+	
+	public static final LootBox DEEP_DARK_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:silverfish",
+					"minecraft:skeleton",
+					"minecraft:spider",
+					"minecraft:zombie"
+			), 2, IntRange.of(4, 5))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:cave_spider",
+					"minecraft:creeper",
+					"minecraft:slime",
+					"minecraft:witch"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox NETHER_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(8, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:blaze",
+					"minecraft:piglin_brute",
+					"minecraft:zombified_piglin"
+			), 2, IntRange.of(2, 3))),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:ghast",
+					"minecraft:magma_cube"
+			), 2, 1))
+	);
+	
+	public static final LootBox END_PEARLS_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:enderman"
+			), 2, IntRange.of(2, 3)))
+	);
+	
+	public static final LootBox END_CHORUS_JELLY_BLOB_LOOT_BOX = create(
+			new WeightedList.WeightedEntry<>(4, IBoxEntry.EMPTY),
+			new WeightedList.WeightedEntry<>(1, new SummonBoxEntry(WeightedList.create(
+					"minecraft:enderman",
+					"minecraft:endermite",
+					"minecraft:shulker"
+			), 2, IntRange.of(2, 3)))
+	);
 	
 	@SafeVarargs
 	private static LootBox create(WeightedList.WeightedEntry<IBoxEntry>... entries) {

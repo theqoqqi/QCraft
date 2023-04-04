@@ -43,6 +43,14 @@ public class ModEntityTypes {
 			new SpawnEggOptions(0x797363, 0x4e473b)
 	);
 	
+	public static final RegistryObject<EntityType<JellyBlob>> JELLY_BLOB = register(
+			"jelly_blob",
+			JellyBlob::new,
+			MobCategory.CREATURE,
+			JellyBlob.MODEL_SCALE, JellyBlob.MODEL_SCALE, 10,
+			new SpawnEggOptions(0x54d054, 0x1b47ed)
+	);
+	
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}
@@ -86,6 +94,7 @@ public class ModEntityTypes {
 	public static void addEntityAttributes(EntityAttributeCreationEvent event) {
 		event.put(STONE_CRAB.get(), StoneCrab.createAttributes().build());
 		event.put(FIELD_MOUSE.get(), FieldMouse.createAttributes().build());
+		event.put(JELLY_BLOB.get(), JellyBlob.createAttributes().build());
 	}
 	
 	private static class SpawnEggOptions {

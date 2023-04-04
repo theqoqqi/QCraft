@@ -1,0 +1,14 @@
+{
+  "entities.jelly_blob.inflate": {
+    "sounds": [
+      "q_craft:entities/jelly_blob/inflate"
+    ],
+    "subtitle": "q_craft:subtitles.entities.jelly_blob.inflate"
+  },
+  "entities.jelly_blob.blow_up": {
+    "sounds": [
+      "q_craft:entities/jelly_blob/blow_up"
+    ],
+    "subtitle": "q_craft:subtitles.entities.jelly_blob.blow_up"
+  }
+}

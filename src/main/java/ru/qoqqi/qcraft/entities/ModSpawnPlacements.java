@@ -19,5 +19,12 @@ public class ModSpawnPlacements {
 				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				FieldMouse::checkFieldMouseSpawnRules
 		);
+		
+		SpawnPlacements.register(
+				ModEntityTypes.JELLY_BLOB.get(),
+				SpawnPlacements.Type.NO_RESTRICTIONS,
+				Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				JellyBlob::checkJellyBlobSpawnRules
+		);
 	}
 }

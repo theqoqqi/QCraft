@@ -40,15 +40,20 @@
 
   "item.q_craft.stone_crab_spawn_egg": "Яйцо призыва Камнекраба",
   "item.q_craft.field_mouse_spawn_egg": "Яйцо призыва Мыши",
+  "item.q_craft.jelly_blob_spawn_egg": "Яйцо призыва Желеглота",
 
   "entity.q_craft.stone_crab": "Камнекраб",
   "entity.q_craft.field_mouse": "Мышь",
+  "entity.q_craft.jelly_blob": "Желеглот",
 
   "structure.end_portal": "Портал в край",
 
   "screen.puzzleBox.crafting": "Создание",
   "screen.puzzleBox.ingredients": "Ингредиенты",
   "screen.puzzleBox.solution": "Решение",
+
+  "subtitles.entities.jelly_blob.inflate": "Желеглот надувается",
+  "subtitles.entities.jelly_blob.blow_up": "Желеглот лопнул",
 
   "lootBox.failure": "%1$s не смог открыть %2$s",
   "lootBox.itemReceived": "%1$s получил %2$d %3$s из %4$s",
