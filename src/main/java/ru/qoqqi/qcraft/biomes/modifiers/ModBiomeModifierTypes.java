@@ -16,6 +16,7 @@ public class ModBiomeModifierTypes {
 	
 	static {
 		BIOME_MODIFIER_SERIALIZERS.register("add_spawns", () -> AddSpawnsBiomeModifier.CODEC);
+		BIOME_MODIFIER_SERIALIZERS.register("add_custom_spawns", () -> AddCustomSpawnsBiomeModifier.CODEC);
 	}
 	
 	public static void register(IEventBus eventBus) {
