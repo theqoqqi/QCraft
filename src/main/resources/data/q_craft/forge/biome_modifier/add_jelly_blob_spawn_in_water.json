@@ -1,10 +1,10 @@
 {
-  "type": "q_craft:add_spawns",
-  "mob_category": "water_creature",
+  "type": "q_craft:add_custom_spawns",
+  "spawner_type": "water_creature",
   "biomes": "#forge:is_water",
   "spawners": {
     "type": "q_craft:jelly_blob",
-    "weight": 5,
+    "weight": 1,
     "minCount": 1,
     "maxCount": 1
   }
