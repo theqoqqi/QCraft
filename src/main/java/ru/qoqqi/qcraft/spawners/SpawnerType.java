@@ -15,6 +15,9 @@ import ru.qoqqi.qcraft.spawners.random.UndergroundBlockPosSupplier;
 
 public enum SpawnerType implements StringRepresentable {
 	
+	GROUND_CREATURE("ground_creature", true, true, spawnerType -> {
+		return new ChunkGenerationSpawnerTypeHandler(spawnerType, 0.002f, GroundSpawnPosSupplier::inChunk);
+	}),
 	UNDERGROUND_CREATURE("underground_creature", true, true, spawnerType -> {
 		return new ChunkGenerationSpawnerTypeHandler(spawnerType, 0.1f, UndergroundBlockPosSupplier::inChunk);
 	}),

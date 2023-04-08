@@ -1,9 +1,10 @@
 {
-  "type": "forge:add_spawns",
+  "type": "q_craft:add_custom_spawns",
+  "spawner_type": "ground_creature",
   "biomes": "#q_craft:has_jelly_blobs/in_cherry_grove",
   "spawners": {
     "type": "q_craft:jelly_blob",
-    "weight": 2,
+    "weight": 1,
     "minCount": 1,
     "maxCount": 1
   }

@@ -3,6 +3,7 @@ package ru.qoqqi.qcraft.spawners;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.Holder;
+import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
@@ -18,8 +19,6 @@ import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CustomNaturalSpawner {
@@ -27,8 +26,6 @@ public class CustomNaturalSpawner {
 	private static final Logger LOGGER = LogUtils.getLogger();
 	
 	private static final Map<SpawnerType, SpawnerTypeHandler> allSpawners = new HashMap<>();
-	
-	private static final ExecutorService executorService = Executors.newScheduledThreadPool(10);
 	
 	public static void addSpawns(SpawnerType spawnerType,
 	                             Holder<Biome> biome,
@@ -63,7 +60,13 @@ public class CustomNaturalSpawner {
 	}
 	
 	private static void onChunkReady(ServerChunkCache chunkCache, LevelChunk chunk, Runnable action) {
-		executorService.submit(() -> {
+		var server = chunkCache.getLevel().getServer();
+		
+		if (server == null) {
+			return;
+		}
+		
+		server.tell(new TickTask(server.getTickCount(), () -> {
 			var chunkPos = chunk.getPos();
 			var future = chunkCache.getChunkFuture(chunkPos.x, chunkPos.z, ChunkStatus.FULL, false);
 			
@@ -72,7 +75,7 @@ public class CustomNaturalSpawner {
 					action.run();
 				});
 			});
-		});
+		}));
 	}
 	
 	private static void spawnForChunk(LevelChunk chunk, ServerLevel level, SpawnerTypeHandler handler) {

@@ -32,6 +32,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -39,6 +40,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
@@ -348,6 +350,14 @@ public class JellyBlob extends Mob {
 		if (!biome.is(Tags.Biomes.IS_WATER) && spawnType != MobSpawnType.CHUNK_GENERATION) {
 			return blockPos.getY() < level.getSeaLevel();
 		}
+		
+		if (biome.is(BiomeTags.IS_OCEAN)) {
+			return random.nextFloat() < 0.1f;
+		}
+		
+		if (biome.is(BiomeTags.IS_NETHER)) {
+			return random.nextFloat() < 0.25f;
+		}
 
 		return true;
 	}
@@ -488,6 +498,11 @@ public class JellyBlob extends Mob {
 	}
 	
 	public boolean isPushable() {
+		return false;
+	}
+	
+	@Override
+	public boolean canBeLeashed(@NotNull Player player) {
 		return false;
 	}
 	
@@ -663,8 +678,16 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("underground")
+					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
 					.setExcludedBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
-					.setLocationOptions(0, 60)
+					.setLocationPredicate((blockPos, serverLevel) -> {
+						var heightmapType = Heightmap.Types.MOTION_BLOCKING_NO_LEAVES;
+						var x = blockPos.getX();
+						var y = blockPos.getY();
+						var z = blockPos.getZ();
+						
+						return y >= 0 && y < serverLevel.getHeight(heightmapType, x, z);
+					})
 					.setFood(30, Items.ROTTEN_FLESH)
 					.setExperience(100)
 					.setColor(127, 127, 127)
@@ -673,6 +696,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("deep_underground")
+					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
 					.setExcludedBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
 					.setLocationOptions(-64, 0)
 					.setFood(30, Items.COAL)
@@ -711,6 +735,7 @@ public class JellyBlob extends Mob {
 			Builder.create()
 					.setInternalName("nether")
 					.setBiomePredicate(BiomeTags.IS_NETHER)
+					.setLocationOptions(-64, 320)
 					.setFood(30, Items.WARPED_FUNGUS, Items.CRIMSON_FUNGUS)
 					.setExperience(200)
 					.setColor(230, 100, 16)
@@ -720,6 +745,7 @@ public class JellyBlob extends Mob {
 			Builder.create()
 					.setInternalName("end_pearls")
 					.setBiome(Biomes.SMALL_END_ISLANDS, Biomes.END_MIDLANDS)
+					.setLocationOptions(-64, 320)
 					.setFood(30, Items.ENDER_PEARL)
 					.setExperience(300)
 					.setColor(32, 32, 32)
@@ -729,6 +755,7 @@ public class JellyBlob extends Mob {
 			Builder.create()
 					.setInternalName("end_chorus")
 					.setBiome(Biomes.END_MIDLANDS, Biomes.END_HIGHLANDS)
+					.setLocationOptions(-64, 320)
 					.setFood(30, Items.CHORUS_FRUIT)
 					.setExperience(300)
 					.setColor(55, 39, 71)
@@ -811,19 +838,22 @@ public class JellyBlob extends Mob {
 			
 			@SafeVarargs
 			public final Builder setBiomePredicate(TagKey<Biome>... biomes) {
-				this.biomePredicate = biome -> Arrays.stream(biomes).anyMatch(biome::is);
+				this.biomePredicate = this.biomePredicate
+						.and(biome -> Arrays.stream(biomes).anyMatch(biome::is));
 				return this;
 			}
 			
 			@SafeVarargs
 			public final Builder setBiome(ResourceKey<Biome>... biomes) {
-				this.biomePredicate = biome -> Arrays.stream(biomes).anyMatch(biome::is);
+				this.biomePredicate = this.biomePredicate
+						.and(biome -> Arrays.stream(biomes).anyMatch(biome::is));
 				return this;
 			}
 			
 			@SafeVarargs
 			public final Builder setExcludedBiomes(TagKey<Biome>... biomes) {
-				this.biomePredicate = biome -> Arrays.stream(biomes).noneMatch(biome::is);
+				this.biomePredicate = this.biomePredicate
+						.and(biome -> Arrays.stream(biomes).noneMatch(biome::is));
 				return this;
 			}
 			
@@ -833,6 +863,11 @@ public class JellyBlob extends Mob {
 					
 					return y >= min && y <= max;
 				};
+				return this;
+			}
+			
+			public Builder setLocationPredicate(BiPredicate<BlockPos, ServerLevel> predicate) {
+				this.locationPredicate = predicate;
 				return this;
 			}
 			
