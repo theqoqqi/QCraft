@@ -43,10 +43,10 @@ public class LootBoxes {
 	);
 	
 	public static final LootBox NOAHS_BOX = create(
-			new WeightedList.WeightedEntry<>(4, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
-			new WeightedList.WeightedEntry<>(3, new RepeatBoxEntry(5, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
-			new WeightedList.WeightedEntry<>(2, new RepeatBoxEntry(7, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
-			new WeightedList.WeightedEntry<>(1, new RepeatBoxEntry(10, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2)))
+			new WeightedList.WeightedEntry<>(4, new RepeatBoxEntry(1, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new WeightedList.WeightedEntry<>(3, new RepeatBoxEntry(2, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new WeightedList.WeightedEntry<>(2, new RepeatBoxEntry(3, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2))),
+			new WeightedList.WeightedEntry<>(1, new RepeatBoxEntry(5, new SummonBoxEntry(SummonBoxEntry.GROUND_CREATURES, 8, 2)))
 	);
 	
 	public static final LootBox POSEIDONS_BOX = create(
