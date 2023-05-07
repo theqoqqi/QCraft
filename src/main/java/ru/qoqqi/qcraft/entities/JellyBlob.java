@@ -563,7 +563,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("plains")
-					.setBiomePredicate(Tags.Biomes.IS_PLAINS)
+					.setBiomes(Tags.Biomes.IS_PLAINS)
 					.setFood(30, Items.WHEAT)
 					.setExperience(100)
 					.setColor(166, 149, 83)
@@ -572,7 +572,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("forest")
-					.setBiome(Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST)
+					.setBiomes(Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST)
 					.setFood(30, Items.APPLE)
 					.setExperience(100)
 					.setColor(68, 99, 26)
@@ -581,7 +581,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("desert")
-					.setBiomePredicate(Tags.Biomes.IS_DESERT)
+					.setBiomes(Tags.Biomes.IS_DESERT)
 					.setFood(30, Items.CACTUS)
 					.setExperience(100)
 					.setColor(198, 174, 113)
@@ -590,7 +590,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("beach")
-					.setBiome(Biomes.BEACH)
+					.setBiomes(Biomes.BEACH)
 					.setFood(30, Items.SUGAR_CANE)
 					.setExperience(100)
 					.setColor(170, 219, 116)
@@ -599,7 +599,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("snowy")
-					.setBiomePredicate(Tags.Biomes.IS_SNOWY)
+					.setBiomes(Tags.Biomes.IS_SNOWY)
 					.setFood(30, Items.SWEET_BERRIES)
 					.setExperience(100)
 					.setColor(255, 255, 255)
@@ -608,7 +608,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("swamp")
-					.setBiomePredicate(Tags.Biomes.IS_SWAMP)
+					.setBiomes(Tags.Biomes.IS_SWAMP)
 					.setFood(30, Items.SLIME_BALL)
 					.setExperience(100)
 					.setColor(54, 73, 27)
@@ -617,7 +617,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("jungle")
-					.setBiomePredicate(BiomeTags.IS_JUNGLE)
+					.setBiomes(BiomeTags.IS_JUNGLE)
 					.setFood(30, Items.COCOA_BEANS)
 					.setExperience(100)
 					.setColor(76, 43, 19)
@@ -626,7 +626,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("savanna")
-					.setBiomePredicate(BiomeTags.IS_SAVANNA)
+					.setBiomes(BiomeTags.IS_SAVANNA)
 					.setFood(30, Items.MELON_SLICE)
 					.setExperience(100)
 					.setColor(132, 137, 32)
@@ -635,7 +635,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("badlands")
-					.setBiomePredicate(BiomeTags.IS_BADLANDS)
+					.setBiomes(BiomeTags.IS_BADLANDS)
 					.setFood(30, Items.GOLD_INGOT)
 					.setExperience(200)
 					.setColor(255, 216, 62)
@@ -644,7 +644,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("honey")
-					.setBiome(Biomes.FLOWER_FOREST, Biomes.CHERRY_GROVE)
+					.setBiomes(Biomes.FLOWER_FOREST, Biomes.CHERRY_GROVE)
 					.setFood(30, Items.HONEYCOMB)
 					.setExperience(100)
 					.setColor(234, 142, 22)
@@ -653,7 +653,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("mushroom")
-					.setBiomePredicate(Tags.Biomes.IS_MUSHROOM)
+					.setBiomes(Tags.Biomes.IS_MUSHROOM)
 					.setFood(30, Items.BROWN_MUSHROOM, Items.RED_MUSHROOM)
 					.setExperience(100)
 					.setColor(226, 18, 18)
@@ -662,7 +662,7 @@ public class JellyBlob extends Mob {
 
 			Builder.create()
 					.setInternalName("river")
-					.setBiomePredicate(BiomeTags.IS_RIVER)
+					.setBiomes(BiomeTags.IS_RIVER)
 					.setFood(30, ItemTags.FISHES)
 					.setExperience(200)
 					.setColor(93, 180, 255)
@@ -671,7 +671,7 @@ public class JellyBlob extends Mob {
 
 			Builder.create()
 					.setInternalName("ocean")
-					.setBiomePredicate(BiomeTags.IS_OCEAN)
+					.setBiomes(BiomeTags.IS_OCEAN)
 					.setFood(30, Items.KELP)
 					.setExperience(200)
 					.setColor(82, 87, 255)
@@ -680,8 +680,8 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("underground")
-					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
-					.setExcludedBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
+					.setBiomes(BiomeTags.IS_OVERWORLD)
+					.excludeBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
 					.setLocationPredicate((blockPos, serverLevel) -> {
 						var heightmapType = Heightmap.Types.MOTION_BLOCKING_NO_LEAVES;
 						var x = blockPos.getX();
@@ -698,8 +698,8 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("deep_underground")
-					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
-					.setExcludedBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
+					.setBiomes(BiomeTags.IS_OVERWORLD)
+					.excludeBiomes(Tags.Biomes.IS_CAVE, BiomeTags.IS_RIVER, BiomeTags.IS_OCEAN)
 					.setLocationOptions(-64, 0)
 					.setFood(30, Items.COAL)
 					.setExperience(100)
@@ -709,7 +709,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("dripstone_caves")
-					.setBiome(Biomes.DRIPSTONE_CAVES)
+					.setBiomes(Biomes.DRIPSTONE_CAVES)
 					.setFood(30, Items.POINTED_DRIPSTONE)
 					.setExperience(100)
 					.setColor(131, 99, 86)
@@ -718,7 +718,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("lush_caves")
-					.setBiome(Biomes.LUSH_CAVES)
+					.setBiomes(Biomes.LUSH_CAVES)
 					.setFood(30, Items.GLOW_BERRIES)
 					.setExperience(200)
 					.setColor(241, 150, 69)
@@ -727,7 +727,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("deep_dark")
-					.setBiome(Biomes.DEEP_DARK)
+					.setBiomes(Biomes.DEEP_DARK)
 					.setFood(30, Items.DIAMOND)
 					.setExperience(300)
 					.setColor(3, 65, 80)
@@ -736,7 +736,7 @@ public class JellyBlob extends Mob {
 
 			Builder.create()
 					.setInternalName("nether")
-					.setBiomePredicate(BiomeTags.IS_NETHER)
+					.setBiomes(BiomeTags.IS_NETHER)
 					.setLocationOptions(-64, 320)
 					.setFood(30, Items.WARPED_FUNGUS, Items.CRIMSON_FUNGUS)
 					.setExperience(200)
@@ -746,7 +746,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("end_pearls")
-					.setBiome(Biomes.SMALL_END_ISLANDS, Biomes.END_MIDLANDS)
+					.setBiomes(Biomes.SMALL_END_ISLANDS, Biomes.END_MIDLANDS)
 					.setLocationOptions(-64, 320)
 					.setFood(30, Items.ENDER_PEARL)
 					.setExperience(300)
@@ -756,7 +756,7 @@ public class JellyBlob extends Mob {
 
 			Builder.create()
 					.setInternalName("end_chorus")
-					.setBiome(Biomes.END_MIDLANDS, Biomes.END_HIGHLANDS)
+					.setBiomes(Biomes.END_MIDLANDS, Biomes.END_HIGHLANDS)
 					.setLocationOptions(-64, 320)
 					.setFood(30, Items.CHORUS_FRUIT)
 					.setExperience(300)
@@ -766,7 +766,7 @@ public class JellyBlob extends Mob {
 			
 			Builder.create()
 					.setInternalName("rainbow")
-					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
+					.setBiomes(BiomeTags.IS_OVERWORLD)
 					.setLocationOptions(-64, 320)
 					.setFood(1, Items.CAKE)
 					.setExperience(0)
@@ -870,21 +870,21 @@ public class JellyBlob extends Mob {
 			}
 			
 			@SafeVarargs
-			public final Builder setBiomePredicate(TagKey<Biome>... biomes) {
+			public final Builder setBiomes(TagKey<Biome>... biomes) {
 				this.biomePredicate = this.biomePredicate
 						.and(biome -> Arrays.stream(biomes).anyMatch(biome::is));
 				return this;
 			}
 			
 			@SafeVarargs
-			public final Builder setBiome(ResourceKey<Biome>... biomes) {
+			public final Builder setBiomes(ResourceKey<Biome>... biomes) {
 				this.biomePredicate = this.biomePredicate
 						.and(biome -> Arrays.stream(biomes).anyMatch(biome::is));
 				return this;
 			}
 			
 			@SafeVarargs
-			public final Builder setExcludedBiomes(TagKey<Biome>... biomes) {
+			public final Builder excludeBiomes(TagKey<Biome>... biomes) {
 				this.biomePredicate = this.biomePredicate
 						.and(biome -> Arrays.stream(biomes).noneMatch(biome::is));
 				return this;
