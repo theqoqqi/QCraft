@@ -19,6 +19,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -60,6 +61,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -551,7 +553,7 @@ public class JellyBlob extends Mob {
 		
 		public final LootBox lootBox;
 		
-		private final int color;
+		private final ToIntFunction<JellyBlob> colorGetter;
 		
 		static {
 			// Помимо нового типа в этом файле должны быть добавлены:
@@ -761,6 +763,37 @@ public class JellyBlob extends Mob {
 					.setColor(55, 39, 71)
 					.setLootBox(LootBoxes.END_CHORUS_JELLY_BLOB_LOOT_BOX)
 					.build();
+			
+			Builder.create()
+					.setInternalName("rainbow")
+					.setBiomePredicate(BiomeTags.IS_OVERWORLD)
+					.setLocationOptions(-64, 320)
+					.setFood(1, Items.CAKE)
+					.setExperience(0)
+					.setColorGetter(jellyBlob -> {
+						float hue;
+						var saturation = 1f;
+						
+						if (jellyBlob == null) {
+							hue = random.nextFloat();
+						} else {
+							var secondsPerCycle = jellyBlob.isFoodGained() ? 2f : 18f;
+							var ticksPerCycle = 20f * secondsPerCycle;
+							var tickCount = jellyBlob.tickCount;
+							
+							hue = (tickCount / ticksPerCycle) % 1;
+							
+							if (jellyBlob.isFoodGained()) {
+								var blowUpProgress = jellyBlob.getBlowUpProgress(tickCount);
+								
+								saturation = 1f - blowUpProgress * 0.8f;
+							}
+						}
+						
+						return Mth.hsvToRgb(hue, saturation, 1f);
+					})
+					.setLootBox(LootBoxes.RAINBOW_JELLY_BLOB_LOOT_BOX)
+					.build();
 		}
 		
 		public JellyBlobType(
@@ -771,7 +804,7 @@ public class JellyBlob extends Mob {
 				int foodCount,
 				int experience,
 				LootBox lootBox,
-				int color
+				ToIntFunction<JellyBlob> colorGetter
 		) {
 			
 			if (BY_NAMES.containsKey(internalName)) {
@@ -787,7 +820,7 @@ public class JellyBlob extends Mob {
 			this.foodCount = foodCount;
 			this.experience = experience;
 			this.lootBox = lootBox;
-			this.color = color;
+			this.colorGetter = colorGetter;
 			
 			BY_NAMES.put(internalName, this);
 		}
@@ -796,16 +829,16 @@ public class JellyBlob extends Mob {
 			return BY_NAMES.get(internalName);
 		}
 		
-		public float getRed() {
-			return FastColor.ARGB32.red(color) / 255f;
+		public float getRed(JellyBlob jellyBlob) {
+			return FastColor.ARGB32.red(colorGetter.applyAsInt(jellyBlob)) / 255f;
 		}
 		
-		public float getGreen() {
-			return FastColor.ARGB32.green(color) / 255f;
+		public float getGreen(JellyBlob jellyBlob) {
+			return FastColor.ARGB32.green(colorGetter.applyAsInt(jellyBlob)) / 255f;
 		}
 		
-		public float getBlue() {
-			return FastColor.ARGB32.blue(color) / 255f;
+		public float getBlue(JellyBlob jellyBlob) {
+			return FastColor.ARGB32.blue(colorGetter.applyAsInt(jellyBlob)) / 255f;
 		}
 		
 		private static JellyBlobType getRandom() {
@@ -825,7 +858,7 @@ public class JellyBlob extends Mob {
 			private int foodCount;
 			private int experience;
 			private LootBox lootBox;
-			private int color;
+			private ToIntFunction<JellyBlob> colorGetter;
 			
 			public static Builder create() {
 				return new Builder();
@@ -895,7 +928,12 @@ public class JellyBlob extends Mob {
 			}
 			
 			public Builder setColor(int red, int green, int blue) {
-				this.color = FastColor.ARGB32.color(0, red, green, blue);
+				this.colorGetter = jellyBlob -> FastColor.ARGB32.color(0, red, green, blue);
+				return this;
+			}
+			
+			public Builder setColorGetter(ToIntFunction<JellyBlob> colorGetter) {
+				this.colorGetter = colorGetter;
 				return this;
 			}
 			
@@ -908,7 +946,7 @@ public class JellyBlob extends Mob {
 						foodCount,
 						experience,
 						lootBox,
-						color
+						colorGetter
 				);
 			}
 		}

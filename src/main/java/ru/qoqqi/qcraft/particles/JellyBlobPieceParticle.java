@@ -34,9 +34,9 @@ public class JellyBlobPieceParticle extends TextureSheetParticle {
 		super(level, x, y, z, xSpeed, ySpeed, zSpeed);
 		this.gravity = 0.5F;
 		
-		this.rCol = blobType.getRed();
-		this.gCol = blobType.getGreen();
-		this.bCol = blobType.getBlue();
+		this.rCol = blobType.getRed(null);
+		this.gCol = blobType.getGreen(null);
+		this.bCol = blobType.getBlue(null);
 	}
 	
 	@NotNull

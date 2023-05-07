@@ -96,9 +96,9 @@ public class JellyBlobModel extends ListModel<JellyBlob> {
 		alphaMultiplier = 0.9f;
 		
 		if (JellyBlobRenderer.shouldTintTexture(blobType)) {
-			redMultiplier *= blobType.getRed();
-			greenMultiplier *= blobType.getGreen();
-			blueMultiplier *= blobType.getBlue();
+			redMultiplier *= blobType.getRed(jellyBlob);
+			greenMultiplier *= blobType.getGreen(jellyBlob);
+			blueMultiplier *= blobType.getBlue(jellyBlob);
 		}
 		
 		if (jellyBlob.deathTime > 0) {

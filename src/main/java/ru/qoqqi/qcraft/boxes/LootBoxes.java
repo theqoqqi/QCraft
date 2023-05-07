@@ -345,6 +345,19 @@ public class LootBoxes {
 			), 2, IntRange.of(2, 3)))
 	);
 	
+	public static final LootBox RAINBOW_JELLY_BLOB_LOOT_BOX = create(new CompositeBoxEntry(Arrays.asList(
+			new RandomBoxEntry(WeightedList.create(
+					new WeightedList.WeightedEntry<>(6, new RepeatBoxEntry(3, new LootTableBoxEntry("random_loot_box"))),
+					new WeightedList.WeightedEntry<>(3, new RepeatBoxEntry(4, new LootTableBoxEntry("random_loot_box"))),
+					new WeightedList.WeightedEntry<>(1, new RepeatBoxEntry(5, new LootTableBoxEntry("random_loot_box")))
+			)),
+			new RandomBoxEntry(WeightedList.create(
+					new WeightedList.WeightedEntry<>(6, new ExperienceBoxEntry(300, 30)),
+					new WeightedList.WeightedEntry<>(3, new ExperienceBoxEntry(400, 40)),
+					new WeightedList.WeightedEntry<>(1, new ExperienceBoxEntry(500, 50))
+			))
+	)));
+	
 	@SafeVarargs
 	private static LootBox create(WeightedList.WeightedEntry<IBoxEntry>... entries) {
 		return new LootBox(WeightedList.create(entries));
