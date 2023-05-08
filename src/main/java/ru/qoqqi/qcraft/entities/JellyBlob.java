@@ -415,11 +415,13 @@ public class JellyBlob extends Mob {
 	}
 	
 	private static Stream<JellyBlobType> getJellyBlobTypes(ServerLevel level, BlockPos blockPos) {
+		var isUnique = level.random.nextFloat() < JellyBlobType.UNIQUE_TYPE_CHANCE;
 		var biome = level.getBiome(blockPos);
+		var types = isUnique
+				? JellyBlobType.getUniqueTypes()
+				: JellyBlobType.getCommonTypes();
 		
-		return JellyBlobType.BY_NAMES
-				.values()
-				.stream()
+		return types
 				.filter(type -> type.biomePredicate.test(biome))
 				.filter(type -> type.locationPredicate.test(blockPos, level));
 	}
@@ -539,6 +541,8 @@ public class JellyBlob extends Mob {
 		
 		private static final Random random = new Random();
 		
+		public static final float UNIQUE_TYPE_CHANCE = 0.05f;
+		
 		public final String internalName;
 		
 		public final Predicate<Holder<Biome>> biomePredicate;
@@ -552,6 +556,8 @@ public class JellyBlob extends Mob {
 		public final int experience;
 		
 		public final LootBox lootBox;
+		
+		public final boolean isUnique;
 		
 		private final ToIntFunction<JellyBlob> colorGetter;
 		
@@ -793,6 +799,7 @@ public class JellyBlob extends Mob {
 						return Mth.hsvToRgb(hue, saturation, 1f);
 					})
 					.setLootBox(LootBoxes.RAINBOW_JELLY_BLOB_LOOT_BOX)
+					.setUnique()
 					.build();
 		}
 		
@@ -804,7 +811,8 @@ public class JellyBlob extends Mob {
 				int foodCount,
 				int experience,
 				LootBox lootBox,
-				ToIntFunction<JellyBlob> colorGetter
+				ToIntFunction<JellyBlob> colorGetter,
+				boolean isUnique
 		) {
 			
 			if (BY_NAMES.containsKey(internalName)) {
@@ -821,6 +829,7 @@ public class JellyBlob extends Mob {
 			this.experience = experience;
 			this.lootBox = lootBox;
 			this.colorGetter = colorGetter;
+			this.isUnique = isUnique;
 			
 			BY_NAMES.put(internalName, this);
 		}
@@ -848,6 +857,14 @@ public class JellyBlob extends Mob {
 			return values[randomIndex];
 		}
 		
+		private static Stream<JellyBlobType> getCommonTypes() {
+			return BY_NAMES.values().stream().filter(type -> !type.isUnique);
+		}
+		
+		private static Stream<JellyBlobType> getUniqueTypes() {
+			return BY_NAMES.values().stream().filter(type -> type.isUnique);
+		}
+		
 		public static class Builder {
 			
 			private String internalName;
@@ -859,6 +876,7 @@ public class JellyBlob extends Mob {
 			private int experience;
 			private LootBox lootBox;
 			private ToIntFunction<JellyBlob> colorGetter;
+			private boolean isUnique;
 			
 			public static Builder create() {
 				return new Builder();
@@ -937,6 +955,11 @@ public class JellyBlob extends Mob {
 				return this;
 			}
 			
+			public Builder setUnique() {
+				this.isUnique = true;
+				return this;
+			}
+			
 			public void build() {
 				new JellyBlobType(
 						internalName,
@@ -946,7 +969,8 @@ public class JellyBlob extends Mob {
 						foodCount,
 						experience,
 						lootBox,
-						colorGetter
+						colorGetter,
+						isUnique
 				);
 			}
 		}
