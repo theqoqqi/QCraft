@@ -1,0 +1,21 @@
+1. Скачать и распаковать Forge MDK для нужной версии
+2. Открыть проект в IDE, дождаться билда gradle
+3. Переименовать проект:
+3.1. Поиском по проекту заменить "examplemod" на "название_мода"
+3.2. Переименовать пакет com.example.examplemod
+3.3. Переименовать класс ExampleMod
+3.4. Поиском по проекту заменить "modid" на "название_мода" (кроме одного вхождения "(modid")
+4. Можно скопировать настройки майна (файл "options.txt" в папку /run в проекте закинуть)
+5. Вынести переменные в gradle.properties (см. файл "Использование gradle properties.txt")
+6. Выполнить gradle-скрипт "forgegradle runs" -> "genIntellijRuns"
+7. Удостовериться, что используется нужная версия Java:
+7.1. Узнать нужную версию в build.gradle (см. поле languageVersion)
+7.2. Проверить в "Run Configurations" (у каждой конфигурации)
+7.3. Проверить в настройках модуля (ПКМ по папке проекта -> Open Module Settngs)
+8. Заполнить информацию о моде в mods.toml
+
+Далее можно заменить маппинги на parchment: https://parchmentmc.org/docs/getting-started
+
+
+
+Гайд для новичков: https://www.benjaminrose.com/pages/minecraft-modding-tutorial.html

@@ -1,0 +1,29 @@
+Для удобства нужно вынести из build.gradle
+
+
+Добавить в gradle.properties:
+mod_id=mod_name
+mod_name=ModName
+mod_version=1.0.0
+
+mc_version=1.19.3 # ВЕРСИЮ МАЙНА УКАЗАТЬ
+
+
+Нужно заменить переменные:
+version = '1.0'
+group = 'com.yourname.examplemod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'examplemod'
+
+version = "${mc_version}-${mod_version}"
+group = 'ru.qoqqi.modname' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "${mod_id}"
+
+
+Заменить поля в разделе атрибутов (искать по "Specification-Title"):
+                "Specification-Title": "${mod_name}",
+                "Specification-Vendor": "Qoqqi",
+                "Specification-Version": "${mc_version}", // We are version 1 of ourselves
+                "Implementation-Title": "${mod_id}",
+                "Implementation-Version": "${mod_version}",
+                "Implementation-Vendor" :"Qoqqi",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")

@@ -1,0 +1,10 @@
+1. Создать модель (MobNameModel). Можно использовать прогу Blockbench для создания моделей
+2. Создать текстуры (assets/mod_name/textures/entity/mob_name.png)
+3. Создать модель яйца призыва (assets/mod_name/models/item/mob_name_spanw_egg.json)
+4. Добавить локализацию в ru_ru.json (entity.mod_name.mob_name, item.mod_name.mob_name_spawn_egg)
+5. Добавить таблицу лута (data/mod_name/loot_tables/entities)
+6. Добавить спаун (data/mod_name/forge/biome_modifier, зарегистрировать с помощью SpawnPlacements.register(...))
+7. Создать слой для рендерера (прописать в файле со списком ModelLayerLocation'ов)
+8. Создать рендерер (MobNameRenderer)
+9. Создать класс моба (MobName, прописать в файле со списком EntityType'ов)
+10. Связать рендерер и тип моба (EntityRenderers.register(ModEntityTypes.MOB_NAME.get(), MobNameRenderer::new);)
