@@ -4,7 +4,7 @@
   "biomes": "#q_craft:has_jelly_blobs/on_ground",
   "spawners": {
     "type": "q_craft:jelly_blob",
-    "weight": 15,
+    "weight": 5,
     "minCount": 1,
     "maxCount": 1
   }
