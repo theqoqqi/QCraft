@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_acacia_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_birch_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_dark_oak_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_jungle_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_oak_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_spruce_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_mangrove_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_warped_hyphae"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stripped_crimson_hyphae"
+        }
+      ]
+    }
+  ]
+}
+

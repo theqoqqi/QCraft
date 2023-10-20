@@ -1,0 +1,11 @@
+{
+  "type": "q_craft:add_custom_spawns",
+  "spawner_type": "underground_creature",
+  "biomes": "#minecraft:is_overworld",
+  "spawners": {
+    "type": "q_craft:stone_crab",
+    "weight": 1,
+    "minCount": 4,
+    "maxCount": 4
+  }
+}
