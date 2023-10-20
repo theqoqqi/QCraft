@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chipped_anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:damaged_anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:beacon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanting_table"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ender_chest"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lodestone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:respawn_anchor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shulker_box"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sponge"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wet_sponge"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "q_craft:boxes/root",
+  "display": {
+    "icon": {
+      "item": "q_craft:loot_box_generator"
+    },
+    "title": {
+      "translate": "advancements.boxes.loot_box_generator.title"
+    },
+    "description": {
+      "translate": "advancements.boxes.loot_box_generator.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 75
+  },
+  "criteria": {
+    "loot_box_generator": {
+      "trigger": "q_craft:activate_loot_box_generator",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "loot_box_generator"
+    ]
+  ]
+}
