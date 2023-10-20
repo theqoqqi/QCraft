@@ -152,7 +152,8 @@ public class CraftingPuzzle {
 				.stream()
 				.filter(recipe -> {
 					ItemStack output = recipe.getResultItem(level.registryAccess());
-					return output.sameItem(item) && output.getCount() <= item.getCount();
+					return ItemStack.isSameItem(output, item)
+							&& output.getCount() <= item.getCount();
 				})
 				.collect(Collectors.toList());
 	}

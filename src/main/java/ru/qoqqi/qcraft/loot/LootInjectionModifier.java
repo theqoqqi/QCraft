@@ -6,7 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
@@ -37,9 +37,12 @@ public class LootInjectionModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		LootContext.Builder builder = (new LootContext.Builder(context.getLevel()).withRandom(context.getRandom()));
-		LootTable lootTable = context.getLevel().getServer().getLootTables().get(table);
-		generatedLoot.addAll(lootTable.getRandomItems(builder.create(LootContextParamSets.EMPTY)));
+		var level = context.getLevel();
+		var lootParams = new LootParams.Builder(level)
+				.create(LootContextParamSets.EMPTY);
+		var lootTable = level.getServer().getLootData().getLootTable(table);
+
+		generatedLoot.addAll(lootTable.getRandomItems(lootParams));
 		
 		return generatedLoot;
 	}

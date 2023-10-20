@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -44,7 +45,7 @@ public class PuzzleBoxMenu extends AbstractContainerMenu {
 	
 	private static final int MAIN_INVENTORY_Y = 84;
 	
-	private final CraftingContainer craftingInventory = new CraftingContainer(this, 3, 3);
+	private final CraftingContainer craftingInventory = new TransientCraftingContainer(this, 3, 3);
 	
 	private final ResultContainer craftResultInventory = new ResultContainer();
 	

@@ -1,8 +1,8 @@
 package ru.qoqqi.qcraft.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
@@ -50,7 +50,6 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 	
 	public PuzzleBoxScreen(PuzzleBoxMenu screenContainer, Inventory inv, Component titleIn) {
 		super(screenContainer, inv, titleIn);
-		passEvents = false;
 		imageWidth = 176;
 		imageHeight = 192;
 	}
@@ -89,36 +88,36 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 	}
 	
 	@Override
-	public void render(@Nonnull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(matrixStack);
-		super.render(matrixStack, mouseX, mouseY, partialTicks);
-		this.renderTooltip(matrixStack, mouseX, mouseY);
+	public void render(@Nonnull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(guiGraphics);
+		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 	
 	@Override
-	protected void renderBg(@Nonnull PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(@Nonnull GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, PUZZLE_BOX_TEXTURE);
 		
 		int x = (this.width - this.imageWidth) / 2;
 		int y = (this.height - this.imageHeight) / 2;
 		
-		this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
+		guiGraphics.blit(PUZZLE_BOX_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		
 		for (int i = 0; i < menu.getSolutionSize(); i++) {
 			int borderWidth = 5;
 			int slotX = x - borderWidth + menu.solutionInventoryX + i * menu.solutionInventorySpacing;
 			int slotY = y - borderWidth + menu.solutionInventoryY;
-			this.blit(matrixStack, slotX, slotY, 26, 194, 26, 26);
+
+			guiGraphics.blit(PUZZLE_BOX_TEXTURE, slotX, slotY, 26, 194, 26, 26);
 		}
 	}
 	
 	@Override
-	protected void renderLabels(@Nonnull PoseStack matrixStack, int x, int y) {
+	protected void renderLabels(@Nonnull GuiGraphics guiGraphics, int x, int y) {
 		int textColor = 4210752;
 		
-		this.font.draw(matrixStack, craftingTitle, CRAFTING_TITLE_X, CRAFTING_TITLE_Y, textColor);
-		this.font.draw(matrixStack, ingredientsTitle, INGREDIENTS_TITLE_X, INGREDIENTS_TITLE_Y, textColor);
-		this.font.draw(matrixStack, solutionTitle, SOLUTION_TITLE_X, SOLUTION_TITLE_Y, textColor);
+		guiGraphics.drawString(font, craftingTitle, CRAFTING_TITLE_X, CRAFTING_TITLE_Y, textColor);
+		guiGraphics.drawString(font, ingredientsTitle, INGREDIENTS_TITLE_X, INGREDIENTS_TITLE_Y, textColor);
+		guiGraphics.drawString(font, solutionTitle, SOLUTION_TITLE_X, SOLUTION_TITLE_Y, textColor);
 	}
 }

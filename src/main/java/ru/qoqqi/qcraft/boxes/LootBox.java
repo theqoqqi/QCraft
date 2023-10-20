@@ -46,7 +46,7 @@ public class LootBox {
 	
 	@Nonnull
 	private IBoxEntry.UnpackResult open(Player player, ItemStack itemStack, BlockPos blockPos, boolean broadcastResult) {
-		Level level = player.getLevel();
+		Level level = player.level();
 		MinecraftServer server = level.getServer();
 
 		if (server == null) {

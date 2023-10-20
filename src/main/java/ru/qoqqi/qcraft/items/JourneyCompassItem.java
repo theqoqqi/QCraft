@@ -19,11 +19,11 @@ public class JourneyCompassItem extends Item {
 	}
 	
 	public static GlobalPos getNextPlacePosition(LocalPlayer player) {
-		if (player.getLevel().dimensionTypeId() != BuiltinDimensionTypes.OVERWORLD) {
+		if (player.level().dimensionTypeId() != BuiltinDimensionTypes.OVERWORLD) {
 			return null;
 		}
 		
-		ResourceKey<Level> dimension = player.getLevel().dimension();
+		ResourceKey<Level> dimension = player.level().dimension();
 		BlockPos blockPos = JourneyLevelData.Client.getNextPlacePosition();
 		
 		if (blockPos == null || isNearby(blockPos, player)) {

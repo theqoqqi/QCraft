@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -98,8 +98,8 @@ public class QCraft {
 		LOGGER.info("QCraft - loadComplete");
 	}
 	
-	private void initCreativeTabs(final CreativeModeTabEvent.BuildContents event) {
-		if (event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+	private void initCreativeTabs(final BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			event.accept(ModBlocks.PUZZLE_BOX_EASY);
 			event.accept(ModBlocks.PUZZLE_BOX_NORMAL);
 			event.accept(ModBlocks.PUZZLE_BOX_HARD);
@@ -112,7 +112,7 @@ public class QCraft {
 			event.accept(ModBlocks.PANDORAS_TEMPLE_JOURNEY_REWARD_BLOCK);
 		}
 		
-		if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
+		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(ModBlocks.OAK_PLATE);
 			event.accept(ModBlocks.BIRCH_PLATE);
 			event.accept(ModBlocks.ACACIA_PLATE);
@@ -122,7 +122,7 @@ public class QCraft {
 			event.accept(ModBlocks.MANGROVE_PLATE);
 		}
 		
-		if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 			event.accept(ModItems.GIFT_BOX_SMALL);
 			event.accept(ModItems.GIFT_BOX_MEDIUM);
 			event.accept(ModItems.GIFT_BOX_LARGE);
@@ -132,7 +132,7 @@ public class QCraft {
 			event.accept(ModItems.JOURNEY_COMPASS);
 		}
 		
-		if (event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			ModEntityTypes.SPAWN_EGGS.forEach(event::accept);
 		}
 	}

@@ -107,9 +107,9 @@ public class CustomJigsawPlacement {
 		Optional<BlockPos> optional = Optional.empty();
 		
 		for(StructureTemplate.StructureBlockInfo structuretemplate$structureblockinfo : list) {
-			ResourceLocation resourcelocation = ResourceLocation.tryParse(structuretemplate$structureblockinfo.nbt.getString("name"));
+			ResourceLocation resourcelocation = ResourceLocation.tryParse(structuretemplate$structureblockinfo.nbt().getString("name"));
 			if (p_227249_.equals(resourcelocation)) {
-				optional = Optional.of(structuretemplate$structureblockinfo.pos);
+				optional = Optional.of(structuretemplate$structureblockinfo.pos());
 				break;
 			}
 		}
@@ -170,8 +170,8 @@ public class CustomJigsawPlacement {
 			
 			label139:
 			for(StructureTemplate.StructureBlockInfo structuretemplate$structureblockinfo : structurepoolelement.getShuffledJigsawBlocks(this.structureTemplateManager, blockpos, rotation, this.random)) {
-				Direction direction = JigsawBlock.getFrontFacing(structuretemplate$structureblockinfo.state);
-				BlockPos blockpos1 = structuretemplate$structureblockinfo.pos;
+				Direction direction = JigsawBlock.getFrontFacing(structuretemplate$structureblockinfo.state());
+				BlockPos blockpos1 = structuretemplate$structureblockinfo.pos();
 				BlockPos blockpos2 = blockpos1.relative(direction);
 				int j = blockpos1.getY() - i;
 				int k = -1;
@@ -221,7 +221,7 @@ public class CustomJigsawPlacement {
 									if (p_227268_ && boundingbox1.getYSpan() <= 16) {
 										
 										l = list1.stream().mapToInt((p_255598_) -> {
-											if (!boundingbox1.isInside(p_255598_.pos.relative(JigsawBlock.getFrontFacing(p_255598_.state)))) {
+											if (!boundingbox1.isInside(p_255598_.pos().relative(JigsawBlock.getFrontFacing(p_255598_.state())))) {
 												return 0;
 											} else {
 												ResourceKey<StructureTemplatePool> resourcekey1 = readPoolName(p_255598_);
@@ -245,14 +245,14 @@ public class CustomJigsawPlacement {
 									for (StructureTemplate.StructureBlockInfo structuretemplate$structureblockinfo1 : list1) {
 										if (JigsawBlock.canAttach(structuretemplate$structureblockinfo, structuretemplate$structureblockinfo1)) {
 											
-											BlockPos blockpos3 = structuretemplate$structureblockinfo1.pos;
+											BlockPos blockpos3 = structuretemplate$structureblockinfo1.pos();
 											BlockPos blockpos4 = blockpos2.subtract(blockpos3);
 											BoundingBox boundingbox2 = structurepoolelement1.getBoundingBox(this.structureTemplateManager, blockpos4, rotation1);
 											int i1 = boundingbox2.minY();
 											StructureTemplatePool.Projection structuretemplatepool$projection1 = structurepoolelement1.getProjection();
 											boolean flag2 = structuretemplatepool$projection1 == StructureTemplatePool.Projection.RIGID;
 											int j1 = blockpos3.getY();
-											int k1 = j - j1 + JigsawBlock.getFrontFacing(structuretemplate$structureblockinfo.state).getStepY();
+											int k1 = j - j1 + JigsawBlock.getFrontFacing(structuretemplate$structureblockinfo.state()).getStepY();
 											int l1;
 											if (flag && flag2) {
 												l1 = i + k1;
@@ -317,11 +317,11 @@ public class CustomJigsawPlacement {
 		}
 		
 		private static ResourceKey<StructureTemplatePool> readPoolName(StructureTemplate.StructureBlockInfo p_256491_) {
-			return ResourceKey.create(Registries.TEMPLATE_POOL, new ResourceLocation(p_256491_.nbt.getString("pool")));
+			return ResourceKey.create(Registries.TEMPLATE_POOL, new ResourceLocation(p_256491_.nbt().getString("pool")));
 		}
 		
 		private boolean isJigsawVertical(StructureTemplate.StructureBlockInfo info) {
-			Direction direction = JigsawBlock.getFrontFacing(info.state);
+			Direction direction = JigsawBlock.getFrontFacing(info.state());
 			
 			return direction.getAxis().isVertical();
 		}

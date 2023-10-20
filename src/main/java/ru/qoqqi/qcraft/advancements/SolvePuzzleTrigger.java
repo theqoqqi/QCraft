@@ -3,8 +3,8 @@ package ru.qoqqi.qcraft.advancements;
 import com.google.gson.JsonObject;
 
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
-import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.SerializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
@@ -28,14 +28,14 @@ public class SolvePuzzleTrigger extends SimpleCriterionTrigger<SolvePuzzleTrigge
 	
 	@Override
 	@Nonnull
-	public Instance createInstance(@Nonnull JsonObject json, @Nonnull EntityPredicate.Composite entityPredicate, @Nonnull DeserializationContext conditionsParser) {
+	public Instance createInstance(@Nonnull JsonObject json, @Nonnull ContextAwarePredicate entityPredicate, @Nonnull DeserializationContext conditionsParser) {
 		LocationPredicate locationPredicate = LocationPredicate.fromJson(json.get("location"));
 		return new Instance(entityPredicate, locationPredicate);
 	}
 	
 	public void trigger(ServerPlayer player, BlockPos pos) {
 		this.trigger(player, (instance) -> {
-			return instance.matches(player.getLevel(), pos);
+			return instance.matches(player.serverLevel(), pos);
 		});
 	}
 	
@@ -43,7 +43,7 @@ public class SolvePuzzleTrigger extends SimpleCriterionTrigger<SolvePuzzleTrigge
 		
 		private final LocationPredicate location;
 		
-		public Instance(EntityPredicate.Composite player, LocationPredicate location) {
+		public Instance(ContextAwarePredicate player, LocationPredicate location) {
 			super(SolvePuzzleTrigger.ID, player);
 			this.location = location;
 		}

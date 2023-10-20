@@ -42,7 +42,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
@@ -172,11 +172,11 @@ public class JellyBlob extends Mob {
 	public void customPickUp() {
 		var pickupReach = this.getPickupReach();
 		
-		boolean canPickUpItems = !level.isClientSide
+		boolean canPickUpItems = !level().isClientSide
 				&& canPickUpLoot()
 				&& isAlive()
 				&& !dead
-				&& ForgeEventFactory.getMobGriefingEvent(level, this);
+				&& ForgeEventFactory.getMobGriefingEvent(level(), this);
 		
 		if (!canPickUpItems) {
 			return;
@@ -184,7 +184,7 @@ public class JellyBlob extends Mob {
 		
 		var searchArea = getBoundingBox()
 				.inflate(pickupReach.getX(), pickupReach.getY(), pickupReach.getZ());
-		var nearbyEntities = level.getEntitiesOfClass(ItemEntity.class, searchArea);
+		var nearbyEntities = level().getEntitiesOfClass(ItemEntity.class, searchArea);
 		
 		for (var itemEntity : nearbyEntities) {
 			var canPuckUp = !itemEntity.isRemoved()
@@ -249,7 +249,7 @@ public class JellyBlob extends Mob {
 	}
 	
 	private void blowUp() {
-		if (level.isClientSide) {
+		if (level().isClientSide) {
 			return;
 		}
 		
@@ -261,7 +261,7 @@ public class JellyBlob extends Mob {
 	}
 	
 	private void spawnBlowUpParticles() {
-		var serverLevel = (ServerLevel) level;
+		var serverLevel = (ServerLevel) level();
 		var position = position();
 		var spread = JellyBlob.BLOWING_UP_MODEL_SCALE / 2;
 		var particleOptions = new JellyBlobPieceParticleOption(ModParticleTypes.JELLY_BLOB.get(), getBlobTypeName());
@@ -291,10 +291,10 @@ public class JellyBlob extends Mob {
 			return;
 		}
 		
-		var player = level.getPlayerByUUID(getLastFoodGivenBy());
+		var player = level().getPlayerByUUID(getLastFoodGivenBy());
 		
 		if (player == null) {
-			player = level.getNearestPlayer(this, -1);
+			player = level().getNearestPlayer(this, -1);
 		}
 		
 		lootBox.openSilently(player, blockPosition());
@@ -306,7 +306,7 @@ public class JellyBlob extends Mob {
 	}
 	
 	private void dropBlowUpLootTable() {
-		var server = level.getServer();
+		var server = level().getServer();
 		
 		if (server == null) {
 			return;
@@ -314,20 +314,19 @@ public class JellyBlob extends Mob {
 		
 		var lootTablePath = "entities/jelly_blob/" + getBlobType().internalName;
 		var resourceLocation = new ResourceLocation(QCraft.MOD_ID, lootTablePath);
-		var lootTable = server.getLootTables().get(resourceLocation);
-		var lootContext = createLootContext((ServerLevel) level);
+		var lootTable = server.getLootData().getLootTable(resourceLocation);
+		var lootParams = createLootParams((ServerLevel) level());
 		
-		lootTable.getRandomItems(lootContext).forEach(this::spawnAtLocation);
+		lootTable.getRandomItems(lootParams).forEach(this::spawnAtLocation);
 	}
 	
-	protected LootContext createLootContext(ServerLevel level) {
-		return new LootContext.Builder(level)
-				.withRandom(level.getRandom())
+	protected LootParams createLootParams(ServerLevel level) {
+		return new LootParams.Builder(level)
 				.create(LootContextParamSets.EMPTY);
 	}
 	
 	private void dropBlowUpExperience() {
-		ExperienceOrb.award((ServerLevel) level, position(), getBlobType().experience);
+		ExperienceOrb.award((ServerLevel) level(), position(), getBlobType().experience);
 	}
 	
 	private boolean isEatableItem(ItemStack itemStack) {

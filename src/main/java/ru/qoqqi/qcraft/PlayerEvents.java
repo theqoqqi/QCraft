@@ -26,7 +26,7 @@ public class PlayerEvents {
 			return;
 		}
 		
-		ServerLevel level = serverPlayer.getLevel();
+		ServerLevel level = serverPlayer.serverLevel();
 		
 		if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
 			JourneyLevelData.setLoadingInstance(level);

@@ -427,7 +427,7 @@ public class FieldMouse extends Animal {
 		private List<ItemEntity> getCollectableSeeds() {
 			var searchArea = mouse.getBoundingBox().inflate(8.0D, 8.0D, 8.0D);
 			
-			return mouse.level.getEntitiesOfClass(ItemEntity.class, searchArea, allowedItemsPredicate);
+			return mouse.level().getEntitiesOfClass(ItemEntity.class, searchArea, allowedItemsPredicate);
 		}
 	}
 }

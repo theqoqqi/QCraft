@@ -20,7 +20,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkStatus;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -49,7 +49,7 @@ public class CustomRemoveBlockGoal extends MoveToBlockGoal {
 	}
 	
 	public boolean canUse() {
-		if (!ForgeEventFactory.getMobGriefingEvent(removerMob.level, removerMob)) {
+		if (!ForgeEventFactory.getMobGriefingEvent(removerMob.level(), removerMob)) {
 			return false;
 		}
 		
@@ -68,7 +68,7 @@ public class CustomRemoveBlockGoal extends MoveToBlockGoal {
 	}
 	
 	private boolean tryFindBlock() {
-		if (isValidTarget(mob.level, blockPos)) {
+		if (isValidTarget(mob.level(), blockPos)) {
 			return true;
 		}
 		
@@ -96,7 +96,7 @@ public class CustomRemoveBlockGoal extends MoveToBlockGoal {
 	public void tick() {
 		super.tick();
 		
-		var level = removerMob.level;
+		var level = removerMob.level();
 		var targetBlockPos = blockPos;
 		var random = removerMob.getRandom();
 		
@@ -152,15 +152,14 @@ public class CustomRemoveBlockGoal extends MoveToBlockGoal {
 	}
 	
 	private void createDrops(BlockPos blockPos) {
-		if (removerMob.level.isClientSide) {
+		if (removerMob.level().isClientSide) {
 			return;
 		}
 		
-		var level = (ServerLevel) removerMob.level;
+		var level = (ServerLevel) removerMob.level();
 		var blockState = level.getBlockState(blockPos);
 		var blockEntity = blockState.hasBlockEntity() ? level.getBlockEntity(blockPos) : null;
-		var lootContextBuilder = new LootContext.Builder(level)
-				.withRandom(level.random)
+		var lootParamsBuilder = new LootParams.Builder(level)
 				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(blockPos))
 				.withParameter(LootContextParams.TOOL, ItemStack.EMPTY)
 				.withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity);
@@ -168,7 +167,7 @@ public class CustomRemoveBlockGoal extends MoveToBlockGoal {
 		ObjectArrayList<Pair<ItemStack, BlockPos>> dropPositions = new ObjectArrayList<>();
 		
 		blockState.spawnAfterBreak(level, blockPos, ItemStack.EMPTY, false);
-		blockState.getDrops(lootContextBuilder).forEach((itemStack) -> {
+		blockState.getDrops(lootParamsBuilder).forEach((itemStack) -> {
 			addBlockDrops(dropPositions, itemStack, blockPos.immutable());
 		});
 		

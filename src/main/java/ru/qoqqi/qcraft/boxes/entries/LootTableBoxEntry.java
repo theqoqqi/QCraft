@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -61,16 +61,22 @@ public class LootTableBoxEntry implements IBoxEntry {
 	
 	protected List<ItemStack> generateLoot(Level level, Player player, MinecraftServer server) {
 		ResourceLocation location = getLootTableResourceLocation();
-		LootTable lootTable = server.getLootTables().get(location);
-		LootContext.Builder contextBuilder = this.getLootContextBuilder(level, player);
-		LootContext lootContext = contextBuilder.create(LootContextParamSets.GIFT);
-		List<ItemStack> itemStackList = lootTable.getRandomItems(lootContext);
+		LootTable lootTable = server.getLootData().getLootTable(location);
+		LootParams lootParams = this.createLootParams(level, player);
+		List<ItemStack> itemStackList = lootTable.getRandomItems(lootParams);
 		
 		if (processor != null) {
 			processor.processLootTable(itemStackList, level, player, server);
 		}
 		
 		return itemStackList;
+	}
+
+	protected LootParams createLootParams(Level level, Player player) {
+		return (new LootParams.Builder((ServerLevel) level))
+				.withParameter(LootContextParams.THIS_ENTITY, player)
+				.withParameter(LootContextParams.ORIGIN, player.getPosition(0))
+				.create(LootContextParamSets.GIFT);
 	}
 	
 	protected void fillChatMessages(UnpackResult result, List<ItemStack> lootContent) {
@@ -100,13 +106,6 @@ public class LootTableBoxEntry implements IBoxEntry {
 				result.getPlayer().getDisplayName(),
 				result.getLootBox().getDisplayName()
 		);
-	}
-	
-	protected LootContext.Builder getLootContextBuilder(Level level, Player player) {
-		return (new LootContext.Builder((ServerLevel) level))
-				.withRandom(level.getRandom())
-				.withParameter(LootContextParams.THIS_ENTITY, player)
-				.withParameter(LootContextParams.ORIGIN, player.getPosition(0));
 	}
 	
 	public static class UpgradeEnchantmentsProcessor implements LootTableProcessor {

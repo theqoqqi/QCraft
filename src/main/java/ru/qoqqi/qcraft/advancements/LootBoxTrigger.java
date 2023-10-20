@@ -3,8 +3,8 @@ package ru.qoqqi.qcraft.advancements;
 import com.google.gson.JsonObject;
 
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
-import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.SerializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
@@ -29,7 +29,7 @@ public class LootBoxTrigger extends SimpleCriterionTrigger<LootBoxTrigger.Instan
 	
 	@Override
 	@NotNull
-	protected Instance createInstance(JsonObject json, @NotNull EntityPredicate.Composite entityPredicate, @NotNull DeserializationContext conditionsParser) {
+	protected Instance createInstance(JsonObject json, @NotNull ContextAwarePredicate entityPredicate, @NotNull DeserializationContext conditionsParser) {
 		return new Instance(entityPredicate, ItemPredicate.fromJson(json.get("item")));
 	}
 	
@@ -43,7 +43,7 @@ public class LootBoxTrigger extends SimpleCriterionTrigger<LootBoxTrigger.Instan
 		
 		private final ItemPredicate item;
 		
-		public Instance(EntityPredicate.Composite player, ItemPredicate item) {
+		public Instance(ContextAwarePredicate player, ItemPredicate item) {
 			super(LootBoxTrigger.ID, player);
 			this.item = item;
 		}

@@ -51,7 +51,7 @@ public class ModParticleTypes {
 	}
 	
 	public static void registerProviders(RegisterParticleProvidersEvent event) {
-		event.register(ModParticleTypes.LOOT_BOX_GENERATOR.get(), LootBoxGeneratorParticle.Provider::new);
-		event.register(ModParticleTypes.JELLY_BLOB.get(), JellyBlobPieceParticle.Provider::new);
+		event.registerSpriteSet(ModParticleTypes.LOOT_BOX_GENERATOR.get(), LootBoxGeneratorParticle.Provider::new);
+		event.registerSpriteSet(ModParticleTypes.JELLY_BLOB.get(), JellyBlobPieceParticle.Provider::new);
 	}
 }

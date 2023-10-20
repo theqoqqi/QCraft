@@ -24,7 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
@@ -178,16 +178,15 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity implements ItemPede
 	}
 	
 	private ItemStack createRandomItemStack(ServerLevel level, MinecraftServer server) {
-		LootTable lootTable = server.getLootTables().get(resourceLocation);
-		LootContext lootContext = getLootContextBuilder(level);
-		List<ItemStack> itemStacks = lootTable.getRandomItems(lootContext);
+		LootTable lootTable = server.getLootData().getLootTable(resourceLocation);
+		LootParams lootParams = createLootParams(level);
+		List<ItemStack> itemStacks = lootTable.getRandomItems(lootParams);
 		
-		return itemStacks.size() > 0 ? itemStacks.get(0) : ItemStack.EMPTY;
+		return !itemStacks.isEmpty() ? itemStacks.get(0) : ItemStack.EMPTY;
 	}
 	
-	protected LootContext getLootContextBuilder(ServerLevel level) {
-		return new LootContext.Builder(level)
-				.withRandom(level.getRandom())
+	protected LootParams createLootParams(ServerLevel level) {
+		return new LootParams.Builder(level)
 				.create(LootContextParamSets.EMPTY);
 	}
 	
@@ -252,7 +251,7 @@ public class LootBoxGeneratorBlockEntity extends BlockEntity implements ItemPede
 	}
 	
 	public void onBlockPlacedBy(@Nonnull Player player) {
-		activateByPlayer((ServerLevel) player.level, this, player.getUUID());
+		activateByPlayer((ServerLevel) player.level(), this, player.getUUID());
 		ModCriteriaTriggers.ACTIVATE_LOOT_BOX_GENERATOR.trigger((ServerPlayer) player);
 	}
 	
