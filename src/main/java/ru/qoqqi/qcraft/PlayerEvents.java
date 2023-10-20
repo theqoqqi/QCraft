@@ -19,28 +19,28 @@ import ru.qoqqi.qcraft.network.ModPacketHandler;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerEvents {
-	
+
 	@SubscribeEvent
 	public static void onLoadLevel(final PlayerEvent.PlayerLoggedInEvent event) {
 		if (!(event.getEntity() instanceof ServerPlayer serverPlayer)) {
 			return;
 		}
-		
+
 		ServerLevel level = serverPlayer.serverLevel();
-		
+
 		if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
 			JourneyLevelData.setLoadingInstance(level);
 			JourneyLevelData levelData = JourneyLevelData.getInstance(level);
 			Map<JourneyStage, BlockPos> placePositions = levelData.getPlacePositions();
-			
+
 			placePositions.forEach((stage, position) -> {
 				JourneyPlacePositionPacket packet = new JourneyPlacePositionPacket(stage, position);
-				
+
 				ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), packet);
-				
+
 				if (levelData.isVisitedBy(stage, serverPlayer.getUUID())) {
 					JourneyPlaceVisitedPacket placeVisitedPacket = new JourneyPlaceVisitedPacket(stage);
-					
+
 					ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), placeVisitedPacket);
 				}
 			});

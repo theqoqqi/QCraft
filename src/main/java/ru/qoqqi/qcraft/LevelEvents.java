@@ -14,9 +14,9 @@ import ru.qoqqi.qcraft.leveldata.JourneyLevelData;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class LevelEvents {
-	
+
 	private static final Logger LOGGER = LogManager.getLogger();
-	
+
 	@SubscribeEvent
 	public static void onLoadLevel(final LevelEvent.Load event) {
 		if (!(event.getLevel() instanceof ServerLevel level)) {
@@ -25,10 +25,10 @@ public class LevelEvents {
 			}
 			return;
 		}
-		
+
 		if (level.dimensionTypeId() == BuiltinDimensionTypes.OVERWORLD) {
 			JourneyLevelData.setLoadingInstance(level);
-			
+
 			LOGGER.info("LOADED PLACES:");
 			JourneyLevelData.getInstance(level).getPlacePositions().forEach(((stage, blockPos) -> {
 				LOGGER.info("PLACE {}: {}", stage.name, blockPos);

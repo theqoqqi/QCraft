@@ -18,20 +18,20 @@ import java.util.function.Function;
 import ru.qoqqi.qcraft.QCraft;
 
 public class ModParticleTypes {
-	
+
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES
 			= DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, QCraft.MOD_ID);
-	
+
 	public static final RegistryObject<SimpleParticleType> LOOT_BOX_GENERATOR = register("loot_box_generator");
-	
+
 	public static final RegistryObject<ParticleType<JellyBlobPieceParticleOption>> JELLY_BLOB =
 			register("jelly_blob_piece", JellyBlobPieceParticleOption.DESERIALIZER, JellyBlobPieceParticle::codec);
-	
+
 	@SuppressWarnings("SameParameterValue")
 	private static RegistryObject<SimpleParticleType> register(String name) {
 		return PARTICLE_TYPES.register(name, () -> new SimpleParticleType(true));
 	}
-	
+
 	@SuppressWarnings("SameParameterValue")
 	private static <T extends ParticleOptions> RegistryObject<ParticleType<T>> register(
 			String name,
@@ -45,11 +45,11 @@ public class ModParticleTypes {
 			}
 		});
 	}
-	
+
 	public static void register(IEventBus eventBus) {
 		PARTICLE_TYPES.register(eventBus);
 	}
-	
+
 	public static void registerProviders(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(ModParticleTypes.LOOT_BOX_GENERATOR.get(), LootBoxGeneratorParticle.Provider::new);
 		event.registerSpriteSet(ModParticleTypes.JELLY_BLOB.get(), JellyBlobPieceParticle.Provider::new);

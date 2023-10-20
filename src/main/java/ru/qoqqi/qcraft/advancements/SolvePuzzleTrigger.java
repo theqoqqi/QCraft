@@ -18,40 +18,40 @@ import javax.annotation.Nonnull;
 import ru.qoqqi.qcraft.QCraft;
 
 public class SolvePuzzleTrigger extends SimpleCriterionTrigger<SolvePuzzleTrigger.Instance> {
-	
+
 	private static final ResourceLocation ID = new ResourceLocation(QCraft.MOD_ID, "solve_puzzle");
-	
+
 	@Nonnull
 	public ResourceLocation getId() {
 		return ID;
 	}
-	
+
 	@Override
 	@Nonnull
 	public Instance createInstance(@Nonnull JsonObject json, @Nonnull ContextAwarePredicate entityPredicate, @Nonnull DeserializationContext conditionsParser) {
 		LocationPredicate locationPredicate = LocationPredicate.fromJson(json.get("location"));
 		return new Instance(entityPredicate, locationPredicate);
 	}
-	
+
 	public void trigger(ServerPlayer player, BlockPos pos) {
 		this.trigger(player, (instance) -> {
 			return instance.matches(player.serverLevel(), pos);
 		});
 	}
-	
+
 	public static class Instance extends AbstractCriterionTriggerInstance {
-		
+
 		private final LocationPredicate location;
-		
+
 		public Instance(ContextAwarePredicate player, LocationPredicate location) {
 			super(SolvePuzzleTrigger.ID, player);
 			this.location = location;
 		}
-		
+
 		public boolean matches(ServerLevel level, BlockPos pos) {
 			return this.location.matches(level, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
 		}
-		
+
 		@Nonnull
 		public JsonObject serializeToJson(@Nonnull SerializationContext conditions) {
 			JsonObject jsonObject = super.serializeToJson(conditions);

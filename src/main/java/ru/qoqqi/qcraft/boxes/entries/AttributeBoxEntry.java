@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
 
 public class AttributeBoxEntry implements IBoxEntry {
-	
+
 	public static final List<AttributeBoxEntry> INCREASE_ATTRIBUTE_ENTRIES = Arrays.asList(
 			new AttributeBoxEntry("generic.max_health", OperatorType.INCREASE_CONSTANT, 2),
 			new AttributeBoxEntry("generic.knockback_resistance", OperatorType.INCREASE_CONSTANT, 0.1),
@@ -34,7 +34,7 @@ public class AttributeBoxEntry implements IBoxEntry {
 			new AttributeBoxEntry("generic.armor_toughness", OperatorType.INCREASE_CONSTANT, 1),
 			new AttributeBoxEntry("generic.luck", OperatorType.INCREASE_CONSTANT, 1)
 	);
-	
+
 	public static final List<AttributeBoxEntry> DECREASE_ATTRIBUTE_ENTRIES = Arrays.asList(
 			new AttributeBoxEntry("generic.max_health", OperatorType.DECREASE_CONSTANT, 2),
 			new AttributeBoxEntry("generic.knockback_resistance", OperatorType.DECREASE_CONSTANT, 0.1),
@@ -46,49 +46,49 @@ public class AttributeBoxEntry implements IBoxEntry {
 			new AttributeBoxEntry("generic.armor_toughness", OperatorType.DECREASE_CONSTANT, 1),
 			new AttributeBoxEntry("generic.luck", OperatorType.DECREASE_CONSTANT, 1)
 	);
-	
+
 	private final OperatorType operatorType;
-	
+
 	private final DoubleUnaryOperator operator;
-	
+
 	private final double operand;
-	
+
 	private final Attribute attribute;
-	
+
 	public AttributeBoxEntry(String name, OperatorType operatorType, double operand) {
 		this.operatorType = operatorType;
 		this.operand = operand;
 		this.operator = operatorType.getUnaryOperator(operand);
 		this.attribute = ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation(name));
 	}
-	
+
 	@Nonnull
 	@Override
 	public UnpackResult unpack(Level level, Player player, MinecraftServer server, BlockPos blockPos, ItemStack lootBox) {
-		
+
 		if (attribute == null) {
 			return UnpackResult.resultFail(lootBox, player);
 		}
-		
+
 		AttributeInstance attributeInstance = player.getAttribute(attribute);
-		
+
 		if (attributeInstance == null) {
 			return UnpackResult.resultFail(lootBox, player);
 		}
-		
+
 		double oldValue = attributeInstance.getBaseValue();
 		double newValue = attribute.sanitizeValue(operator.applyAsDouble(oldValue));
-		
+
 		if (oldValue == newValue) {
 			return UnpackResult.resultFail(lootBox, player);
 		}
-		
+
 		attributeInstance.setBaseValue(newValue);
-		
+
 		return UnpackResult.resultSuccess(lootBox, player)
 				.withChatMessage(getChatMessage(player, lootBox));
 	}
-	
+
 	protected Component getChatMessage(Player player, ItemStack lootBox) {
 		return Component.translatable(
 				operatorType.getLocalizationKey(),
@@ -98,7 +98,7 @@ public class AttributeBoxEntry implements IBoxEntry {
 				operatorType.getLocalizedOperand(operand)
 		);
 	}
-	
+
 	public enum OperatorType {
 		INCREASE_FACTOR(
 				"lootBox.attribute.increase.factor",
@@ -120,27 +120,27 @@ public class AttributeBoxEntry implements IBoxEntry {
 				(value, constant) -> value - constant,
 				String::valueOf
 		);
-		
+
 		private final String localizationKey;
-		
+
 		private final DoubleBinaryOperator operator;
-		
+
 		private final DoubleFunction<String> operandLocalizer;
-		
+
 		OperatorType(String localizationKey, DoubleBinaryOperator operator, DoubleFunction<String> operandLocalizer) {
 			this.localizationKey = localizationKey;
 			this.operator = operator;
 			this.operandLocalizer = operandLocalizer;
 		}
-		
+
 		public DoubleUnaryOperator getUnaryOperator(double operand) {
 			return value -> operator.applyAsDouble(value, operand);
 		}
-		
+
 		public String getLocalizationKey() {
 			return localizationKey;
 		}
-		
+
 		public String getLocalizedOperand(double operand) {
 			return operandLocalizer.apply(operand);
 		}

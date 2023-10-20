@@ -7,16 +7,16 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import ru.qoqqi.qcraft.QCraft;
 
 public class ModPacketHandler {
-	
+
 	private static final String PROTOCOL_VERSION = "1";
-	
+
 	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
 			new ResourceLocation(QCraft.MOD_ID, "channel"),
 			() -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals,
 			PROTOCOL_VERSION::equals
 	);
-	
+
 	@SuppressWarnings("UnusedAssignment")
 	public static void init() {
 		int id = 0;

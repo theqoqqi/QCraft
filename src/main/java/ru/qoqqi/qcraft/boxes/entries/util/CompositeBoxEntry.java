@@ -11,20 +11,20 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 public class CompositeBoxEntry implements IBoxEntry {
-	
+
 	protected final List<IBoxEntry> entries;
-	
+
 	public CompositeBoxEntry(List<IBoxEntry> entries) {
 		this.entries = entries;
 	}
-	
+
 	@Nonnull
 	@Override
 	public UnpackResult unpack(Level level, Player player, MinecraftServer server, BlockPos blockPos, ItemStack lootBox) {
 		UnpackResult result = UnpackResult.resultSuccess(lootBox, player);
-		
+
 		entries.forEach(entry -> result.merge(entry.unpack(level, player, server, blockPos, lootBox)));
-		
+
 		return result;
 	}
 }

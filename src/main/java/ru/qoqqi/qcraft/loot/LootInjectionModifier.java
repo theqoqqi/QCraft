@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 
 public class LootInjectionModifier extends LootModifier {
-	
+
 	public static Codec<LootInjectionModifier> CODEC = RecordCodecBuilder.create(
 			instance -> instance
 					.group(
@@ -26,14 +26,14 @@ public class LootInjectionModifier extends LootModifier {
 					)
 					.apply(instance, LootInjectionModifier::new)
 	);
-	
+
 	private final ResourceLocation table;
-	
+
 	protected LootInjectionModifier(LootItemCondition[] conditionsIn, ResourceLocation table) {
 		super(conditionsIn);
 		this.table = table;
 	}
-	
+
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
@@ -43,10 +43,10 @@ public class LootInjectionModifier extends LootModifier {
 		var lootTable = level.getServer().getLootData().getLootTable(table);
 
 		generatedLoot.addAll(lootTable.getRandomItems(lootParams));
-		
+
 		return generatedLoot;
 	}
-	
+
 	@Override
 	public Codec<? extends IGlobalLootModifier> codec() {
 		return CODEC;

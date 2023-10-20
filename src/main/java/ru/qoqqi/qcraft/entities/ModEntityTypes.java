@@ -21,12 +21,12 @@ import ru.qoqqi.qcraft.items.ModItems;
 
 @Mod.EventBusSubscriber(modid = QCraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntityTypes {
-	
+
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
 			= DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, QCraft.MOD_ID);
-	
+
 	public static final List<RegistryObject<? extends Item>> SPAWN_EGGS = new ArrayList<>();
-	
+
 	public static final RegistryObject<EntityType<StoneCrab>> STONE_CRAB = register(
 			"stone_crab",
 			StoneCrab::new,
@@ -34,7 +34,7 @@ public class ModEntityTypes {
 			0.9f, 0.4f, 10,
 			new SpawnEggOptions(0x747474, 0x303b34)
 	);
-	
+
 	public static final RegistryObject<EntityType<FieldMouse>> FIELD_MOUSE = register(
 			"field_mouse",
 			FieldMouse::new,
@@ -42,7 +42,7 @@ public class ModEntityTypes {
 			0.5f, 0.4f, 8,
 			new SpawnEggOptions(0x797363, 0x4e473b)
 	);
-	
+
 	public static final RegistryObject<EntityType<JellyBlob>> JELLY_BLOB = register(
 			"jelly_blob",
 			JellyBlob::new,
@@ -50,11 +50,11 @@ public class ModEntityTypes {
 			JellyBlob.MODEL_SCALE, JellyBlob.MODEL_SCALE, 10,
 			new SpawnEggOptions(0x54d054, 0x1b47ed)
 	);
-	
+
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}
-	
+
 	@SuppressWarnings("SameParameterValue")
 	private static <T extends Mob> RegistryObject<EntityType<T>> register(
 			String name,
@@ -72,7 +72,7 @@ public class ModEntityTypes {
 						.clientTrackingRange(trackingRange)
 						.build(name)
 		);
-		
+
 		if (spawnEggOptions != null) {
 			var spawnEgg = ModItems.ITEMS.register(
 					name + "_spawn_egg",
@@ -83,26 +83,26 @@ public class ModEntityTypes {
 							new Item.Properties()
 					)
 			);
-			
+
 			SPAWN_EGGS.add(spawnEgg);
 		}
-		
+
 		return entityType;
 	}
-	
+
 	@SubscribeEvent
 	public static void addEntityAttributes(EntityAttributeCreationEvent event) {
 		event.put(STONE_CRAB.get(), StoneCrab.createAttributes().build());
 		event.put(FIELD_MOUSE.get(), FieldMouse.createAttributes().build());
 		event.put(JELLY_BLOB.get(), JellyBlob.createAttributes().build());
 	}
-	
+
 	private static class SpawnEggOptions {
-		
+
 		int backgroundColor;
-		
+
 		int highlightColor;
-		
+
 		public SpawnEggOptions(int backgroundColor, int highlightColor) {
 			this.backgroundColor = backgroundColor;
 			this.highlightColor = highlightColor;

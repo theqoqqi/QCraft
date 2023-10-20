@@ -44,25 +44,25 @@ import ru.qoqqi.qcraft.structures.ModStructureTypes;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("q_craft")
 public class QCraft {
-	
+
 	public static final String MOD_ID = "q_craft";
-	
+
 	private static final Logger LOGGER = LogManager.getLogger();
-	
+
 	private static MinecraftServer lastStartedServer;
-	
+
 	public QCraft() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		
+
 		eventBus.addListener(this::setup);
 		eventBus.addListener(this::loadComplete);
 		eventBus.addListener(this::doClientStuff);
 		eventBus.addListener(this::initCreativeTabs);
-		
+
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
-		
+
 		MinecraftForge.EVENT_BUS.register(this);
-		
+
 		ModBlocks.register(eventBus);
 		ModBlockEntityTypes.register(eventBus);
 		ModItems.register(eventBus);
@@ -73,17 +73,17 @@ public class QCraft {
 		ModSoundEvents.register(eventBus);
 		ModMenus.register(eventBus);
 		ModCriteriaTriggers.register();
-		
+
 		GlobalLootModifiers.register(eventBus);
 	}
-	
+
 	private void setup(final FMLCommonSetupEvent event) {
 		LOGGER.info("QCraft - setup");
 		ModPacketHandler.init();
-		
+
 		event.enqueueWork(ModSpawnPlacements::register);
 	}
-	
+
 	private void doClientStuff(final FMLClientSetupEvent event) {
 		LOGGER.info("QCraft - doClientStuff");
 		MenuScreens.register(ModMenus.PUZZLE_BOX_MENU.get(), PuzzleBoxScreen::new);
@@ -93,11 +93,11 @@ public class QCraft {
 		EntityRenderers.register(ModEntityTypes.FIELD_MOUSE.get(), FieldMouseRenderer::new);
 		EntityRenderers.register(ModEntityTypes.JELLY_BLOB.get(), JellyBlobRenderer::new);
 	}
-	
+
 	private void loadComplete(final FMLLoadCompleteEvent event) {
 		LOGGER.info("QCraft - loadComplete");
 	}
-	
+
 	private void initCreativeTabs(final BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			event.accept(ModBlocks.PUZZLE_BOX_EASY);
@@ -111,7 +111,7 @@ public class QCraft {
 			event.accept(ModBlocks.MANGROVE_TEMPLE_JOURNEY_REWARD_BLOCK);
 			event.accept(ModBlocks.PANDORAS_TEMPLE_JOURNEY_REWARD_BLOCK);
 		}
-		
+
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(ModBlocks.OAK_PLATE);
 			event.accept(ModBlocks.BIRCH_PLATE);
@@ -121,7 +121,7 @@ public class QCraft {
 			event.accept(ModBlocks.DARK_OAK_PLATE);
 			event.accept(ModBlocks.MANGROVE_PLATE);
 		}
-		
+
 		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 			event.accept(ModItems.GIFT_BOX_SMALL);
 			event.accept(ModItems.GIFT_BOX_MEDIUM);
@@ -131,18 +131,18 @@ public class QCraft {
 			event.accept(ModItems.POSEIDONS_BOX);
 			event.accept(ModItems.JOURNEY_COMPASS);
 		}
-		
+
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			ModEntityTypes.SPAWN_EGGS.forEach(event::accept);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
 		LOGGER.info("QCraft - onServerStarting");
 		lastStartedServer = event.getServer();
 	}
-	
+
 	@SuppressWarnings("DeprecatedIsStillUsed")
 	@Deprecated
 	public static MinecraftServer getLastStartedServer() {

@@ -15,9 +15,10 @@ import ru.qoqqi.qcraft.entities.models.StoneCrabModel;
 
 @OnlyIn(Dist.CLIENT)
 public class StoneCrabRenderer extends MobRenderer<StoneCrab, StoneCrabModel> {
+
 	private static final ResourceLocation STONE_CRAB_LOCATION =
 			new ResourceLocation(QCraft.MOD_ID, "textures/entity/stone_crab.png");
-	
+
 	public StoneCrabRenderer(EntityRendererProvider.Context context) {
 		super(context, new StoneCrabModel(context.bakeLayer(Layers.STONE_CRAB_LAYER)), 0.25f);
 	}

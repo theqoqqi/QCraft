@@ -8,7 +8,7 @@ import ru.qoqqi.qcraft.items.ModItems;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemEvents {
-	
+
 	@SubscribeEvent
 	public static void modelBake(ModelEvent.BakingCompleted event) {
 		ModItems.addItemModelProperties();

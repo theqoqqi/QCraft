@@ -40,23 +40,23 @@ import ru.qoqqi.qcraft.network.JourneyPlaceVisitedPacket;
 import ru.qoqqi.qcraft.network.ModPacketHandler;
 
 public class JourneyRewardBlock extends BaseEntityBlock {
-	
+
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
-	
+
 	private static final Map<JourneyStage, JourneyRewardBlock> byStages = new HashMap<>();
-	
+
 	private final JourneyStage stage;
-	
+
 	private final LootBox lootBox;
-	
+
 	public JourneyRewardBlock(Properties properties, JourneyStage stage, LootBox lootBox) {
 		super(properties);
 		this.stage = stage;
 		this.lootBox = lootBox;
-		
+
 		byStages.put(stage, this);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	@Nonnull
@@ -64,67 +64,67 @@ public class JourneyRewardBlock extends BaseEntityBlock {
 		if (!(level instanceof ServerLevel serverLevel)) {
 			return InteractionResult.SUCCESS;
 		}
-		
+
 		if (player.isCreative() && player.isSecondaryUseActive()) {
 			JourneyStage nextStage = getNextStage();
 			String message = String.format("Stage index changed to %s", nextStage.name);
 			BlockState blockState = byStages.get(nextStage).defaultBlockState();
-			
+
 			player.sendSystemMessage(Component.literal(message));
 			level.setBlock(pos, blockState, 2);
-			
+
 			return InteractionResult.SUCCESS;
 		}
-		
+
 		JourneyLevelData levelData = JourneyLevelData.getInstance(serverLevel);
 		UUID playerUuid = player.getUUID();
-		
+
 		if (levelData.isVisitedBy(stage, playerUuid)) {
 			return InteractionResult.FAIL;
 		}
-		
+
 		ItemStack itemStack = new ItemStack(asItem());
 		lootBox.openSilently(player, itemStack, pos);
 		JourneyPlaceVisitedPacket packet = new JourneyPlaceVisitedPacket(stage);
-		
+
 		levelData.addVisitor(stage, playerUuid);
 		ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), packet);
-		
+
 		return InteractionResult.SUCCESS;
 	}
-	
+
 	private JourneyStage getNextStage() {
 		JourneyStage nextStage = stage.next();
-		
+
 		if (nextStage == null) {
 			nextStage = JourneyStages.getFirst();
 		}
-		
+
 		return nextStage;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public boolean useShapeForLightOcclusion(@Nonnull BlockState state) {
 		return true;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Nonnull
 	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter levelIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
 		return SHAPE;
 	}
-	
+
 	@NotNull
 	public RenderShape getRenderShape(@NotNull BlockState pState) {
 		return RenderShape.MODEL;
 	}
-	
+
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new JourneyRewardBlockEntity(pos, state);
 	}
-	
+
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {

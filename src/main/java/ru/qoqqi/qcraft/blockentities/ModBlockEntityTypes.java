@@ -14,7 +14,7 @@ import ru.qoqqi.qcraft.QCraft;
 import ru.qoqqi.qcraft.blocks.ModBlocks;
 
 public class ModBlockEntityTypes {
-	
+
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES
 			= DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, QCraft.MOD_ID);
 
@@ -25,13 +25,13 @@ public class ModBlockEntityTypes {
 			ModBlocks.PUZZLE_BOX_NORMAL,
 			ModBlocks.PUZZLE_BOX_HARD
 	);
-	
+
 	public static final RegistryObject<BlockEntityType<LootBoxGeneratorBlockEntity>> LOOT_BOX_GENERATOR = register(
 			"loot_box_generator",
 			LootBoxGeneratorBlockEntity::new,
 			ModBlocks.LOOT_BOX_GENERATOR_BLOCK
 	);
-	
+
 	public static final RegistryObject<BlockEntityType<JourneyRewardBlockEntity>> JOURNEY_REWARD = register(
 			"journey_reward",
 			JourneyRewardBlockEntity::new,
@@ -41,17 +41,17 @@ public class ModBlockEntityTypes {
 			ModBlocks.MANGROVE_TEMPLE_JOURNEY_REWARD_BLOCK,
 			ModBlocks.PANDORAS_TEMPLE_JOURNEY_REWARD_BLOCK
 	);
-	
+
 	@SafeVarargs
 	private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> supplier, RegistryObject<Block>... validBlocks) {
 		return BLOCK_ENTITY_TYPES.register(name, () -> {
 			Block[] blocks = Arrays.stream(validBlocks).map(RegistryObject::get).toArray(Block[]::new);
-			
+
 			//noinspection ConstantConditions
 			return BlockEntityType.Builder.of(supplier, blocks).build(null);
 		});
 	}
-	
+
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITY_TYPES.register(eventBus);
 	}

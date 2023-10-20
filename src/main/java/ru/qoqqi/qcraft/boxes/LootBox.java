@@ -18,11 +18,11 @@ import ru.qoqqi.qcraft.util.WeightedList;
 public class LootBox {
 
 	private final WeightedList<IBoxEntry> entries;
-	
+
 	public LootBox(WeightedList<IBoxEntry> entries) {
 		this.entries = entries;
 	}
-	
+
 	public WeightedList<IBoxEntry> getEntries() {
 		return entries;
 	}
@@ -33,17 +33,17 @@ public class LootBox {
 
 		return result.isSuccessful() ? InteractionResult.CONSUME : InteractionResult.FAIL;
 	}
-	
+
 	@Nonnull
 	public IBoxEntry.UnpackResult openSilently(Player player, BlockPos blockPos) {
 		return openSilently(player, ItemStack.EMPTY, blockPos);
 	}
-	
+
 	@Nonnull
 	public IBoxEntry.UnpackResult openSilently(Player player, ItemStack itemStack, BlockPos blockPos) {
 		return open(player, itemStack, blockPos, false);
 	}
-	
+
 	@Nonnull
 	private IBoxEntry.UnpackResult open(Player player, ItemStack itemStack, BlockPos blockPos, boolean broadcastResult) {
 		Level level = player.level();
@@ -62,7 +62,7 @@ public class LootBox {
 
 		return result;
 	}
-	
+
 	private static void broadcastResult(Player player, MinecraftServer server, ItemStack lootBox, IBoxEntry.UnpackResult result) {
 		if (result.isSuccessful()) {
 			for (Component chatMessage : result.getChatMessages()) {
@@ -73,7 +73,7 @@ public class LootBox {
 			sendToAllPlayers(server, player, chatMessage);
 		}
 	}
-	
+
 	private static Component getFailureChatMessage(Player player, ItemStack lootBox) {
 		return Component.translatable(
 				"lootBox.failure",
@@ -81,7 +81,7 @@ public class LootBox {
 				lootBox.getDisplayName()
 		);
 	}
-	
+
 	private static void sendToAllPlayers(MinecraftServer server, Player player, Component chatMessage) {
 		server.getPlayerList().broadcastSystemToAllExceptTeam(player, chatMessage);
 	}

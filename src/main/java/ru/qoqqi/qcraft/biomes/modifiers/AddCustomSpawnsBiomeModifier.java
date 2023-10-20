@@ -23,7 +23,7 @@ public record AddCustomSpawnsBiomeModifier(
 		HolderSet<Biome> biomes,
 		List<MobSpawnSettings.SpawnerData> spawners
 ) implements BiomeModifier {
-	
+
 	private static final Codec<List<MobSpawnSettings.SpawnerData>> SPAWNER_CODEC =
 			new ExtraCodecs.EitherCodec<>(
 					MobSpawnSettings.SpawnerData.CODEC.listOf(),
@@ -34,7 +34,7 @@ public record AddCustomSpawnsBiomeModifier(
 							? Either.right(list.get(0))
 							: Either.left(list)
 			);
-	
+
 	public static final Codec<AddCustomSpawnsBiomeModifier> CODEC = RecordCodecBuilder.create(builder -> builder.group(
 			SpawnerType.CODEC.fieldOf("spawner_type")
 					.forGetter(AddCustomSpawnsBiomeModifier::spawnerType),
@@ -43,14 +43,14 @@ public record AddCustomSpawnsBiomeModifier(
 			SPAWNER_CODEC.fieldOf("spawners")
 					.forGetter(AddCustomSpawnsBiomeModifier::spawners)
 	).apply(builder, AddCustomSpawnsBiomeModifier::new));
-	
+
 	@Override
 	public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
 		if (phase == Phase.ADD && this.biomes.contains(biome)) {
 			CustomNaturalSpawner.addSpawns(spawnerType, biome, spawners);
 		}
 	}
-	
+
 	@Override
 	public Codec<? extends BiomeModifier> codec() {
 		return CODEC;

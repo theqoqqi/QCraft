@@ -16,62 +16,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UndergroundBlockPosSupplier extends SpawnPosSupplier {
-	
+
 	private static final Logger LOGGER = LogUtils.getLogger();
-	
+
 	private UndergroundBlockPosSupplier(ServerLevel level, EntityType<?> entityType, ChunkPos chunkPos) {
 		super(level, entityType, chunkPos);
 	}
-	
+
 	@Override
 	protected BlockPos prepareBlockPos(int x, int z) {
 		var positions = getNonCollidingPositions(level, entityType, x, z);
-		
+
 		if (positions.isEmpty()) {
 			return null;
 		}
-		
+
 		var randomIndex = random.nextInt(positions.size());
 		var blockPos = positions.get(randomIndex);
-		
+
 		return fixForPathfinding(level, entityType, blockPos);
 	}
-	
+
 	protected static List<BlockPos> getNonCollidingPositions(LevelReader level, EntityType<?> entityType, int x, int z) {
 		var minBuildHeight = level.getMinBuildHeight();
 		var heightmapType = SpawnPlacements.getHeightmapType(entityType);
 		var blockPos = getTopBlockPos(level, heightmapType, x, z);
 		var positions = new ArrayList<BlockPos>();
-		
+
 		do {
 			blockPos.move(Direction.DOWN);
 		} while (!isSolid(level, blockPos) && blockPos.getY() > minBuildHeight);
-		
+
 		blockPos.move(Direction.DOWN);
-		
+
 		while (blockPos.getY() > minBuildHeight) {
 			do {
 				blockPos.move(Direction.DOWN);
 			} while (isSolid(level, blockPos));
-			
+
 			do {
 				blockPos.move(Direction.DOWN);
 			} while (!isSolid(level, blockPos) && blockPos.getY() > minBuildHeight);
-			
+
 			if (blockPos.getY() > minBuildHeight) {
 				positions.add(blockPos.above().immutable());
 			}
 		}
-		
+
 		return positions;
 	}
-	
+
 	private static boolean isSolid(LevelReader level, BlockPos blockPos) {
 		var blockState = level.getBlockState(blockPos);
-		
+
 		return !blockState.isAir() && blockState.getFluidState().isEmpty();
 	}
-	
+
 	public static UndergroundBlockPosSupplier inChunk(ServerLevel level, EntityType<?> entityType, ChunkPos chunkPos) {
 		return new UndergroundBlockPosSupplier(level, entityType, chunkPos);
 	}

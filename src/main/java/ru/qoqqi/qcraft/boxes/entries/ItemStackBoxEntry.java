@@ -14,13 +14,13 @@ import ru.qoqqi.qcraft.boxes.ItemUtils;
 import ru.qoqqi.qcraft.boxes.entries.util.IBoxEntry;
 
 public class ItemStackBoxEntry implements IBoxEntry {
-	
+
 	protected final Supplier<ItemStack> itemStackSupplier;
-	
+
 	public ItemStackBoxEntry(Supplier<ItemStack> itemStackSupplier) {
 		this.itemStackSupplier = itemStackSupplier;
 	}
-	
+
 	@Nonnull
 	@Override
 	public UnpackResult unpack(Level level, Player player, MinecraftServer server, BlockPos blockPos, ItemStack lootBox) {

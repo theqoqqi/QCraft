@@ -39,23 +39,23 @@ import org.jetbrains.annotations.NotNull;
 import ru.qoqqi.qcraft.ModTags;
 
 public class StoneCrab extends Animal {
-	
+
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.IRON_NUGGET);
-	
+
 	private static final int[] animateJawsPossibleRepeatTimes = {1, 1, 1, 1, 1, 1, 2, 2, 2, 3};
-	
+
 	private float animateJawsAt;
-	
+
 	private int animateJawsTimes;
-	
+
 	private float jawsAnimationTicks;
-	
+
 	public StoneCrab(EntityType<? extends StoneCrab> entityType, Level level) {
 		super(entityType, level);
-		
+
 		scheduleJawsAnimation(0f);
 	}
-	
+
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new PanicGoal(this, 2.0));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
@@ -65,7 +65,7 @@ public class StoneCrab extends Animal {
 		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 	}
-	
+
 	public static <T extends Animal> boolean checkStoneCrabSpawnRules(
 			EntityType<T> entityType,
 			ServerLevelAccessor levelAccessor,
@@ -74,14 +74,14 @@ public class StoneCrab extends Animal {
 			RandomSource random
 	) {
 		var spawnY = blockPos.getY();
-		
+
 		if (spawnType != MobSpawnType.CHUNK_GENERATION) {
 			return spawnY < levelAccessor.getLevel().getSeaLevel();
 		}
-		
+
 		return checkOvergroundSpawnRules(entityType, levelAccessor, spawnType, blockPos, random);
 	}
-	
+
 	private static <T extends Animal> boolean checkOvergroundSpawnRules(
 			@SuppressWarnings("unused") EntityType<T> entityType,
 			ServerLevelAccessor levelAccessor,
@@ -91,22 +91,22 @@ public class StoneCrab extends Animal {
 	) {
 		var blockStateBelow = levelAccessor.getBlockState(blockPos.below());
 		var biome = levelAccessor.getBiome(blockPos);
-		
+
 		if (blockStateBelow.is(Tags.Blocks.STONE)) {
 			return true;
 		}
-		
+
 		if (biome.is(BiomeTags.IS_BEACH)) {
 			return random.nextFloat() < 0.5f;
 		}
-		
+
 		if (blockStateBelow.is(BlockTags.ANIMALS_SPAWNABLE_ON)) {
 			return random.nextFloat() < 0.1f;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10.0)
@@ -114,7 +114,7 @@ public class StoneCrab extends Animal {
 				.add(Attributes.ARMOR, 20.0)
 				.add(Attributes.ARMOR_TOUGHNESS, 4.0);
 	}
-	
+
 	@Override
 	public boolean hurt(@NotNull DamageSource source, float amount) {
 		if (!source.is(ModTags.DamageTypes.AVOIDS_THORNS)) {
@@ -124,84 +124,84 @@ public class StoneCrab extends Animal {
 				}
 			}
 		}
-		
+
 		return super.hurt(source, amount);
 	}
-	
+
 	public float getJawsRotationProgress(float ageInTicks) {
 		var currentDuration = ageInTicks - animateJawsAt;
 		var progress = currentDuration / jawsAnimationTicks;
 		var inProgress = Math.min(1, progress * 2);
 		var outProgress = Math.min(1, (1 - progress) * 2);
-		
+
 		return progress < 0.5f ? inProgress : outProgress;
 	}
-	
+
 	public boolean updateJawsAnimationState(float ageInTicks) {
 		var animateJawsStarted = animateJawsAt <= ageInTicks;
 		var animateJawsFinished = animateJawsAt + jawsAnimationTicks <= ageInTicks;
 		var isAnimatingJaws = animateJawsStarted && !animateJawsFinished;
-		
+
 		if (animateJawsFinished) {
 			scheduleJawsAnimation(ageInTicks);
 		}
-		
+
 		return isAnimatingJaws;
 	}
-	
+
 	private void scheduleJawsAnimation(float ageInTicks) {
 		if (--animateJawsTimes > 0) {
 			animateJawsAt = ageInTicks;
 			return;
 		}
-		
+
 		animateJawsTimes = getRandomValue(animateJawsPossibleRepeatTimes);
 		animateJawsAt = ageInTicks + getRandomValue(50f, 200f);
 		jawsAnimationTicks = getRandomValue(8f, 16f);
 	}
-	
+
 	private float getRandomValue(float min, float max) {
 		return (float) Math.random() * (max - min) + min;
 	}
-	
+
 	@SuppressWarnings("SameParameterValue")
 	private int getRandomValue(int[] values) {
 		return values[random.nextInt(values.length)];
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public boolean canBreatheUnderwater() {
 		return true;
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.DRIPSTONE_BLOCK_FALL;
 	}
-	
+
 	protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
 		return SoundEvents.DRIPSTONE_BLOCK_HIT;
 	}
-	
+
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.DRIPSTONE_BLOCK_BREAK;
 	}
-	
+
 	protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {
 		this.playSound(SoundEvents.DRIPSTONE_BLOCK_STEP, 0.15F, 1.0F);
 	}
-	
+
 	protected float getSoundVolume() {
 		return 0.5F;
 	}
-	
+
 	public StoneCrab getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
 		return ModEntityTypes.STONE_CRAB.get().create(level);
 	}
-	
+
 	public boolean isFood(@NotNull ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
 	}
-	
+
 	protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions size) {
 		return size.height * 0.8f;
 	}

@@ -7,7 +7,7 @@ import net.minecraft.world.entity.ai.goal.target.NonTameRandomTargetGoal;
 import java.util.function.Predicate;
 
 public class CustomNonTameRandomTargetGoal<T extends LivingEntity> extends NonTameRandomTargetGoal<T> {
-	
+
 	public CustomNonTameRandomTargetGoal(
 			TamableAnimal tamableMob,
 			Class<T> targetType,
@@ -16,7 +16,7 @@ public class CustomNonTameRandomTargetGoal<T extends LivingEntity> extends NonTa
 	) {
 		super(tamableMob, targetType, mustSee, targetPredicate);
 	}
-	
+
 	public Class<T> getTargetType() {
 		return this.targetType;
 	}

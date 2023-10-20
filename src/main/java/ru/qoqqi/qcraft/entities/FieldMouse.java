@@ -64,49 +64,49 @@ import ru.qoqqi.qcraft.entities.ai.CustomRemoveBlockGoal;
 import ru.qoqqi.qcraft.util.IntRange;
 
 public class FieldMouse extends Animal {
-	
+
 	public static final int TYPE_PLAINS = 0;
-	
+
 	public static final int TYPE_FOREST = 1;
-	
+
 	public static final int TYPE_SAVANNA = 2;
-	
+
 	public static final int TYPE_DESERT = 3;
-	
+
 	public static final int TYPE_SWAMP = 4;
-	
+
 	public static final int TYPE_SNOWY = 5;
-	
+
 	private static final EntityDataAccessor<Integer> DATA_TYPE_ID =
 			SynchedEntityData.defineId(FieldMouse.class, EntityDataSerializers.INT);
-	
+
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(Tags.Items.SEEDS);
-	
+
 	private static final Set<TagKey<Item>> ALLOWED_ITEMS = Set.of(Tags.Items.SEEDS);
-	
+
 	private static final Predicate<BlockState> blocksToDestroy =
 			blockState -> blockState.is(Blocks.BEETROOTS)
 					|| blockState.is(Blocks.MELON_STEM)
 					|| blockState.is(Blocks.PUMPKIN_STEM)
 					|| blockState.is(Blocks.WHEAT);
-	
+
 	private static final Predicate<BlockState> grassBlocksToDestroy =
 			blockState -> blockState.is(Blocks.GRASS);
-	
+
 	private static final Predicate<BlockState> desertBlocksToDestroy =
 			blockState -> blockState.is(Blocks.DEAD_BUSH);
-	
+
 	private static final IntRange HUNGER_COOLDOWN_RANGE = IntRange.of(1200, 2400);
-	
+
 	private int hungerCooldown;
-	
+
 	protected FieldMouse(EntityType<? extends Animal> entityType, Level level) {
 		super(entityType, level);
-		
+
 		setCanPickUpLoot(true);
 		scheduleNextHunger();
 	}
-	
+
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -126,12 +126,12 @@ public class FieldMouse extends Animal {
 		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0f));
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 	}
-	
+
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(DATA_TYPE_ID, 0);
 	}
-	
+
 	@Override
 	public SpawnGroupData finalizeSpawn(
 			@NotNull ServerLevelAccessor levelAccessor,
@@ -141,157 +141,157 @@ public class FieldMouse extends Animal {
 			@Nullable CompoundTag tag
 	) {
 		var mouseTypeId = getMouseTypeForBiome(levelAccessor.getBiome(blockPosition()));
-		
+
 		setMouseType(mouseTypeId);
-		
+
 		return super.finalizeSpawn(levelAccessor, difficulty, mobSpawnType, spawnData, tag);
 	}
-	
+
 	private int getMouseTypeForBiome(Holder<Biome> biome) {
 		if (biome.is(Tags.Biomes.IS_PLAINS)) {
 			return TYPE_PLAINS;
 		}
-		
+
 		if (biome.is(BiomeTags.IS_FOREST)) {
 			return TYPE_FOREST;
 		}
-		
+
 		if (biome.is(BiomeTags.IS_SAVANNA)) {
 			return TYPE_SAVANNA;
 		}
-		
+
 		if (biome.is(Tags.Biomes.IS_DESERT)) {
 			return TYPE_DESERT;
 		}
-		
+
 		if (biome.is(Tags.Biomes.IS_SWAMP)) {
 			return TYPE_SWAMP;
 		}
-		
+
 		if (biome.is(Tags.Biomes.IS_SNOWY)) {
 			return TYPE_SNOWY;
 		}
-		
+
 		return TYPE_PLAINS;
 	}
-	
+
 	@Override
 	public void tick() {
 		super.tick();
-		
+
 		hungerCooldown--;
 	}
-	
+
 	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	private boolean isHungry() {
 		return hungerCooldown <= 0;
 	}
-	
+
 	private void scheduleNextHunger() {
 		hungerCooldown = HUNGER_COOLDOWN_RANGE.getRandomValue(random);
 	}
-	
+
 	@Override
 	public boolean wantsToPickUp(@NotNull ItemStack itemStack) {
 		return super.wantsToPickUp(itemStack)
 				&& isCollectableItem(itemStack);
 	}
-	
+
 	@Override
 	protected void pickUpItem(@NotNull ItemEntity itemEntity) {
 		ItemStack itemStack = itemEntity.getItem();
-		
+
 		onItemPickup(itemEntity);
 		take(itemEntity, itemStack.getCount());
-		
+
 		itemEntity.discard();
-		
+
 		scheduleNextHunger();
 	}
-	
+
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.BAT_AMBIENT;
 	}
-	
+
 	protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
 		return SoundEvents.BAT_HURT;
 	}
-	
+
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.BAT_DEATH;
 	}
-	
+
 	protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {
 		this.playSound(SoundEvents.AZALEA_STEP, 0.05F, 1.0F);
 	}
-	
+
 	protected float getSoundVolume() {
 		return 0.5F;
 	}
-	
+
 	public FieldMouse getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
 		var mouse = ModEntityTypes.FIELD_MOUSE.get().create(level);
-		
+
 		if (mouse != null) {
 			int mouseTypeId = getMouseType();
-			
+
 			if (otherParent instanceof FieldMouse otherMouse && random.nextBoolean()) {
 				mouseTypeId = otherMouse.getMouseType();
 			}
-			
+
 			mouse.setMouseType(mouseTypeId);
 		}
-		
+
 		return mouse;
 	}
-	
+
 	public boolean isFood(@NotNull ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
 	}
-	
+
 	protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions size) {
 		return 0.125f;
 	}
-	
+
 	public int getMouseType() {
 		return this.entityData.get(DATA_TYPE_ID);
 	}
-	
+
 	private void setMouseType(int mouseTypeId) {
 		this.entityData.set(DATA_TYPE_ID, mouseTypeId);
 	}
-	
+
 	@Override
 	public void readAdditionalSaveData(@NotNull CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		
+
 		if (tag.contains("HungerCooldown", Tag.TAG_INT)) {
 			hungerCooldown = tag.getInt("HungerCooldown");
 		}
-		
+
 		if (tag.contains("MouseType", Tag.TAG_INT)) {
 			setMouseType(tag.getInt("MouseType"));
 		}
 	}
-	
+
 	@Override
 	public void addAdditionalSaveData(@NotNull CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		
+
 		tag.putInt("HungerCooldown", hungerCooldown);
 		tag.putInt("MouseType", getMouseType());
 	}
-	
+
 	private static boolean isCollectableItem(ItemEntity itemEntity) {
 		return !itemEntity.hasPickUpDelay()
 				&& itemEntity.isAlive()
 				&& ALLOWED_ITEMS.stream().anyMatch(itemEntity.getItem()::is);
 	}
-	
+
 	private static boolean isCollectableItem(ItemStack itemStack) {
 		return ALLOWED_ITEMS.stream().anyMatch(itemStack::is);
 	}
-	
+
 	public static boolean checkFieldMouseSpawnRules(
 			@SuppressWarnings("unused") EntityType<FieldMouse> entityType,
 			ServerLevelAccessor levelAccessor,
@@ -299,134 +299,134 @@ public class FieldMouse extends Animal {
 			BlockPos blockPos,
 			@SuppressWarnings("unused") RandomSource randomSource
 	) {
-		var canSpawnOn = new Block[] { Blocks.GRASS_BLOCK, Blocks.SAND };
+		var canSpawnOn = new Block[] {Blocks.GRASS_BLOCK, Blocks.SAND};
 		var blockState = levelAccessor.getBlockState(blockPos.below());
-		
+
 		return Arrays.stream(canSpawnOn).anyMatch(blockState::is)
 				&& isBrightEnoughToSpawn(levelAccessor, blockPos);
 	}
-	
+
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 4.0)
 				.add(Attributes.MOVEMENT_SPEED, 0.3f);
 	}
-	
+
 	private static class MouseRemoveBlockGoal extends CustomRemoveBlockGoal {
-		
+
 		private final FieldMouse mouse;
-		
+
 		private final boolean satisfiesHunger;
-		
+
 		public MouseRemoveBlockGoal(FieldMouse mouse, Predicate<BlockState> blockPredicate, int searchDistance) {
 			this(mouse, blockPredicate, searchDistance, false);
 		}
-		
+
 		public MouseRemoveBlockGoal(FieldMouse mouse, Predicate<BlockState> blockPredicate, int searchDistance, boolean satisfiesHunger) {
 			super(blockPredicate, mouse, 1.0, searchDistance, true);
 			this.mouse = mouse;
 			this.satisfiesHunger = satisfiesHunger;
-			
+
 			setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
 		}
-		
+
 		@Override
 		public boolean canUse() {
 			if (!mouse.isHungry()) {
 				return false;
 			}
-			
+
 			return super.canUse();
 		}
-		
+
 		@Override
 		public boolean canContinueToUse() {
 			return mouse.isHungry() && super.canContinueToUse();
 		}
-		
+
 		@Override
 		protected void destroyBlock(Level level, BlockPos targetBlockPos) {
 			super.destroyBlock(level, targetBlockPos);
-			
+
 			if (satisfiesHunger) {
 				mouse.scheduleNextHunger();
 			}
 		}
-		
+
 		@NotNull
 		@Override
 		protected BlockPos getMoveToTarget() {
 			return blockPos;
 		}
-		
+
 		@Override
 		public double acceptedDistance() {
 			return 2f;
 		}
 	}
-	
+
 	private static class MouseCollectSeedsGoal extends Goal {
-		
+
 		private final FieldMouse mouse;
-		
+
 		private final Predicate<ItemEntity> allowedItemsPredicate;
-		
+
 		public MouseCollectSeedsGoal(FieldMouse mouse, Predicate<ItemEntity> allowedItemsPredicate) {
 			this.mouse = mouse;
 			this.allowedItemsPredicate = allowedItemsPredicate;
-			
+
 			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
-		
+
 		public boolean canUse() {
 			if (!mouse.isHungry()) {
 				return false;
 			}
-			
+
 			if (mouse.getTarget() != null || mouse.getLastHurtByMob() != null) {
 				return false;
 			}
-			
+
 			if (mouse.getRandom().nextInt(reducedTickDelay(10)) != 0) {
 				return false;
 			}
-			
+
 			var collectableSeeds = getCollectableSeeds();
-			
+
 			return !collectableSeeds.isEmpty();
 		}
-		
+
 		@Override
 		public boolean canContinueToUse() {
 			return mouse.isHungry() && super.canContinueToUse();
 		}
-		
+
 		public void start() {
 			var collectableSeeds = getCollectableSeeds();
-			
+
 			if (!collectableSeeds.isEmpty()) {
 				moveTo(collectableSeeds.get(0));
 			}
 		}
-		
+
 		public void tick() {
 			var collectableSeeds = getCollectableSeeds();
-			
+
 			if (!collectableSeeds.isEmpty()) {
 				moveTo(collectableSeeds.get(0));
 			}
 		}
-		
+
 		private void moveTo(ItemEntity collectableSeed) {
 			var navigation = mouse.getNavigation();
-			
+
 			navigation.moveTo(collectableSeed, 1.2f);
 		}
-		
+
 		@NotNull
 		private List<ItemEntity> getCollectableSeeds() {
 			var searchArea = mouse.getBoundingBox().inflate(8.0D, 8.0D, 8.0D);
-			
+
 			return mouse.level().getEntitiesOfClass(ItemEntity.class, searchArea, allowedItemsPredicate);
 		}
 	}

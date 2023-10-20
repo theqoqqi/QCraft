@@ -17,14 +17,14 @@ import ru.qoqqi.qcraft.advancements.ModCriteriaTriggers;
 import ru.qoqqi.qcraft.boxes.LootBox;
 
 public class LootBoxBlock extends Block {
-	
+
 	private final LootBox lootBox;
-	
+
 	public LootBoxBlock(Properties properties, LootBox lootBox) {
 		super(properties);
 		this.lootBox = lootBox;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	@Nonnull
@@ -33,13 +33,13 @@ public class LootBoxBlock extends Block {
 			return InteractionResult.SUCCESS;
 		} else {
 			ItemStack itemStack = new ItemStack(asItem());
-			
+
 			level.destroyBlock(pos, false);
-			
+
 			InteractionResult result = this.lootBox.openWithActionResult(player, itemStack, pos);
-			
+
 			ModCriteriaTriggers.OPEN_PANDORAS_BOX.trigger((ServerPlayer) player);
-			
+
 			return result;
 		}
 	}
