@@ -139,7 +139,7 @@ public class JellyBlobModel extends ListModel<JellyBlob> {
 			var blowUpModelScale = JellyBlob.BLOWING_UP_MODEL_SCALE;
 			var blowUpLocalEyesScale = 0.5f;
 			var blowUpLocalMouthScale = 0.5f;
-			var blowUpProgress = entity.getBlowUpProgress(ageInTicks);
+			var blowUpProgress = entity.getBlowUpProgress();
 			var easedProgress = easeProgress(blowUpProgress);
 			var invertedProgress = 1 - easedProgress;
 
