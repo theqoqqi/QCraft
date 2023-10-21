@@ -1,0 +1,51 @@
+{
+  "name": "q_craft:journey/pandoras_temple/corridors",
+  "fallback": "q_craft:journey/pandoras_temple/dead_end",
+  "elements": [
+    {
+      "weight": 15,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/pandoras_temple/corridors/straight_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/pandoras_temple/corridors/corner_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/pandoras_temple/corridors/fork_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/pandoras_temple/corridors/crossing_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/pandoras_temple/rooms/room_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

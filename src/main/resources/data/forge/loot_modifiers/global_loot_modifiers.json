@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "entries": [
+    "q_craft:vanilla/abandoned_mineshaft",
+    "q_craft:vanilla/bastion_bridge",
+    "q_craft:vanilla/bastion_other",
+    "q_craft:vanilla/bastion_treasure",
+    "q_craft:vanilla/buried_treasure",
+    "q_craft:vanilla/desert_pyramid",
+    "q_craft:vanilla/end_city_treasure",
+    "q_craft:vanilla/nether_bridge",
+    "q_craft:vanilla/simple_dungeon",
+    "q_craft:vanilla/spawn_bonus_chest",
+    "q_craft:vanilla/village_house",
+    "q_craft:q_structs/all"
+  ]
+}

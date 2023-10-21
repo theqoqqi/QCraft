@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "q_craft:block/pandoras_box/top",
+    "north": "q_craft:block/pandoras_box/front",
+    "south": "q_craft:block/pandoras_box/front",
+    "east": "q_craft:block/pandoras_box/side",
+    "west": "q_craft:block/pandoras_box/side",
+    "up": "q_craft:block/pandoras_box/top",
+    "down": "q_craft:block/pandoras_box/top"
+  }
+}

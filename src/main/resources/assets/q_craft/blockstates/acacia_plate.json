@@ -1,0 +1,96 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "covering": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/post"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/side"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/side_alt"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/noside"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/noside_alt"
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "covering": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/noside",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "covering": "true"
+      },
+      "apply": {
+        "model": "q_craft:block/plates/acacia/covering"
+      }
+    }
+  ]
+}
