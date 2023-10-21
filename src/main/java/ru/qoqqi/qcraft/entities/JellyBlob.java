@@ -90,7 +90,7 @@ public class JellyBlob extends Mob {
 	private static final EntityDataAccessor<Integer> DATA_FOOD_LEFT_TO_BLOW_UP_ID =
 			SynchedEntityData.defineId(JellyBlob.class, EntityDataSerializers.INT);
 
-	private static final EntityDataAccessor<Integer> DATA_FOOD_GAINED_AT_TICK_ID =
+	private static final EntityDataAccessor<Integer> DATA_TICKS_ELAPSED_AFTER_FOOD_GAINED_ID =
 			SynchedEntityData.defineId(JellyBlob.class, EntityDataSerializers.INT);
 
 	private UUID lastFoodGivenBy;
@@ -109,7 +109,7 @@ public class JellyBlob extends Mob {
 		super.defineSynchedData();
 		this.entityData.define(DATA_TYPE_ID, "");
 		this.entityData.define(DATA_FOOD_LEFT_TO_BLOW_UP_ID, 0);
-		this.entityData.define(DATA_FOOD_GAINED_AT_TICK_ID, 0);
+		this.entityData.define(DATA_TICKS_ELAPSED_AFTER_FOOD_GAINED_ID, 0);
 	}
 
 	@Override
@@ -124,8 +124,8 @@ public class JellyBlob extends Mob {
 			setFoodLeftToBlowUp(tag.getInt("FoodLeftToBlowUp"));
 		}
 
-		if (tag.contains("TicksElapsedAfterFoodGained", Tag.TAG_INT)) {
-			setFoodGainedAtTick(tickCount - tag.getInt("TicksElapsedAfterFoodGained"));
+		if (tag.contains("TicksSinceFoodGained", Tag.TAG_INT)) {
+			setTicksSinceFoodGained(tag.getInt("TicksSinceFoodGained"));
 		}
 
 		if (tag.hasUUID("LastFoodGivenBy")) {
@@ -141,7 +141,7 @@ public class JellyBlob extends Mob {
 		tag.putInt("FoodLeftToBlowUp", getFoodLeftToBlowUp());
 
 		if (isFoodGained()) {
-			tag.putInt("TicksElapsedAfterFoodGained", tickCount - getFoodGainedAtTick());
+			tag.putInt("TicksSinceFoodGained", getTicksSinceFoodGained());
 		}
 
 		if (getLastFoodGivenBy() != null) {
@@ -152,6 +152,10 @@ public class JellyBlob extends Mob {
 	@Override
 	public void tick() {
 		super.tick();
+
+		if (isFoodGained()) {
+			setTicksSinceFoodGained(getTicksSinceFoodGained() + 1);
+		}
 
 		if (isAlive() && readyToBlowUp()) {
 			blowUp();
@@ -243,7 +247,7 @@ public class JellyBlob extends Mob {
 		}
 
 		if (newFoodLeftToBlowUp <= 0) {
-			setFoodGainedAtTick(tickCount);
+			setTicksSinceFoodGained(0);
 			playSound(ModSoundEvents.JELLY_BLOB_INFLATE.get());
 		}
 	}
@@ -430,23 +434,23 @@ public class JellyBlob extends Mob {
 	}
 
 	public boolean readyToBlowUp() {
-		var foodGainedAtTick = getFoodGainedAtTick();
+		var ticksSinceFoodGained = getTicksSinceFoodGained();
 
-		if (foodGainedAtTick == 0) {
+		if (ticksSinceFoodGained == 0) {
 			return false;
 		}
 
-		return tickCount >= foodGainedAtTick + BLOW_UP_DURATION_IN_TICKS;
+		return ticksSinceFoodGained >= BLOW_UP_DURATION_IN_TICKS;
 	}
 
-	public float getBlowUpProgress(float ageInTicks) {
-		var foodGainedAtTick = getFoodGainedAtTick();
+	public float getBlowUpProgress() {
+		var ticksSinceFoodGained = getTicksSinceFoodGained();
 
-		if (foodGainedAtTick == 0) {
+		if (ticksSinceFoodGained == 0) {
 			return 0;
 		}
 
-		var progress = (ageInTicks - foodGainedAtTick) / BLOW_UP_DURATION_IN_TICKS;
+		var progress = ((float) ticksSinceFoodGained) / BLOW_UP_DURATION_IN_TICKS;
 
 		return Math.min(progress, 1f);
 	}
@@ -484,12 +488,12 @@ public class JellyBlob extends Mob {
 		this.entityData.set(DATA_FOOD_LEFT_TO_BLOW_UP_ID, foodLeftToBlowUp);
 	}
 
-	public int getFoodGainedAtTick() {
-		return this.entityData.get(DATA_FOOD_GAINED_AT_TICK_ID);
+	public int getTicksSinceFoodGained() {
+		return this.entityData.get(DATA_TICKS_ELAPSED_AFTER_FOOD_GAINED_ID);
 	}
 
-	private void setFoodGainedAtTick(int foodGainedAtTick) {
-		this.entityData.set(DATA_FOOD_GAINED_AT_TICK_ID, foodGainedAtTick);
+	private void setTicksSinceFoodGained(int ticksSinceFoodGained) {
+		this.entityData.set(DATA_TICKS_ELAPSED_AFTER_FOOD_GAINED_ID, ticksSinceFoodGained);
 	}
 
 	public UUID getLastFoodGivenBy() {
@@ -789,7 +793,7 @@ public class JellyBlob extends Mob {
 							hue = (tickCount / ticksPerCycle) % 1;
 
 							if (jellyBlob.isFoodGained()) {
-								var blowUpProgress = jellyBlob.getBlowUpProgress(tickCount);
+								var blowUpProgress = jellyBlob.getBlowUpProgress();
 
 								saturation = 1f - blowUpProgress * 0.8f;
 							}
