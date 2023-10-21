@@ -2,7 +2,7 @@ package ru.qoqqi.qcraft.network;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 
 import java.util.function.Supplier;
 
@@ -33,12 +33,12 @@ public class JourneyPlacePositionPacket {
 
 	public static class Handler {
 
-		public static void onMessage(JourneyPlacePositionPacket packet, Supplier<NetworkEvent.Context> ctx) {
-			ctx.get().enqueueWork(() -> {
+		public static void onMessage(JourneyPlacePositionPacket packet, CustomPayloadEvent.Context ctx) {
+			ctx.enqueueWork(() -> {
 				JourneyLevelData.Client.setPlacePosition(packet.stage, packet.position);
 			});
 
-			ctx.get().setPacketHandled(true);
+			ctx.setPacketHandled(true);
 		}
 	}
 }

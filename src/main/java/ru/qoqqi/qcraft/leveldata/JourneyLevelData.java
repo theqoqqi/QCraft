@@ -149,11 +149,13 @@ public class JourneyLevelData extends SavedData {
 	}
 
 	public static JourneyLevelData getInstance(ServerLevel level) {
-		return level.getDataStorage().computeIfAbsent(
+		var factory = new Factory<>(
 				JourneyLevelData::new,
 				JourneyLevelData::new,
-				NAME
+				DummyDataFixTypeHolder.VALUE
 		);
+
+		return level.getDataStorage().computeIfAbsent(factory, NAME);
 	}
 
 	public static void setLoadingInstance(ServerLevel level) {

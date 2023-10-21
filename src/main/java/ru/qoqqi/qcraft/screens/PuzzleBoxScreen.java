@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,12 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 	private static final int SOLVE_BUTTON_Y = 157;
 
 	private static final ResourceLocation PUZZLE_BOX_TEXTURE = new ResourceLocation(QCraft.MOD_ID, "textures/gui/container/puzzle_box.png");
+
+	private static final ResourceLocation BUTTON_SPRITE = new ResourceLocation(QCraft.MOD_ID, "container/puzzle_box/button");
+
+	private static final ResourceLocation BUTTON_HIGHLIGHTED_SPRITE = new ResourceLocation(QCraft.MOD_ID, "container/puzzle_box/button_highlighted");
+
+	private static final WidgetSprites BUTTON_SPRITES = new WidgetSprites(BUTTON_SPRITE, BUTTON_HIGHLIGHTED_SPRITE);
 
 	private static final Component craftingTitle = Component.translatable("screen.puzzleBox.crafting");
 
@@ -65,11 +72,8 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 		int y = topPos + SOLVE_BUTTON_Y;
 		int width = 24;
 		int height = 20;
-		int textureX = 0;
-		int textureY = 194;
-		int hoverOffsetY = 22;
 
-		addRenderableWidget(new ImageButton(x, y, width, height, textureX, textureY, hoverOffsetY, PUZZLE_BOX_TEXTURE, (button) -> {
+		addRenderableWidget(new ImageButton(x, y, width, height, BUTTON_SPRITES, (button) -> {
 			if (minecraft == null || minecraft.player == null) {
 				return;
 			}
@@ -89,7 +93,7 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 
 	@Override
 	public void render(@Nonnull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
+		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
@@ -116,8 +120,8 @@ public class PuzzleBoxScreen extends AbstractContainerScreen<PuzzleBoxMenu> {
 	protected void renderLabels(@Nonnull GuiGraphics guiGraphics, int x, int y) {
 		int textColor = 4210752;
 
-		guiGraphics.drawString(font, craftingTitle, CRAFTING_TITLE_X, CRAFTING_TITLE_Y, textColor);
-		guiGraphics.drawString(font, ingredientsTitle, INGREDIENTS_TITLE_X, INGREDIENTS_TITLE_Y, textColor);
-		guiGraphics.drawString(font, solutionTitle, SOLUTION_TITLE_X, SOLUTION_TITLE_Y, textColor);
+		guiGraphics.drawString(font, craftingTitle, CRAFTING_TITLE_X, CRAFTING_TITLE_Y, textColor, false);
+		guiGraphics.drawString(font, ingredientsTitle, INGREDIENTS_TITLE_X, INGREDIENTS_TITLE_Y, textColor, false);
+		guiGraphics.drawString(font, solutionTitle, SOLUTION_TITLE_X, SOLUTION_TITLE_Y, textColor, false);
 	}
 }

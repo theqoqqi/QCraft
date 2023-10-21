@@ -6,30 +6,21 @@ import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.SerializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
+import java.util.Optional;
 
-import ru.qoqqi.qcraft.QCraft;
+import javax.annotation.Nonnull;
 
 public class LootBoxTrigger extends SimpleCriterionTrigger<LootBoxTrigger.Instance> {
 
-	private static final ResourceLocation ID = new ResourceLocation(QCraft.MOD_ID, "open_loot_box");
-
-	@Nonnull
-	public ResourceLocation getId() {
-		return ID;
-	}
-
 	@Override
 	@NotNull
-	protected Instance createInstance(JsonObject json, @NotNull ContextAwarePredicate entityPredicate, @NotNull DeserializationContext conditionsParser) {
+	public Instance createInstance(@Nonnull JsonObject json, @Nonnull Optional<ContextAwarePredicate> entityPredicate, @Nonnull DeserializationContext conditionsParser) {
 		return new Instance(entityPredicate, ItemPredicate.fromJson(json.get("item")));
 	}
 
@@ -41,22 +32,29 @@ public class LootBoxTrigger extends SimpleCriterionTrigger<LootBoxTrigger.Instan
 
 	public static class Instance extends AbstractCriterionTriggerInstance {
 
-		private final ItemPredicate item;
+		@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+		private final Optional<ItemPredicate> item;
 
-		public Instance(ContextAwarePredicate player, ItemPredicate item) {
-			super(LootBoxTrigger.ID, player);
+		@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+		public Instance(Optional<ContextAwarePredicate> player, Optional<ItemPredicate> item) {
+			super(player);
+
 			this.item = item;
 		}
 
 		public boolean matches(ItemStack item) {
-			return this.item.matches(item);
+			return this.item.isPresent() && this.item.get().matches(item);
 		}
 
 		@NotNull
-		public JsonObject serializeToJson(@NotNull SerializationContext conditions) {
-			JsonObject jsonobject = super.serializeToJson(conditions);
-			jsonobject.add("item", this.item.serializeToJson());
-			return jsonobject;
+		public JsonObject serializeToJson() {
+			JsonObject jsonObject = super.serializeToJson();
+
+			item.ifPresent(item -> {
+				jsonObject.add("item", item.serializeToJson());
+			});
+
+			return jsonObject;
 		}
 	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -150,6 +151,7 @@ public class CraftingPuzzle {
 
 		return recipeManager.getAllRecipesFor(RecipeType.CRAFTING)
 				.stream()
+				.map(RecipeHolder::value)
 				.filter(recipe -> {
 					ItemStack output = recipe.getResultItem(level.registryAccess());
 					return ItemStack.isSameItem(output, item)
@@ -274,6 +276,7 @@ public class CraftingPuzzle {
 			List<CraftingRecipe> recipes = recipeManager.getAllRecipesFor(RecipeType.CRAFTING)
 					.stream()
 					.filter(recipe -> isValidRecipe(level, recipe, config))
+					.map(RecipeHolder::value)
 					.collect(Collectors.toList());
 
 			RECIPES_CACHE.put(config, recipes);
@@ -284,13 +287,13 @@ public class CraftingPuzzle {
 		return RECIPES_CACHE.get(config);
 	}
 
-	private static boolean isValidRecipe(Level level, CraftingRecipe recipe, PuzzleType config) {
+	private static boolean isValidRecipe(Level level, RecipeHolder<CraftingRecipe> recipe, PuzzleType config) {
 		return isRecipeOutputValid(level, recipe, config)
 				&& isRecipeIngredientsValid(recipe, config);
 	}
 
-	private static boolean isRecipeIngredientsValid(CraftingRecipe recipe, PuzzleType config) {
-		NonNullList<Ingredient> ingredients = recipe.getIngredients();
+	private static boolean isRecipeIngredientsValid(RecipeHolder<CraftingRecipe> recipe, PuzzleType config) {
+		NonNullList<Ingredient> ingredients = recipe.value().getIngredients();
 		int totalIngredients = ingredients.size();
 
 		if (!config.ingredientRange.test(totalIngredients)) {
@@ -307,11 +310,11 @@ public class CraftingPuzzle {
 		return config.uniqueIngredientRange.test(uniqueIngredients);
 	}
 
-	private static boolean isRecipeOutputValid(Level level, CraftingRecipe recipe, PuzzleType config) {
-		ItemStack recipeOutput = recipe.getResultItem(level.registryAccess());
+	private static boolean isRecipeOutputValid(Level level, RecipeHolder<CraftingRecipe> recipe, PuzzleType config) {
+		ItemStack recipeOutput = recipe.value().getResultItem(level.registryAccess());
 
 		return config.recipeOutputStackRange.test(recipeOutput.getCount())
-				&& "minecraft".equals(recipe.getId().getNamespace())
+				&& "minecraft".equals(recipe.id().getNamespace())
 				&& !BLACKLIST.contains(ForgeRegistries.ITEMS.getKey(recipeOutput.getItem()));
 	}
 

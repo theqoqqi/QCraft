@@ -1,8 +1,8 @@
 package ru.qoqqi.qcraft.network;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.ChannelBuilder;
+import net.minecraftforge.network.SimpleChannel;
 
 import ru.qoqqi.qcraft.QCraft;
 
@@ -10,17 +10,25 @@ public class ModPacketHandler {
 
 	private static final String PROTOCOL_VERSION = "1";
 
-	public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-			new ResourceLocation(QCraft.MOD_ID, "channel"),
-			() -> PROTOCOL_VERSION,
-			PROTOCOL_VERSION::equals,
-			PROTOCOL_VERSION::equals
-	);
+	private static final ResourceLocation NAME = new ResourceLocation(QCraft.MOD_ID, "channel");
 
-	@SuppressWarnings("UnusedAssignment")
+	public static final SimpleChannel CHANNEL = ChannelBuilder.named(NAME)
+			.networkProtocolVersion(1)
+			.simpleChannel()
+
+			.messageBuilder(JourneyPlacePositionPacket.class)
+			.decoder(JourneyPlacePositionPacket::new)
+			.encoder(JourneyPlacePositionPacket::encode)
+			.consumerNetworkThread(JourneyPlacePositionPacket.Handler::onMessage)
+			.add()
+
+			.messageBuilder(JourneyPlaceVisitedPacket.class)
+			.decoder(JourneyPlaceVisitedPacket::new)
+			.encoder(JourneyPlaceVisitedPacket::encode)
+			.consumerNetworkThread(JourneyPlaceVisitedPacket.Handler::onMessage)
+			.add();
+
 	public static void init() {
-		int id = 0;
-		CHANNEL.registerMessage(id++, JourneyPlacePositionPacket.class, JourneyPlacePositionPacket::encode, JourneyPlacePositionPacket::new, JourneyPlacePositionPacket.Handler::onMessage);
-		CHANNEL.registerMessage(id++, JourneyPlaceVisitedPacket.class, JourneyPlaceVisitedPacket::encode, JourneyPlaceVisitedPacket::new, JourneyPlaceVisitedPacket.Handler::onMessage);
+		// Used to init statics
 	}
 }

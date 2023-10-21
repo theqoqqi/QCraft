@@ -158,7 +158,7 @@ public class JourneyStructure extends Structure {
 
 		if (server != null) {
 			server.getPlayerList().getPlayers().forEach(player -> {
-				ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), packet);
+				ModPacketHandler.CHANNEL.send(packet, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(player));
 			});
 		}
 	}

@@ -6,30 +6,21 @@ import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.advancements.critereon.SerializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
-import javax.annotation.Nonnull;
+import java.util.Optional;
 
-import ru.qoqqi.qcraft.QCraft;
+import javax.annotation.Nonnull;
 
 public class SolvePuzzleTrigger extends SimpleCriterionTrigger<SolvePuzzleTrigger.Instance> {
 
-	private static final ResourceLocation ID = new ResourceLocation(QCraft.MOD_ID, "solve_puzzle");
-
-	@Nonnull
-	public ResourceLocation getId() {
-		return ID;
-	}
-
 	@Override
 	@Nonnull
-	public Instance createInstance(@Nonnull JsonObject json, @Nonnull ContextAwarePredicate entityPredicate, @Nonnull DeserializationContext conditionsParser) {
-		LocationPredicate locationPredicate = LocationPredicate.fromJson(json.get("location"));
+	public Instance createInstance(@Nonnull JsonObject json, @Nonnull Optional<ContextAwarePredicate> entityPredicate, @Nonnull DeserializationContext conditionsParser) {
+		var locationPredicate = LocationPredicate.fromJson(json.get("location"));
 		return new Instance(entityPredicate, locationPredicate);
 	}
 
@@ -41,21 +32,34 @@ public class SolvePuzzleTrigger extends SimpleCriterionTrigger<SolvePuzzleTrigge
 
 	public static class Instance extends AbstractCriterionTriggerInstance {
 
-		private final LocationPredicate location;
+		@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+		private final Optional<LocationPredicate> location;
 
-		public Instance(ContextAwarePredicate player, LocationPredicate location) {
-			super(SolvePuzzleTrigger.ID, player);
+		@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+		public Instance(Optional<ContextAwarePredicate> player, Optional<LocationPredicate> location) {
+			super(player);
+
 			this.location = location;
 		}
 
 		public boolean matches(ServerLevel level, BlockPos pos) {
-			return this.location.matches(level, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+			if (location.isEmpty()) return false;
+
+			var x = (double) pos.getX() + 0.5D;
+			var y = (double) pos.getY() + 0.5D;
+			var z = (double) pos.getZ() + 0.5D;
+
+			return location.get().matches(level, x, y, z);
 		}
 
 		@Nonnull
-		public JsonObject serializeToJson(@Nonnull SerializationContext conditions) {
-			JsonObject jsonObject = super.serializeToJson(conditions);
-			jsonObject.add("location", this.location.serializeToJson());
+		public JsonObject serializeToJson() {
+			JsonObject jsonObject = super.serializeToJson();
+
+			location.ifPresent(location -> {
+				jsonObject.add("location", location.serializeToJson());
+			});
+
 			return jsonObject;
 		}
 	}

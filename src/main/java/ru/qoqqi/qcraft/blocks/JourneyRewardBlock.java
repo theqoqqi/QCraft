@@ -88,7 +88,7 @@ public class JourneyRewardBlock extends BaseEntityBlock {
 		JourneyPlaceVisitedPacket packet = new JourneyPlaceVisitedPacket(stage);
 
 		levelData.addVisitor(stage, playerUuid);
-		ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), packet);
+		ModPacketHandler.CHANNEL.send(packet, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(player));
 
 		return InteractionResult.SUCCESS;
 	}

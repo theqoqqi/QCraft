@@ -140,10 +140,12 @@ public class LootBoxGeneratorsLevelData extends SavedData {
 	}
 
 	public static LootBoxGeneratorsLevelData getInstance(ServerLevel level) {
-		return level.getDataStorage().computeIfAbsent(
+		var factory = new Factory<>(
 				LootBoxGeneratorsLevelData::new,
 				LootBoxGeneratorsLevelData::new,
-				NAME
+				DummyDataFixTypeHolder.VALUE
 		);
+
+		return level.getDataStorage().computeIfAbsent(factory, NAME);
 	}
 }

@@ -9,16 +9,16 @@ import ru.qoqqi.qcraft.QCraft;
 
 public class ModCriteriaTriggers {
 
-	public static final LootBoxTrigger OPEN_LOOT_BOX = register(new LootBoxTrigger());
+	public static final LootBoxTrigger OPEN_LOOT_BOX = register("open_loot_box", new LootBoxTrigger());
 
-	public static final SolvePuzzleTrigger SOLVE_PUZZLE = register(new SolvePuzzleTrigger());
+	public static final SolvePuzzleTrigger SOLVE_PUZZLE = register("solve_puzzle", new SolvePuzzleTrigger());
 
-	public static final PlayerTrigger OPEN_PANDORAS_BOX = register(new PlayerTrigger(new ResourceLocation(QCraft.MOD_ID, "open_pandoras_box")));
+	public static final PlayerTrigger OPEN_PANDORAS_BOX = register("open_pandoras_box", new PlayerTrigger());
 
-	public static final PlayerTrigger ACTIVATE_LOOT_BOX_GENERATOR = register(new PlayerTrigger(new ResourceLocation(QCraft.MOD_ID, "activate_loot_box_generator")));
+	public static final PlayerTrigger ACTIVATE_LOOT_BOX_GENERATOR = register("activate_loot_box_generator", new PlayerTrigger());
 
-	public static <T extends CriterionTrigger<?>> T register(T criterion) {
-		return CriteriaTriggers.register(criterion);
+	public static <T extends CriterionTrigger<?>> T register(String id, T criterion) {
+		return CriteriaTriggers.register(QCraft.MOD_ID + ":" + id, criterion);
 	}
 
 	public static void register() {

@@ -1,9 +1,7 @@
 package ru.qoqqi.qcraft.network;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 
 import ru.qoqqi.qcraft.journey.JourneyStage;
 import ru.qoqqi.qcraft.journey.JourneyStages;
@@ -27,12 +25,12 @@ public class JourneyPlaceVisitedPacket {
 
 	public static class Handler {
 
-		public static void onMessage(JourneyPlaceVisitedPacket packet, Supplier<NetworkEvent.Context> ctx) {
-			ctx.get().enqueueWork(() -> {
+		public static void onMessage(JourneyPlaceVisitedPacket packet, CustomPayloadEvent.Context ctx) {
+			ctx.enqueueWork(() -> {
 				JourneyLevelData.Client.setPlaceVisited(packet.stage);
 			});
 
-			ctx.get().setPacketHandled(true);
+			ctx.setPacketHandled(true);
 		}
 	}
 }

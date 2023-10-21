@@ -37,10 +37,15 @@ public class LootInjectionModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+		if (context.getQueriedLootTableId().equals(table)) {
+			return generatedLoot;
+		}
+
 		var level = context.getLevel();
 		var lootParams = new LootParams.Builder(level)
 				.create(LootContextParamSets.EMPTY);
 		var lootTable = level.getServer().getLootData().getLootTable(table);
+
 
 		generatedLoot.addAll(lootTable.getRandomItems(lootParams));
 

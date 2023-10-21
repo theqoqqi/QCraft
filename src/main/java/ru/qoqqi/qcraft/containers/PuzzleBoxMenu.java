@@ -259,12 +259,12 @@ public class PuzzleBoxMenu extends AbstractContainerMenu {
 		ServerPlayer playerEntity = (ServerPlayer) player;
 		ItemStack itemStack = ItemStack.EMPTY;
 		RecipeManager recipeManager = server.getRecipeManager();
-		Optional<CraftingRecipe> optional = recipeManager.getRecipeFor(RecipeType.CRAFTING, inventory, level);
+		var optional = recipeManager.getRecipeFor(RecipeType.CRAFTING, inventory, level);
 
 		if (optional.isPresent()) {
-			CraftingRecipe recipe = optional.get();
+			var recipe = optional.get();
 			if (inventoryResult.setRecipeUsed(level, playerEntity, recipe)) {
-				itemStack = recipe.assemble(inventory, level.registryAccess());
+				itemStack = recipe.value().assemble(inventory, level.registryAccess());
 			}
 		}
 

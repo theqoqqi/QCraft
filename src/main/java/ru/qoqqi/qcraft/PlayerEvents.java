@@ -36,12 +36,12 @@ public class PlayerEvents {
 			placePositions.forEach((stage, position) -> {
 				JourneyPlacePositionPacket packet = new JourneyPlacePositionPacket(stage, position);
 
-				ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), packet);
+				ModPacketHandler.CHANNEL.send(packet, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(serverPlayer));
 
 				if (levelData.isVisitedBy(stage, serverPlayer.getUUID())) {
 					JourneyPlaceVisitedPacket placeVisitedPacket = new JourneyPlaceVisitedPacket(stage);
 
-					ModPacketHandler.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), placeVisitedPacket);
+					ModPacketHandler.CHANNEL.send(placeVisitedPacket, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(serverPlayer));
 				}
 			});
 		}
