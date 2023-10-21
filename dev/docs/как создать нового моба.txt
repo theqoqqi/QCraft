@@ -1,0 +1,10 @@
+1. Создать модель (MobNameModel). Есть прога Blockbench для создания моделей
+2. Создать текстуры (assets/q_craft/textures/entity/mob_name.png)
+3. Создать модель яйца призыва (assets/q_craft/models/item/mob_name_spawn_egg.json)
+4. Добавить локализацию в ru_ru.json (entity.q_craft.mob_name, item.q_craft.mob_name_spawn_egg)
+5. Добавить таблицу лута (data/q_craft/loot_tables/entities)
+6. Добавить спаун (data/q_craft/forge/biome_modifier, зарегистрировать в ModSpawnPlacements)
+7. Создать слой для рендерера (прописать в файле Layers)
+8. Создать рендерер (MobNameRenderer)
+9. Создать класс моба (MobName, прописать в файле ModEntityTypes и в addEntityAttributes)
+10. Связать рендерер и тип моба в классе QCraft (EntityRenderers.register(...))
