@@ -11,7 +11,22 @@
     "q_craft:vanilla/nether_bridge",
     "q_craft:vanilla/simple_dungeon",
     "q_craft:vanilla/spawn_bonus_chest",
-    "q_craft:vanilla/village_house",
+    "q_craft:vanilla/village/village_armorer",
+    "q_craft:vanilla/village/village_butcher",
+    "q_craft:vanilla/village/village_cartographer",
+    "q_craft:vanilla/village/village_desert_house",
+    "q_craft:vanilla/village/village_fisher",
+    "q_craft:vanilla/village/village_fletcher",
+    "q_craft:vanilla/village/village_mason",
+    "q_craft:vanilla/village/village_plains_house",
+    "q_craft:vanilla/village/village_savanna_house",
+    "q_craft:vanilla/village/village_sheperd",
+    "q_craft:vanilla/village/village_snowy_house",
+    "q_craft:vanilla/village/village_taiga_house",
+    "q_craft:vanilla/village/village_tannery",
+    "q_craft:vanilla/village/village_temple",
+    "q_craft:vanilla/village/village_toolsmith",
+    "q_craft:vanilla/village/village_weaponsmith",
     "q_craft:q_structs/all"
   ]
 }

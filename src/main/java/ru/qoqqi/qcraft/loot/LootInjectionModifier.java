@@ -12,11 +12,16 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.annotation.Nonnull;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 
 public class LootInjectionModifier extends LootModifier {
+
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	public static Codec<LootInjectionModifier> CODEC = RecordCodecBuilder.create(
 			instance -> instance
@@ -37,10 +42,6 @@ public class LootInjectionModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		if (context.getQueriedLootTableId().equals(table)) {
-			return generatedLoot;
-		}
-
 		var level = context.getLevel();
 		var lootParams = new LootParams.Builder(level)
 				.create(LootContextParamSets.EMPTY);
