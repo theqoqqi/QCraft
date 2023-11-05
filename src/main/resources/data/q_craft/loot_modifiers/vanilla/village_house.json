@@ -3,7 +3,7 @@
   "injection": "q_craft:inject/loot_boxes",
   "conditions": [
     {
-      "condition": "minecraft:alternative",
+      "condition": "minecraft:any_of",
       "terms": [
         {
           "condition": "forge:loot_table_id",
