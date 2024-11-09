@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:puzzle_box_easy/categories/tools/all_tools"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:puzzle_box_easy/categories/armor/all_armor"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "q_craft:oak_plate",
+    "q_craft:birch_plate",
+    "q_craft:acacia_plate",
+    "q_craft:jungle_plate",
+    "q_craft:spruce_plate",
+    "q_craft:dark_oak_plate",
+    "q_craft:mangrove_plate"
+  ]
+}

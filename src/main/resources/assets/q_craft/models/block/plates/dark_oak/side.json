@@ -1,0 +1,7 @@
+{
+  "parent": "q_craft:block/plates/template/side",
+  "textures": {
+    "pane": "minecraft:block/stripped_dark_oak_log",
+    "edge": "minecraft:block/stripped_dark_oak_log"
+  }
+}

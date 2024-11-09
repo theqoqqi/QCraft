@@ -1,0 +1,7 @@
+{
+  "parent": "q_craft:block/plates/template/side_alt",
+  "textures": {
+    "pane": "minecraft:block/stripped_mangrove_log",
+    "edge": "minecraft:block/stripped_mangrove_log"
+  }
+}

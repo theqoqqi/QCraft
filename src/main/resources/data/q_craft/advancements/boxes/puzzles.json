@@ -1,0 +1,32 @@
+{
+  "parent": "q_craft:boxes/root",
+  "display": {
+    "icon": {
+      "item": "q_craft:puzzle_box_easy"
+    },
+    "title": {
+      "translate": "advancements.boxes.puzzles.title"
+    },
+    "description": {
+      "translate": "advancements.boxes.puzzles.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "criteria": {
+    "solve_puzzle": {
+      "trigger": "q_craft:solve_puzzle",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "solve_puzzle"
+    ]
+  ]
+}

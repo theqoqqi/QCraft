@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_brain_coral"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_bubble_coral"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_fire_coral"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_horn_coral"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_tube_coral"
+        }
+      ]
+    }
+  ]
+}
+

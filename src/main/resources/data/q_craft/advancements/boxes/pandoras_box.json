@@ -1,0 +1,32 @@
+{
+  "parent": "q_craft:boxes/puzzles",
+  "display": {
+    "icon": {
+      "item": "q_craft:pandoras_box"
+    },
+    "title": {
+      "translate": "advancements.boxes.pandoras_box.title"
+    },
+    "description": {
+      "translate": "advancements.boxes.pandoras_box.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "pandoras_box": {
+      "trigger": "q_craft:open_pandoras_box",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "pandoras_box"
+    ]
+  ]
+}

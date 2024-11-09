@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "q_craft:pandoras_box",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}
+

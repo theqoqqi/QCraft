@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#q_craft:has_mouses",
+  "spawners": {
+    "type": "q_craft:field_mouse",
+    "weight": 5,
+    "minCount": 2,
+    "maxCount": 4
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "q_craft:journey/pandoras_temple",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 16,
+    "separation": 0,
+    "salt": 1276200863
+  }
+}

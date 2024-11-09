@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "q_craft:block/puzzle_box_normal"
+    }
+  }
+}

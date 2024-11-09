@@ -1,0 +1,21 @@
+{
+  "values": [
+    "#forge:is_plains",
+    "minecraft:forest",
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest",
+    "#forge:is_desert",
+    "minecraft:beach",
+    "#forge:is_snowy",
+    "#forge:is_swamp",
+    "#minecraft:is_jungle",
+    "#minecraft:is_savanna",
+    "#minecraft:is_badlands",
+    "minecraft:flower_forest",
+    "#forge:is_mushroom",
+    "#minecraft:is_nether",
+    "minecraft:small_end_islands",
+    "minecraft:end_midlands",
+    "minecraft:end_highlands"
+  ]
+}

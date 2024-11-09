@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:pandoras_box/categories/spawn_eggs/all_spawn_eggs"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:pandoras_box/categories/tools/all_tools"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:pandoras_box/categories/armor/all_armor"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:pandoras_box/categories/creative_items/all_creative_items"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "q_craft:pandoras_box/categories/loot_boxes"
+        }
+      ]
+    }
+  ]
+}
+

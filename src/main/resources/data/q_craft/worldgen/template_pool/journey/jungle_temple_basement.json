@@ -1,0 +1,15 @@
+{
+  "name": "q_craft:journey/jungle_temple_basement",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "q_craft:journey/jungle_temple_basement",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

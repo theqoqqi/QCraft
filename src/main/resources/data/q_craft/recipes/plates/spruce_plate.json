@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_log"
+    }
+  },
+  "result": {
+    "item": "q_craft:spruce_plate",
+    "count": 8
+  }
+}

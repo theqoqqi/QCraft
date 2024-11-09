@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#forge:is_plains",
+    "#forge:is_swamp",
+    "#forge:is_desert",
+    "#minecraft:is_forest",
+    "#minecraft:is_savanna"
+  ]
+}

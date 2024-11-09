@@ -1,0 +1,6 @@
+{
+  "parent": "q_craft:block/plates/template/noside_alt",
+  "textures": {
+    "pane": "minecraft:block/stripped_oak_log"
+  }
+}

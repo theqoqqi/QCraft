@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_boots"
+        }
+      ]
+    }
+  ]
+}
+

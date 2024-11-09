@@ -1,0 +1,7 @@
+{
+  "parent": "q_craft:block/plates/template/post",
+  "textures": {
+    "pane": "minecraft:block/stripped_acacia_log",
+    "edge": "minecraft:block/stripped_acacia_log"
+  }
+}

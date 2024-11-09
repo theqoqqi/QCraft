@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mangrove_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_pressure_plate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_pressure_plate"
+        }
+      ]
+    }
+  ]
+}
+

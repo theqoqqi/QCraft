@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "q_craft:loot_box_small"
+    },
+    "title": {
+      "translate": "advancements.boxes.root.title"
+    },
+    "description": {
+      "translate": "advancements.boxes.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "q_craft:textures/gui/advancements/backgrounds/boxes.png"
+  },
+  "rewards": {
+    "experience": 25
+  },
+  "criteria": {
+    "open_loot_box": {
+      "trigger": "q_craft:open_loot_box",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "open_loot_box"
+    ]
+  ]
+}

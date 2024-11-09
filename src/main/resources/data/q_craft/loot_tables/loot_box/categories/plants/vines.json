@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:twisting_vines",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:vine",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:weeping_vines",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}
+

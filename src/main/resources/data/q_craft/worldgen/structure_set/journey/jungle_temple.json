@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "q_craft:journey/jungle_temple",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 8,
+    "separation": 0,
+    "salt": 1480738277
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mangrove_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_slab"
+        }
+      ]
+    }
+  ]
+}
+

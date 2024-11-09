@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D#D",
+    "#E#",
+    "D#D"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "#": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "q_craft:loot_box_generator"
+  }
+}
