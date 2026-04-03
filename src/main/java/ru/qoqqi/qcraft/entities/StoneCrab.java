@@ -33,6 +33,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.fluids.FluidType;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -169,9 +170,9 @@ public class StoneCrab extends Animal {
 		return values[random.nextInt(values.length)];
 	}
 
-	@SuppressWarnings("deprecation")
-	public boolean canBreatheUnderwater() {
-		return true;
+	@Override
+	public boolean canDrownInFluidType(FluidType type) {
+		return false;
 	}
 
 	protected SoundEvent getAmbientSound() {

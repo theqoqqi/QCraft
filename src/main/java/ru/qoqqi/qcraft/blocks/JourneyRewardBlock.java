@@ -1,5 +1,9 @@
 package ru.qoqqi.qcraft.blocks;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +37,7 @@ import javax.annotation.Nullable;
 import ru.qoqqi.qcraft.blockentities.JourneyRewardBlockEntity;
 import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
 import ru.qoqqi.qcraft.boxes.LootBox;
+import ru.qoqqi.qcraft.boxes.LootBoxes;
 import ru.qoqqi.qcraft.journey.JourneyStage;
 import ru.qoqqi.qcraft.journey.JourneyStages;
 import ru.qoqqi.qcraft.leveldata.JourneyLevelData;
@@ -40,6 +45,14 @@ import ru.qoqqi.qcraft.network.JourneyPlaceVisitedPacket;
 import ru.qoqqi.qcraft.network.ModPacketHandler;
 
 public class JourneyRewardBlock extends BaseEntityBlock {
+
+	public static final MapCodec<JourneyRewardBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+		return instance.group(
+				propertiesCodec(),
+				Codec.STRING.fieldOf("stage_name").forGetter(block -> block.stage.name),
+				Codec.STRING.fieldOf("loot_box_name").forGetter(block -> block.lootBox.name)
+		).apply(instance, JourneyRewardBlock::new);
+	});
 
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
@@ -49,12 +62,22 @@ public class JourneyRewardBlock extends BaseEntityBlock {
 
 	private final LootBox lootBox;
 
+	public JourneyRewardBlock(Properties properties, String stageName, String lootBoxName) {
+		this(properties, JourneyStages.byName(stageName), LootBoxes.byName(lootBoxName));
+	}
+
 	public JourneyRewardBlock(Properties properties, JourneyStage stage, LootBox lootBox) {
 		super(properties);
 		this.stage = stage;
 		this.lootBox = lootBox;
 
 		byStages.put(stage, this);
+	}
+
+	@Override
+	@Nonnull
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@SuppressWarnings("deprecation")

@@ -17,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegisterEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,6 +58,7 @@ public class QCraft {
 		eventBus.addListener(this::setup);
 		eventBus.addListener(this::loadComplete);
 		eventBus.addListener(this::doClientStuff);
+		eventBus.addListener(this::initRegistries);
 		eventBus.addListener(this::initCreativeTabs);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
@@ -72,7 +74,6 @@ public class QCraft {
 		ModBiomeModifierTypes.register(eventBus);
 		ModSoundEvents.register(eventBus);
 		ModMenus.register(eventBus);
-		ModCriteriaTriggers.register();
 
 		GlobalLootModifiers.register(eventBus);
 	}
@@ -96,6 +97,10 @@ public class QCraft {
 
 	private void loadComplete(final FMLLoadCompleteEvent event) {
 		LOGGER.info("QCraft - loadComplete");
+	}
+
+	private void initRegistries(RegisterEvent event) {
+		ModCriteriaTriggers.register();
 	}
 
 	private void initCreativeTabs(final BuildCreativeModeTabContentsEvent event) {

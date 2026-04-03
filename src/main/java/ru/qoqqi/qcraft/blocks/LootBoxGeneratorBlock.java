@@ -1,5 +1,7 @@
 package ru.qoqqi.qcraft.blocks;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
@@ -35,12 +37,20 @@ import ru.qoqqi.qcraft.blockentities.ModBlockEntityTypes;
 
 public class LootBoxGeneratorBlock extends BaseEntityBlock {
 
+	public static final MapCodec<LootBoxGeneratorBlock> CODEC = simpleCodec(LootBoxGeneratorBlock::new);
+
 	private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 
 	public static final Vec3 TABLE_CENTER = new Vec3(0.5, 0.75, 0.5);
 
 	public LootBoxGeneratorBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	@Nonnull
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@SuppressWarnings("deprecation")

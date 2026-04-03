@@ -1,5 +1,9 @@
 package ru.qoqqi.qcraft.blocks;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -26,11 +30,22 @@ import javax.annotation.Nullable;
 
 import ru.qoqqi.qcraft.blockentities.PuzzleBoxBlockEntity;
 import ru.qoqqi.qcraft.boxes.LootBox;
+import ru.qoqqi.qcraft.boxes.LootBoxes;
 import ru.qoqqi.qcraft.containers.PuzzleBoxMenu;
 import ru.qoqqi.qcraft.items.PuzzleBoxBlockItem;
 import ru.qoqqi.qcraft.puzzles.PuzzleType;
+import ru.qoqqi.qcraft.puzzles.PuzzleTypes;
 
 public class PuzzleBoxBlock extends BaseEntityBlock {
+
+	public static final MapCodec<PuzzleBoxBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+		return instance.group(
+				propertiesCodec(),
+				Codec.STRING.fieldOf("loot_box_name").forGetter(block -> block.lootBox.name),
+				Codec.INT.fieldOf("explosion_power").forGetter(block -> block.explosionPower),
+				Codec.STRING.fieldOf("puzzle_type").forGetter(block -> block.puzzleType.name)
+		).apply(instance, PuzzleBoxBlock::new);
+	});
 
 	private static final Component CONTAINER_NAME = Component.translatable("container.crafting");
 
@@ -44,11 +59,21 @@ public class PuzzleBoxBlock extends BaseEntityBlock {
 
 	private final PuzzleType puzzleType;
 
+	public PuzzleBoxBlock(Properties properties, String lootBoxName, int explosionPower, String puzzleTypeName) {
+		this(properties, LootBoxes.byName(lootBoxName), explosionPower, PuzzleTypes.byName(puzzleTypeName));
+	}
+
 	public PuzzleBoxBlock(Properties properties, LootBox lootBox, int explosionPower, PuzzleType config) {
 		super(properties);
 		this.lootBox = lootBox;
 		this.puzzleType = config;
 		this.explosionPower = explosionPower;
+	}
+
+	@Override
+	@Nonnull
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@SuppressWarnings("deprecation")

@@ -4,6 +4,8 @@ import ru.qoqqi.qcraft.util.IntRange;
 
 public class PuzzleType {
 
+	public final String name;
+
 	public final IntRange ingredientRange;
 
 	public final IntRange uniqueIngredientRange;
@@ -14,7 +16,8 @@ public class PuzzleType {
 
 	public final int solutionSize;
 
-	public PuzzleType(IntRange ingredientRange, IntRange uniqueIngredientRange, IntRange recipeOutputStackRange, float splitProbability, int solutionSize) {
+	public PuzzleType(String name, IntRange ingredientRange, IntRange uniqueIngredientRange, IntRange recipeOutputStackRange, float splitProbability, int solutionSize) {
+		this.name = name;
 		this.ingredientRange = ingredientRange;
 		this.uniqueIngredientRange = uniqueIngredientRange;
 		this.recipeOutputStackRange = recipeOutputStackRange;
@@ -66,8 +69,8 @@ public class PuzzleType {
 			return this;
 		}
 
-		public PuzzleType build() {
-			return new PuzzleType(ingredientRange, uniqueIngredientRange, recipeOutputStackRange, splitProbability, solutionSize);
+		public PuzzleType build(String name) {
+			return new PuzzleType(name, ingredientRange, uniqueIngredientRange, recipeOutputStackRange, splitProbability, solutionSize);
 		}
 	}
 }

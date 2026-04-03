@@ -17,9 +17,12 @@ import ru.qoqqi.qcraft.util.WeightedList;
 
 public class LootBox {
 
+	public final String name;
+
 	private final WeightedList<IBoxEntry> entries;
 
-	public LootBox(WeightedList<IBoxEntry> entries) {
+	public LootBox(String name, WeightedList<IBoxEntry> entries) {
+		this.name = name;
 		this.entries = entries;
 	}
 

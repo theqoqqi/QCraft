@@ -1,5 +1,7 @@
 package ru.qoqqi.qcraft.blocks;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -24,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public class PlateBlock extends CrossCollisionBlock {
+
+	public static final MapCodec<PlateBlock> CODEC = simpleCodec(PlateBlock::new);
 
 	public static final BooleanProperty IS_COVERING = BooleanProperty.create("covering");
 
@@ -52,6 +56,12 @@ public class PlateBlock extends CrossCollisionBlock {
 						.setValue(WATERLOGGED, false)
 						.setValue(IS_COVERING, false)
 		);
+	}
+
+	@Override
+	@Nonnull
+	protected MapCodec<? extends CrossCollisionBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

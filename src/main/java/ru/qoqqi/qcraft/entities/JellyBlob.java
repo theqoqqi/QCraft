@@ -47,6 +47,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fluids.FluidType;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -513,9 +514,9 @@ public class JellyBlob extends Mob {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
-	public boolean canBreatheUnderwater() {
-		return true;
+	@Override
+	public boolean canDrownInFluidType(FluidType type) {
+		return false;
 	}
 
 	public boolean removeWhenFarAway(double distance) {

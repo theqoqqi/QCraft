@@ -91,7 +91,7 @@ public class FieldMouse extends Animal {
 					|| blockState.is(Blocks.WHEAT);
 
 	private static final Predicate<BlockState> grassBlocksToDestroy =
-			blockState -> blockState.is(Blocks.GRASS);
+			blockState -> blockState.is(Blocks.SHORT_GRASS);
 
 	private static final Predicate<BlockState> desertBlocksToDestroy =
 			blockState -> blockState.is(Blocks.DEAD_BUSH);
